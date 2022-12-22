@@ -1,22 +1,15 @@
 {
-  "workbench.colorCustomizations": {
-    "activityBar.activeBackground": "#5d1946",
-    "activityBar.background": "#5d1946",
-    "activityBar.foreground": "#e7e7e7",
-    "activityBar.inactiveForeground": "#e7e7e799",
-    "activityBarBadge.background": "#5f7e22",
-    "activityBarBadge.foreground": "#e7e7e7",
-    "commandCenter.border": "#e7e7e799",
-    "sash.hoverBorder": "#5d1946",
-    "statusBar.background": "#350e28",
-    "statusBar.foreground": "#e7e7e7",
-    "statusBarItem.hoverBackground": "#5d1946",
-    "statusBarItem.remoteBackground": "#350e28",
-    "statusBarItem.remoteForeground": "#e7e7e7",
-    "titleBar.activeBackground": "#350e28",
-    "titleBar.activeForeground": "#e7e7e7",
-    "titleBar.inactiveBackground": "#350e2899",
-    "titleBar.inactiveForeground": "#e7e7e799"
-  },
-  "peacock.color": "#350e28"
+	"liveSassCompile.settings.formats": [
+		{
+			"format": "expanded",
+			"extensionName": ".css",
+			"savePath": "/styles"
+		}
+	],
+	"liveSassCompile.settings.excludeList": [
+		"/**/node_modules/**",
+		"/.vscode/**"
+	],
+	"liveSassCompile.settings.generateMap": false,
+	"liveSassCompile.settings.autoprefix": ["> 1%", "last 2 versions"]
 }
