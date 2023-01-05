@@ -11,5 +11,28 @@
 		"/.vscode/**"
 	],
 	"liveSassCompile.settings.generateMap": false,
-	"liveSassCompile.settings.autoprefix": ["> 1%", "last 2 versions"]
+	"liveSassCompile.settings.autoprefix": [
+		"> 1%",
+		"last 2 versions"
+	],
+	"workbench.colorCustomizations": {
+		"activityBar.activeBackground": "#61bfcc",
+		"activityBar.background": "#61bfcc",
+		"activityBar.foreground": "#15202b",
+		"activityBar.inactiveForeground": "#15202b99",
+		"activityBarBadge.background": "#c13eb1",
+		"activityBarBadge.foreground": "#e7e7e7",
+		"commandCenter.border": "#15202b99",
+		"sash.hoverBorder": "#61bfcc",
+		"statusBar.background": "#3dadbd",
+		"statusBar.foreground": "#15202b",
+		"statusBarItem.hoverBackground": "#318a96",
+		"statusBarItem.remoteBackground": "#3dadbd",
+		"statusBarItem.remoteForeground": "#15202b",
+		"titleBar.activeBackground": "#3dadbd",
+		"titleBar.activeForeground": "#15202b",
+		"titleBar.inactiveBackground": "#3dadbd99",
+		"titleBar.inactiveForeground": "#15202b99"
+	},
+	"peacock.color": "#3dadbd"
 }

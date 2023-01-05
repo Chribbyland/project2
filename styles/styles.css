@@ -249,3 +249,8 @@ p {
   font-size: 3rem;
   text-align: center;
 }
+
+.container {
+  border: 1px solid red;
+  margin: 20px 20px;
+}
