@@ -1,22 +1,38 @@
 {
-    "workbench.colorCustomizations": {
-        "activityBar.activeBackground": "#3399ff",
-        "activityBar.background": "#3399ff",
-        "activityBar.foreground": "#15202b",
-        "activityBar.inactiveForeground": "#15202b99",
-        "activityBarBadge.background": "#bf0060",
-        "activityBarBadge.foreground": "#e7e7e7",
-        "commandCenter.border": "#e7e7e799",
-        "sash.hoverBorder": "#3399ff",
-        "statusBar.background": "#007fff",
-        "statusBar.foreground": "#e7e7e7",
-        "statusBarItem.hoverBackground": "#3399ff",
-        "statusBarItem.remoteBackground": "#007fff",
-        "statusBarItem.remoteForeground": "#e7e7e7",
-        "titleBar.activeBackground": "#007fff",
-        "titleBar.activeForeground": "#e7e7e7",
-        "titleBar.inactiveBackground": "#007fff99",
-        "titleBar.inactiveForeground": "#e7e7e799"
-    },
-    "peacock.color": "#007fff"
+	"liveSassCompile.settings.formats": [
+		{
+			"format": "expanded",
+			"extensionName": ".css",
+			"savePath": "/styles"
+		}
+	],
+	"liveSassCompile.settings.excludeList": [
+		"/**/node_modules/**",
+		"/.vscode/**"
+	],
+	"liveSassCompile.settings.generateMap": false,
+	"liveSassCompile.settings.autoprefix": [
+		"> 1%",
+		"last 2 versions"
+	],
+	"workbench.colorCustomizations": {
+		"activityBar.activeBackground": "#61bfcc",
+		"activityBar.background": "#61bfcc",
+		"activityBar.foreground": "#15202b",
+		"activityBar.inactiveForeground": "#15202b99",
+		"activityBarBadge.background": "#c13eb1",
+		"activityBarBadge.foreground": "#e7e7e7",
+		"commandCenter.border": "#15202b99",
+		"sash.hoverBorder": "#61bfcc",
+		"statusBar.background": "#3dadbd",
+		"statusBar.foreground": "#15202b",
+		"statusBarItem.hoverBackground": "#318a96",
+		"statusBarItem.remoteBackground": "#3dadbd",
+		"statusBarItem.remoteForeground": "#15202b",
+		"titleBar.activeBackground": "#3dadbd",
+		"titleBar.activeForeground": "#15202b",
+		"titleBar.inactiveBackground": "#3dadbd99",
+		"titleBar.inactiveForeground": "#15202b99"
+	},
+	"peacock.color": "#3dadbd"
 }
