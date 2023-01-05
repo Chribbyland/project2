@@ -13,21 +13,60 @@
 </head>
 <body>
   <main>
+    <!-- main heading goes here-->
     <h1>A Battle of Wits <span>and Clicks!</span></h1>
-    <div class="insultBoxes">
-      <div class="container">
-        <p id="insultLeft"></p>
+    <!--the site wil be divided into three main columns, 1. for left person, 2. middle speech bubbles, 3. person 2-->
+    <div class="entirePage">
+ <!--left person stuff starts here-->   
+      <div class="leftPerson">
+        <!--we need a div, for the image, advice button, insult button-->
+        <div class="leftPersonImage">
+          <!--left person image goes here-->
+          <img src="http://placekitten.com/200/500">
+        </div>
+        <div class="insultContainer" id="leftPersonInsultButton">
+          <!--insult button goes here-->
+        </div>
+        <div class="adviceContainer" id="leftPersonAdviceButton">
+          <!--adive button goes here-->
+        </div>
       </div>
-      <div class="container">
-        <p id="insultRight"></p>
-        <h2></h2>
+  <!--middle speech bubble stuff-->
+      <div class="middle">
+        <div class="speechContainer">
+          <p id="leftPersonSpeechText"></p>
+        </div>
+        <div class="speechContainer">
+          <p id="rightPersonSpeechText"></p>
+        </div>
+      </div>
+  <!--right person stuff starts here-->
+      <div class="rightPerson">
+        <!--we need a div, for the image, advice button, insult button-->
+        <div class="rightPersonImage">
+          <!--right person image goes here-->
+          <img src="http://placekitten.com/200/501">
+        </div>
+        <div class="insultContainer" id="rightPersonInsultButton">
+          <!--insult button goes here-->
+        </div>
+        <div class="adviceContainer" id="rightPersonAdviceButton">
+          <!--adive button goes here-->
+        </div>
       </div>
     </div>
   </main>
 
   <!-- Add a script tag for the file we'll write our JS in -->
   <script src="js/script.js"></script>
-
+<footer>
+  <div class="authors">
+    <h3>copyright Chribbyland and Juno College 2023</h3>
+  </div>
+  <div class="info">
+    <!--nice to have, a question mnark icon that opens up a comment? that gives credit to API creators-->
+  </div>
+</footer>
 </body>
 
 </html>

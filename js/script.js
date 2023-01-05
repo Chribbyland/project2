@@ -5,7 +5,7 @@ const insultApp = {};
 // Remember to also call the init method at the bottom of this file!
 
 insultApp.init = () => {
-  alert('Naughty language may lie ahead.')
+  // alert('Naughty language may lie ahead.')
 // insultApp.getInsultLeft();
 insultApp.getInsultRight();
 insultApp.getZenLeft();
@@ -21,7 +21,7 @@ fetch('https://proxy-ugwolsldnq-uc.a.run.app/https://evilinsult.com/generate_ins
     // console.log(jsonResult);
     const insult = jsonResult.insult;
     // console.log(insult)
-    const insultLeftText = document.querySelector('#insultLeft');
+    const insultLeftText = document.querySelector('#leftPersonSpeechText');
     // clear existing content
     insultLeftText.innerHTML = '';
     insultLeftText.innerHTML = jsonResult.insult;
@@ -37,7 +37,7 @@ fetch('https://proxy-ugwolsldnq-uc.a.run.app/https://evilinsult.com/generate_ins
     console.log(jsonResult);
     const insult = jsonResult.insult;
     // console.log(insult)
-    const insultRightText = document.querySelector('#insultRight');
+    const insultRightText = document.querySelector('#rightPersonSpeechText');
     // clear existing content
     insultRightText.innerHTML = '';
     insultRightText.innerHTML = jsonResult.insult;
@@ -53,7 +53,7 @@ insultApp.getZenLeft = () => {
     console.log(jsonResult);  
     const zen = jsonResult[0];
     console.log(zen.q);
-    const insultLeftText = document.querySelector('#insultLeft');
+    const insultLeftText = document.querySelector('#leftPersonSpeechText');
     // clear existing content
     insultLeftText.innerHTML = '';
     insultLeftText.innerHTML = zen.q;
@@ -69,7 +69,7 @@ insultApp.getZenRight = () => {
     console.log(jsonResult);  
     const zen = jsonResult[0];
     console.log(zen.q);
-    const insultRightText = document.querySelector('#insultRight');
+    const insultRightText = document.querySelector('#rightPersonSpeechText');
     // clear existing content
     insultRightText.innerHTML = '';
     insultRightText.innerHTML = zen.q;

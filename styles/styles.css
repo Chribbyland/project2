@@ -244,13 +244,40 @@ h1 span {
   font-size: 2rem;
 }
 
+h3 {
+  background-color: papayawhip;
+  font-family: "Prompt", sans-serif;
+  font-size: 1rem;
+  text-align: center;
+}
+
 p {
   font-family: "Handlee", cursive;
   font-size: 3rem;
   text-align: center;
 }
 
-.container {
+.entirePage {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+.middle {
   border: 1px solid red;
-  margin: 20px 20px;
+}
+
+.speechContainer {
+  border: 1px solid rebeccapurple;
+}
+
+.leftPerson {
+  border: 1px solid darkorchid;
+}
+
+.rightPerson {
+  border: 1px solid seagreen;
 }
