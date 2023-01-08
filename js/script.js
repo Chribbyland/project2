@@ -7,9 +7,10 @@ const insultApp = {};
 insultApp.init = () => {
   // alert('Naughty language may lie ahead.')
 // insultApp.getInsultLeft();
-insultApp.getInsultRight();
-insultApp.getAdviceLeft();
+// insultApp.getInsultRight();
+// insultApp.getAdviceLeft();
 // insultApp.getAdviceRight();
+  insultApp.gameStart();
 }
 
 insultApp.getInsultLeft = () => {
@@ -70,10 +71,50 @@ insultApp.getAdviceRight = () => {
   });
 };
 
+insultApp.gameStart = () => {
+// Left player always starts. Speech bubbles should not be displayed.
+  // iteration should be 0 (even!)
+  let whoseTurn = 0;
+  console.log(whoseTurn)
+  // check if number is even or odd, even = player 1, odd = player 2
+  if (whoseTurn % 2 === 0) {
+    console.log("ready left player")
+  // add event listeners
+  document.getElementById("insultButton").addEventListener("click", e => {
+    insultApp.getInsultLeft();
+    whoseTurn = whoseTurn+1;
+    console.log(whoseTurn);
+  });
+  document.getElementById("adviceButton").addEventListener("click", e => {
+    insultApp.getAdviceLeft();
+    whoseTurn = whoseTurn+1;
+    console.log(whoseTurn);
+
+  });
+  } else {
+    console.log("ready right player")
+  // add event listeners
+  document.getElementById("insultButton").addEventListener("click", e => {
+    insultApp.getInsultRight();
+    whoseTurn = whoseTurn+1;
+    console.log(whoseTurn);
+  });
+  document.getElementById("adviceButton").addEventListener("click", e => {
+    insultApp.getAdviceRight();
+    whoseTurn = whoseTurn+1;
+    console.log(whoseTurn);
+
+  });
+
+
+  // player clicks either button, API code is run, then
+// They can choose Insult or Advise button
+// Once clicked, either an insult of advice API call is made and displayed in the upper speech bubble
+// It is now the right players turn
+  // iteration should be 1 (odd!)
+// They can choose Insult or Advise button
+// Once clicked, either an insult of advice API call is made and displayed in the upper speech bubble
+
+  };
+};
 insultApp.init();
-
-
-
-
-
-// 
