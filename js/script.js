@@ -8,8 +8,8 @@ insultApp.init = () => {
   // alert('Naughty language may lie ahead.')
 // insultApp.getInsultLeft();
 insultApp.getInsultRight();
-insultApp.getZenLeft();
-// insultApp.getZenRight();
+insultApp.getAdviceLeft();
+// insultApp.getAdviceRight();
 }
 
 insultApp.getInsultLeft = () => {
@@ -18,9 +18,7 @@ fetch('https://proxy-ugwolsldnq-uc.a.run.app/https://evilinsult.com/generate_ins
     return response.json();
   })
   .then(function (jsonResult) {
-    // console.log(jsonResult);
     const insult = jsonResult.insult;
-    // console.log(insult)
     const insultLeftText = document.querySelector('#leftPersonSpeechText');
     // clear existing content
     insultLeftText.innerHTML = '';
@@ -34,9 +32,7 @@ fetch('https://proxy-ugwolsldnq-uc.a.run.app/https://evilinsult.com/generate_ins
     return response.json();
   })
   .then(function (jsonResult) {
-    console.log(jsonResult);
     const insult = jsonResult.insult;
-    // console.log(insult)
     const insultRightText = document.querySelector('#rightPersonSpeechText');
     // clear existing content
     insultRightText.innerHTML = '';
@@ -44,36 +40,40 @@ fetch('https://proxy-ugwolsldnq-uc.a.run.app/https://evilinsult.com/generate_ins
   });
 };
 
-insultApp.getZenLeft = () => {
-  fetch('https://proxy-ugwolsldnq-uc.a.run.app/https://zenquotes.io/api/random/')
+insultApp.getAdviceLeft = () => {
+  fetch('https://api.adviceslip.com/advice')
   .then(function (response) {
     return response.json();
   })
   .then(function (jsonResult) {
     console.log(jsonResult);  
-    const zen = jsonResult[0];
-    console.log(zen.q);
+    const advice = jsonResult.slip;
+    console.log(advice.advice);
     const insultLeftText = document.querySelector('#leftPersonSpeechText');
     // clear existing content
     insultLeftText.innerHTML = '';
-    insultLeftText.innerHTML = zen.q;
+    insultLeftText.innerHTML = advice.advice;
   });
 };
 
-insultApp.getZenRight = () => {
-  fetch('https://proxy-ugwolsldnq-uc.a.run.app/https://zenquotes.io/api/random/')
+insultApp.getAdviceRight = () => {
+  fetch('https://api.adviceslip.com/advice')
   .then(function (response) {
     return response.json();
   })
   .then(function (jsonResult) {
-    console.log(jsonResult);  
-    const zen = jsonResult[0];
-    console.log(zen.q);
+    const advice = jsonResult.slip;
     const insultRightText = document.querySelector('#rightPersonSpeechText');
     // clear existing content
     insultRightText.innerHTML = '';
-    insultRightText.innerHTML = zen.q;
+    insultRightText.innerHTML = advice.advice;
   });
 };
 
 insultApp.init();
+
+
+
+
+
+// 

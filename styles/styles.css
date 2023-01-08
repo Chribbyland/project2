@@ -288,12 +288,12 @@ body {
   width: 0px;
   height: 0px;
   position: absolute;
-  border-left: 24px solid #fff;
-  border-right: 12px solid transparent;
-  border-top: 12px solid #fff;
+  border-left: 20px solid transparent;
+  border-right: 20px solid #fff;
+  border-top: 20px solid transparent;
   border-bottom: 20px solid transparent;
-  left: 5%;
-  bottom: -24px;
+  left: -40px;
+  bottom: 40px;
 }
 
 .rightTail:before {
@@ -301,12 +301,12 @@ body {
   width: 0px;
   height: 0px;
   position: absolute;
-  border-left: 24px solid #fff;
-  border-right: 12px solid transparent;
-  border-top: 12px solid #fff;
+  border-left: 20px solid #fff;
+  border-right: 20px solid transparent;
+  border-top: 20px solid transparent;
   border-bottom: 20px solid transparent;
-  left: 88%;
-  bottom: -24px;
+  right: -40px;
+  bottom: 40px;
 }
 
 h3 {
@@ -336,4 +336,14 @@ h3 {
 
 .rightPerson {
   border: 1px solid seagreen;
+}
+
+.buttonBox {
+  text-align: center;
+}
+.buttonBox button {
+  background-color: transparent;
+  border: 2px solid goldenrod;
+  font-size: 3rem;
+  margin-bottom: 10px;
 }

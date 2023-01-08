@@ -27,18 +27,18 @@ body {
   color: #000;
 }
 
-// need to fix the tails. Positioning them on the sides would work better. Also they currently slide off of the speech bubbles as the page is resized.
+// adding tails for the speech containers/bubbles by adding psuedo-element by way of :before
 .leftTail:before {
   content: "";
   width: 0px;
   height: 0px;
   position: absolute;
-  border-left: 24px solid #fff;
-  border-right: 12px solid transparent;
-  border-top: 12px solid #fff;
+  border-left: 20px solid transparent;
+  border-right: 20px solid #fff;
+  border-top: 20px solid transparent;
   border-bottom: 20px solid transparent;
-  left: 5%;
-  bottom: -24px;
+  left: -40px;
+  bottom: 40px;
 }
 
 .rightTail:before {
@@ -46,10 +46,10 @@ body {
   width: 0px;
   height: 0px;
   position: absolute;
-  border-left: 24px solid #fff;
-  border-right: 12px solid transparent;
-  border-top: 12px solid #fff;
+  border-left: 20px solid #fff;
+  border-right: 20px solid transparent;
+  border-top: 20px solid transparent;
   border-bottom: 20px solid transparent;
-  left: 88%;
-  bottom: -24px;
+  right: -40px;
+  bottom: 40px;
 }

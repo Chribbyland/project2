@@ -28,4 +28,13 @@ h3 {
   border: 1px solid seagreen;
 }
 
-
+// styling the two buttons
+.buttonBox {
+  text-align: center;
+  button {
+    background-color: transparent;
+    border: 2px solid goldenrod;
+    font-size: 3rem;
+    margin-bottom: 10px;
+  }
+}
