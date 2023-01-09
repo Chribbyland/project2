@@ -27,7 +27,7 @@ fetch('https://proxy-ugwolsldnq-uc.a.run.app/https://evilinsult.com/generate_ins
 };
 
 insultApp.getInsultRight = () => {
-fetch('https://proxy-ugwolsldnq-uc.a.run.app/https://evilinsult.com/generate_insult.php?lang=en&type=json')
+fetch('https://proxy-ugwolsldnq-uc.a.run.app/https://evilinsult.com/generate_insult.php?lang=en&type=json&version='+Math.floor(Math.random()*100000+1))
   .then(function (response) {
     return response.json();
   })
@@ -41,7 +41,7 @@ fetch('https://proxy-ugwolsldnq-uc.a.run.app/https://evilinsult.com/generate_ins
 };
 
 insultApp.getAdviceLeft = () => {
-  fetch('https://api.adviceslip.com/advice')
+  fetch('https://api.adviceslip.com/advice&version='+Math.floor(Math.random()*100000+1))
   .then(function (response) {
     return response.json();
   })
