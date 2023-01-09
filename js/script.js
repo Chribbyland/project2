@@ -24,7 +24,12 @@ fetch('https://proxy-ugwolsldnq-uc.a.run.app/https://evilinsult.com/generate_ins
     // clear existing content
     insultLeftText.innerHTML = '';
     insultLeftText.innerHTML = jsonResult.insult;
-  });
+  })
+  // change right person image to pure anger
+  // NOTE - add the following to the other getInsult/getAdvice methods
+  .then(function (changeImageRight) {
+    document.getElementById('rightPersonImage').src='./photos/personRight/PersonInsultRight5.png'
+  })
 };
 
 insultApp.getInsultRight = () => {
@@ -104,7 +109,10 @@ insultApp.gameStart = () => {
     whoseTurn = whoseTurn+1;
     console.log(whoseTurn);
 
-  });
+    });
+  };
+};
+insultApp.init();
 
 
   // player clicks either button, API code is run, then
@@ -114,7 +122,3 @@ insultApp.gameStart = () => {
   // iteration should be 1 (odd!)
 // They can choose Insult or Advise button
 // Once clicked, either an insult of advice API call is made and displayed in the upper speech bubble
-
-  };
-};
-insultApp.init();
