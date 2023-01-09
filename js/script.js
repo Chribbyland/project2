@@ -4,21 +4,13 @@ const insultApp = {};
 // STEP ONE: Create an init method that will run when our app first loads. This is where all of our first functions will be called.
 // Remember to also call the init method at the bottom of this file!
 
-insultApp.init = () => {
-  // alert('Naughty language may lie ahead.')
-// insultApp.getInsultLeft();
-// insultApp.getInsultRight();
-// insultApp.getAdviceLeft();
-// insultApp.getAdviceRight();
-  insultApp.gameStart();
-}
-
 insultApp.getInsultLeft = () => {
 fetch('https://proxy-ugwolsldnq-uc.a.run.app/https://evilinsult.com/generate_insult.php?lang=en&type=json')
   .then(function (response) {
     return response.json();
   })
   .then(function (jsonResult) {
+    console.log(jsonResult);
     const insult = jsonResult.insult;
     const insultLeftText = document.querySelector('#leftPersonSpeechText');
     // clear existing content
@@ -76,7 +68,7 @@ insultApp.getAdviceRight = () => {
   });
 };
 
-insultApp.gameStart = () => {
+insultApp.init = () => {
 // Left player always starts. Speech bubbles should not be displayed.
   // iteration should be 0 (even!)
   let whoseTurn = 0;
@@ -112,6 +104,8 @@ insultApp.gameStart = () => {
     });
   };
 };
+
+
 insultApp.init();
 
 
