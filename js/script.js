@@ -6,65 +6,83 @@ let isLeftSide = true; // variable to determine which side will call API/fill te
   //make an array
   const leftPictures = new Array();
 leftPictures[0] = new Image();
-leftPictures[0].src = './photos/personLeft/PersonAdviceLeft5.png';
+leftPictures[0].src = './photos/personLeft/personInsultLeft4.png';
 leftPictures[1] = new Image();
-leftPictures[1].src = './photos/personLeft/PersonAdviceLeft2.png';
+leftPictures[1].src = './photos/personLeft/personInsultLeft3.png';
 leftPictures[2] = new Image();
-leftPictures[2].src = './photos/personLeft/PersonAdviceLeft1.png';
+leftPictures[2].src = './photos/personLeft/personInsultLeft2.png';
 leftPictures[3] = new Image();
 leftPictures[3].src = './photos/personLeft/personInsultLeft1.png';
 leftPictures[4] = new Image();
-leftPictures[4].src = './photos/personLeft/personInsultLeft2.png';
+leftPictures[4].src = './photos/personLeft/personAILeft.png';
 leftPictures[5] = new Image();
-leftPictures[5].src = './photos/personLeft/personInsultLeft3.png';
+leftPictures[5].src = './photos/personLeft/personAdviceLeft4.png';
 leftPictures[6] = new Image();
-leftPictures[6].src = './photos/personLeft/personInsultLeft4.png';
+leftPictures[6].src = './photos/personLeft/personAdviceLeft3.png';
 leftPictures[7] = new Image();
-leftPictures[7].src = './photos/personLeft/personInsultLeft5.png';
+leftPictures[7].src = './photos/personLeft/personAdviceLeft2.png';
+leftPictures[8] = new Image();
+leftPictures[8].src = './photos/personLeft/personAdviceLeft1.png';
 
 const rightPictures = new Array();
 rightPictures[0] = new Image();
-rightPictures[0].src = './photos/personRight/personAdviceRight5.png';
+rightPictures[0].src = './photos/personRight/personInsultright4.png';
 rightPictures[1] = new Image();
-rightPictures[1].src = './photos/personRight/personAdviceRight2.png';
+rightPictures[1].src = './photos/personRight/personInsultRight3.png';
 rightPictures[2] = new Image();
-rightPictures[2].src = './photos/personRight/personAdviceRight1.png';
+rightPictures[2].src = './photos/personRight/personInsultRight2.png';
 rightPictures[3] = new Image();
-rightPictures[3].src = './photos/personRight/personInsultRight1.png'; //neutral face
+rightPictures[3].src = './photos/personRight/personInsultRight1.png';
 rightPictures[4] = new Image();
-rightPictures[4].src = './photos/personRight/personInsultRight2.png';
+rightPictures[4].src = './photos/personRight/personAIRight.png';
 rightPictures[5] = new Image();
-rightPictures[5].src = './photos/personRight/personInsultRight3.png';
+rightPictures[5].src = './photos/personRight/personAdviceRight4.png';
 rightPictures[6] = new Image();
-rightPictures[6].src = './photos/personRight/personInsultRight4.png';
+rightPictures[6].src = './photos/personRight/personAdviceRight3.png';
 rightPictures[7] = new Image();
-rightPictures[7].src = './photos/personRight/personInsultRight5.png';
+rightPictures[7].src = './photos/personRight/personAdviceRight2.png';
+rightPictures[8] = new Image();
+rightPictures[8].src = './photos/personRight/personAdviceRight1.png';
+
+//two global variables
+let leftCounter = 4;
+let rightCounter = 4; 
+
+// console.log(leftCounter);
+// console.log(rightCounter);
+
+
+
 //array test js code
   // console.log(rightPictures);
   // document.getElementById("leftPersonImage").src=leftPictures[2].src;
-let currentMoodLeft = leftPictures[4];
-let currentMoodRight = rightPictures[4];
-insultApp.countUpLeft = () => {
-  // function to increase the current leftPerson displayed image in array by 1
-  currentMoodLeft  // add +1 to the array number somehow
-}
+// let currentMoodLeft = leftPictures[4];
+// let currentMoodRight = rightPictures[4];
 
-insultApp.countDownLeft = () => {
-  // function to decrease the current leftPerson displayed image in array by 1
-  currentMoodLeft  // add -1 to the array number somehow
-}
 
-insultApp.countUpRight = () => {
+// insultApp.countUp = () => {
+//   //increase the counter +1 when an advise button is pressed
+//  if (isLeftSide) {
+//       currentMoodLeft = 
+//       console.log(isLeftSide);
+//       isLeftSide = !isLeftSide;
+//     } else {
+//       insultApp.getInsultRight();
+//       insultApp.countUpLeft();
+//       console.log(isLeftSide);
+//       isLeftSide = !isLeftSide;
+//     }
+// }
+
+insultApp.countDown = () => {
   // function to increase the current rightPerson displayed image in array by 1
 }
 
-insultApp.countDownRight = () => {
-  // function to decrease the current rightPerson displayed image in array by 1
-}
+
   //have the images cycle through the array (loop?)
-for (let i = 0; i < data.length; i++) {
-  console.log(data[i]);
-}
+// for (let i = 0; i < data.length; i++) {
+//   console.log(data[i]);
+// }
   //players start at a value of 0: 
     // using an insult is a value of -1, when you hit -5 that's when the end of game is triggered
     //using advice is a value of +1, when you hit +5 that's when the end of game is triggered
@@ -88,7 +106,7 @@ fetch('https://proxy-ugwolsldnq-uc.a.run.app/https://evilinsult.com/generate_ins
   // change right person image to pure anger
   // NOTE - add the following to the other getInsult/getAdvice methods
   .then(function (changeImageRight) {
-    document.getElementById('rightPersonImage').src='./photos/personRight/PersonInsultRight5.png'
+    // document.getElementById('rightPersonImage').src='./photos/personRight/personInsultRight5.png'
   })
 };
 
@@ -135,31 +153,44 @@ insultApp.getAdviceRight = () => {
     insultRightText.innerHTML = advice.advice;
   });
 };
+//FOR COUNTERS
+  //player 1
+    //insult button is clicked, the right side counter goes down by 1
+    //then retrieves right side photo
+
+  //player 2
+    //advice button is clicked, the left side counter goes up by 1
+    //then retrives left side photo
+
 
   // add event listeners
+  //insult button conditions
     document.getElementById("insultButton").addEventListener("click", e => {
     if (isLeftSide) {
       insultApp.getInsultLeft();
-      insultApp.countUpRight();
+      rightCounter--;
+      leftPictures[leftCounter];
       console.log(isLeftSide);
       isLeftSide = !isLeftSide;
     } else {
       insultApp.getInsultRight();
-      insultApp.countUpLeft();
+      leftCounter--;
       console.log(isLeftSide);
       isLeftSide = !isLeftSide;
     }
-  });
 
+
+  });
+  //advice button conditions
   document.getElementById("adviceButton").addEventListener("click", e => {
     if (isLeftSide) {
       insultApp.getAdviceLeft();
-      insultApp.countDownRight();
+      rightCounter++;
       console.log(isLeftSide);
       isLeftSide = !isLeftSide;
     } else {
       insultApp.getAdviceRight();
-      insultApp.countDownLeft();
+      leftCounter++;
       console.log(isLeftSide);
       isLeftSide = !isLeftSide;
     }
@@ -167,12 +198,14 @@ insultApp.getAdviceRight = () => {
 
 // init function to kick off the code
 insultApp.init = () => {
-  // alert('Naughty language may lie ahead.')
-// insultApp.getInsultLeft();
-// insultApp.getInsultRight();
-// insultApp.getAdviceLeft();
-// insultApp.getAdviceRight();
-  // insultApp.gameStart();
+  let leftCounter = 4;
+  let rightCounter = 4; 
+  console.log(leftCounter);
+  console.log(rightCounter);
+  // document.getElementById('#leftPersonImage').src = leftPictures[leftCounter];
+  document.getElementById('#rightPersonImage').src = rightPictures[rightCounter];
+
+  
 }
 
 // call the init function
