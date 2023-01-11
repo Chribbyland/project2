@@ -1,10 +1,12 @@
 // Create a namespace object to hold the app:
 const insultApp = {};
 let isLeftSide = true; // variable to determine which side will call API/fill text bubble
+let leftCounter = 4;
+let rightCounter = 4; 
 
 //figuring out the picture swapping function on the happy and angry side//
   //make an array
-  const leftPictures = new Array();
+const leftPictures = new Array();
 leftPictures[0] = new Image();
 leftPictures[0].src = './photos/personLeft/personInsultLeft4.png';
 leftPictures[1] = new Image();
@@ -44,82 +46,27 @@ rightPictures[7].src = './photos/personRight/personAdviceRight2.png';
 rightPictures[8] = new Image();
 rightPictures[8].src = './photos/personRight/personAdviceRight1.png';
 
-//two global variables
-let leftCounter = 4;
-let rightCounter = 4; 
-
-// console.log(leftCounter);
-// console.log(rightCounter);
-
-
-
-//array test js code
-  // console.log(rightPictures);
-  // document.getElementById("leftPersonImage").src=leftPictures[2].src;
-// let currentMoodLeft = leftPictures[4];
-// let currentMoodRight = rightPictures[4];
-
-
-// insultApp.countUp = () => {
-//   //increase the counter +1 when an advise button is pressed
-//  if (isLeftSide) {
-//       currentMoodLeft = 
-//       console.log(isLeftSide);
-//       isLeftSide = !isLeftSide;
-//     } else {
-//       insultApp.getInsultRight();
-//       insultApp.countUpLeft();
-//       console.log(isLeftSide);
-//       isLeftSide = !isLeftSide;
-//     }
-// }
-
-insultApp.countDown = () => {
-  // function to increase the current rightPerson displayed image in array by 1
-}
-
-
-  //have the images cycle through the array (loop?)
-// for (let i = 0; i < data.length; i++) {
-//   console.log(data[i]);
-// }
-  //players start at a value of 0: 
-    // using an insult is a value of -1, when you hit -5 that's when the end of game is triggered
-    //using advice is a value of +1, when you hit +5 that's when the end of game is triggered
-    //end of game is a text bubble message, explosion images on either side and then a 'reset' button which brings the player back to the beginning of the game
-
-// STEP ONE: Create an init method that will run when our app first loads. This is where all of our first functions will be called.
-// Remember to also call the init method at the bottom of this file!
 
 insultApp.getInsultLeft = () => {
-fetch('https://proxy-ugwolsldnq-uc.a.run.app/https://evilinsult.com/generate_insult.php?lang=en&type=jsonfetch(’https://proxy-ugwolsldnq-uc.a.run.app/https://evilinsult.com/generate_insult.php?lang=en&type=json&version='+Math.floor(Math.random()*100000+1))
+  fetch('https://proxy-ugwolsldnq-uc.a.run.app/https://evilinsult.com/generate_insult.php?lang=en&type=jsonfetch(’https://proxy-ugwolsldnq-uc.a.run.app/https://evilinsult.com/generate_insult.php?lang=en&type=json&version='+Math.floor(Math.random()*100000+1))
   .then(function (response) {
     return response.json();
   })
   .then(function (jsonResult) {
-    const insult = jsonResult.insult;
     const insultLeftText = document.querySelector('#leftPersonSpeechText');
     // clear existing content
-    insultLeftText.innerHTML = '';
     insultLeftText.innerHTML = jsonResult.insult;
-  })
-  // change right person image to pure anger
-  // NOTE - add the following to the other getInsult/getAdvice methods
-  .then(function (changeImageRight) {
-    // document.getElementById('rightPersonImage').src='./photos/personRight/personInsultRight5.png'
   })
 };
 
 insultApp.getInsultRight = () => {
-fetch('https://proxy-ugwolsldnq-uc.a.run.app/https://evilinsult.com/generate_insult.php?lang=en&type=jsonfetch(’https://proxy-ugwolsldnq-uc.a.run.app/https://evilinsult.com/generate_insult.php?lang=en&type=json&version='+Math.floor(Math.random()*100000+1))
+  fetch('https://proxy-ugwolsldnq-uc.a.run.app/https://evilinsult.com/generate_insult.php?lang=en&type=jsonfetch(’https://proxy-ugwolsldnq-uc.a.run.app/https://evilinsult.com/generate_insult.php?lang=en&type=json&version='+Math.floor(Math.random()*100000+1))
   .then(function (response) {
     return response.json();
   })
   .then(function (jsonResult) {
-    const insult = jsonResult.insult;
     const insultRightText = document.querySelector('#rightPersonSpeechText');
     // clear existing content
-    insultRightText.innerHTML = '';
     insultRightText.innerHTML = jsonResult.insult;
   });
 };
@@ -129,14 +76,11 @@ insultApp.getAdviceLeft = () => {
   .then(function (response) {
     return response.json();
   })
-  .then(function (jsonResult) {
-    console.log(jsonResult);  
+  .then(function (jsonResult) { 
     const advice = jsonResult.slip;
-    console.log(advice.advice);
-    const insultLeftText = document.querySelector('#leftPersonSpeechText');
+    const adviceLeftText = document.querySelector('#leftPersonSpeechText');
     // clear existing content
-    insultLeftText.innerHTML = '';
-    insultLeftText.innerHTML = advice.advice;
+    adviceLeftText.innerHTML = advice.advice;
   });
 };
 
@@ -147,29 +91,35 @@ insultApp.getAdviceRight = () => {
   })
   .then(function (jsonResult) {
     const advice = jsonResult.slip;
-    const insultRightText = document.querySelector('#rightPersonSpeechText');
+    const adviceRightText = document.querySelector('#rightPersonSpeechText');
     // clear existing content
-    insultRightText.innerHTML = '';
-    insultRightText.innerHTML = advice.advice;
+    adviceRightText.innerHTML = advice.advice;
   });
 };
 //FOR COUNTERS
-  //player 1
+//player 1
     //insult button is clicked, the right side counter goes down by 1
     //then retrieves right side photo
-
-  //player 2
+    
+//player 2
     //advice button is clicked, the left side counter goes up by 1
     //then retrives left side photo
-
+    
+    insultApp.leftCounter = () => {
+      
+    }
 
   // add event listeners
   //insult button conditions
     document.getElementById("insultButton").addEventListener("click", e => {
+      console.log('counter before any work is done: '+ leftCounter);
     if (isLeftSide) {
       insultApp.getInsultLeft();
-      rightCounter--;
-      leftPictures[leftCounter];
+
+      //stuff for the counter
+      // rightCounter--;
+      // document.getElementById('rightPersonImage').src = rightPictures[rightCounter];
+
       console.log(isLeftSide);
       isLeftSide = !isLeftSide;
     } else {
@@ -177,6 +127,7 @@ insultApp.getAdviceRight = () => {
       leftCounter--;
       console.log(isLeftSide);
       isLeftSide = !isLeftSide;
+      console.log('counter after decreasing:'+ leftCounter);
     }
 
 
@@ -202,16 +153,7 @@ insultApp.init = () => {
   let rightCounter = 4; 
   console.log(leftCounter);
   console.log(rightCounter);
+  // checkout the stuff below, it is broken!
   // document.getElementById('#leftPersonImage').src = leftPictures[leftCounter];
-  document.getElementById('#rightPersonImage').src = rightPictures[rightCounter];
-
-  
+  // document.getElementById('#rightPersonImage').src = rightPictures[rightCounter];  
 }
-
-// call the init function
-insultApp.init();
-
-
-// create boolean variable
-// isLeftSide true/false
-// false = right side
