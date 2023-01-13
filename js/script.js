@@ -37,27 +37,44 @@ const rightPictures = [
   './photos/explosion.png',
 ]
 
+// TO DO - implement async/await on the API calls so the text appears as the images are changed. Currently, there is a delay in waiting for the API to return info but the images are swapped out immediately.
 insultApp.getInsultLeft = () => {
-  fetch('https://proxy-ugwolsldnq-uc.a.run.app/https://evilinsult.com/generate_insult.php?lang=en&type=jsonfetch(’https://proxy-ugwolsldnq-uc.a.run.app/https://evilinsult.com/generate_insult.php?lang=en&type=json&version='+Math.floor(Math.random()*100000+1))
+  fetch('https://proxy-ugwolsldnq-uc.a.run.app/https://evilinsult.com/generate_insult.php?lang=en&type=jsonfetch(`https://proxy-ugwolsldnq-uc.a.run.app/https://evilinsult.com/generate_insult.php?lang=en&type=json&version='+Math.floor(Math.random()*100000+1))
   .then(function (response) {
     return response.json();
   })
   .then(function (jsonResult) {
+    console.log(jsonResult);
     const insultLeftText = document.querySelector('#leftPersonSpeechText');
+    // run language filter
+    // Line 106 - need to figure out how to run the filter function and return a value that can be used here. 
+    // insultApp.languageFilter;
+      let badWords = /anal|anus|arse|ass|ballsack|balls|bastard|bitch|blowjob|bollock|boner|boob|bugger|bum|butt|buttplug|clitoris|cock|crap|cunt|cum|damn|dick|dildo|dyke|fag|feck|fellate|fellatio|fuck|fudgepacker|goddamn|hell|homo|jerk|jizz|labia|muff|penis|piss|poop|prick|pube|pussy|queer|scrotum|sex|shit|slut|spunk|tit|tosser|turd|twat|vagina|wank|whore/gi;
+      let rawInsult = jsonResult.insult;
+      console.log(rawInsult);
+      let filteredInsult = rawInsult.replace(badWords,'____');
     // replace existing content
-    insultLeftText.innerHTML = jsonResult.insult;
+    insultLeftText.innerHTML = filteredInsult;
   })
 };
 
 insultApp.getInsultRight = () => {
-  fetch('https://proxy-ugwolsldnq-uc.a.run.app/https://evilinsult.com/generate_insult.php?lang=en&type=jsonfetch(’https://proxy-ugwolsldnq-uc.a.run.app/https://evilinsult.com/generate_insult.php?lang=en&type=json&version='+Math.floor(Math.random()*100000+1))
+  fetch('https://proxy-ugwolsldnq-uc.a.run.app/https://evilinsult.com/generate_insult.php?lang=en&type=jsonfetch(`https://proxy-ugwolsldnq-uc.a.run.app/https://evilinsult.com/generate_insult.php?lang=en&type=json&version='+Math.floor(Math.random()*100000+1))
   .then(function (response) {
     return response.json();
   })
   .then(function (jsonResult) {
     const insultRightText = document.querySelector('#rightPersonSpeechText');
+    console.log(jsonResult);
+    // run language filter
+    // Line 106 - need to figure out how to run the filter function and return a value that can be used here. 
+    // insultApp.languageFilter;
+      let badWords = /anal|anus|arse|ass|ballsack|balls|bastard|bitch|blowjob|bollock|boner|boob|bugger|bum|butt|buttplug|clitoris|cock|crap|cunt|cum|damn|dick|dildo|dyke|fag|feck|fellate|fellatio|fuck|fudgepacker|goddamn|hell|homo|jerk|jizz|labia|muff|penis|piss|poop|prick|pube|pussy|queer|scrotum|sex|shit|slut|spunk|tit|tosser|turd|twat|vagina|wank|whore/gi;
+      let rawInsult = jsonResult.insult;
+      console.log(rawInsult);
+      let filteredInsult = rawInsult.replace(badWords,'____');
     // replace existing content
-    insultRightText.innerHTML = jsonResult.insult;
+    insultRightText.innerHTML = filteredInsult;
   });
 };
 
@@ -66,7 +83,7 @@ insultApp.getAdviceLeft = () => {
   .then(function (response) {
     return response.json();
   })
-  .then(function (jsonResult) { 
+  .then(function (jsonResult) {
     const advice = jsonResult.slip;
     const adviceLeftText = document.querySelector('#leftPersonSpeechText');
     // replace existing content
@@ -86,6 +103,17 @@ insultApp.getAdviceRight = () => {
     adviceRightText.innerHTML = advice.advice;
   });
 };
+
+// nasty words ahead!
+// Currently this code is duplicated in the insultApp.getInsultLeft (and right) functions... How do we run this code here and insert the filteredInsult data there? It's a scope issue...
+// insultApp.languageFilter = () => {
+//     let badWords = /anal|anus|arse|ass|ballsack|balls|bastard|bitch|blowjob|bollock|boner|boob|bugger|bum|butt|buttplug|clitoris|cock|crap|cunt|cum|damn|dick|dildo|dyke|fag|feck|fellate|fellatio|fuck|fudgepacker|goddamn|hell|homo|jerk|jizz|labia|muff|penis|piss|poop|prick|pube|pussy|queer|scrotum|sex|shit|slut|spunk|tit|tosser|turd|twat|vagina|wank|whore/gi;
+//     let rawInsult = jsonResult.insult;
+//     console.log(rawInsult);
+//     let filteredInsult = rawInsult.replace(badWords,'____');
+  // replace existing content
+  // insultRightText.innerHTML = filteredInsult;
+// }
 
 // NAMESPACE THIS YO
 const leftPersonTextReset = () => {
