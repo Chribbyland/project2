@@ -194,10 +194,10 @@ insultApp.rightPersonTextReset = () => {
 // function to reset game/counters/images
 insultApp.gameReset = () => {
   // images and their alt text reset to neutral
-  insultApp.leftImage.src = leftPictures[4].imgLoc;
-  insultApp.leftImage.alt = leftPictures[4].altText;
-  insultApp.rightImage.src = rightPictures[4].imgLoc;
-  insultApp.rightImage.alt = rightPictures[4].altText;
+  insultApp.leftImage.src = leftPictures[5].imgLoc;
+  insultApp.leftImage.alt = leftPictures[5].altText;
+  insultApp.rightImage.src = rightPictures[5].imgLoc;
+  insultApp.rightImage.alt = rightPictures[5].altText;
   // speech bubbles clear
   insultApp.leftPersonTextReset();
   insultApp.rightPersonTextReset();
