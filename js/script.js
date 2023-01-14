@@ -8,36 +8,101 @@ insultApp.isLeftSide = true;
 insultApp.leftCounter = 5;
 insultApp.rightCounter = 5; 
 
-// how to display alt text on these?!?
-// make array for left character image locations
+// make array for left character image locations, including alt text stored as a property in the array
 const leftPictures = [
-  './photos/explosion.png',
-  './photos/personLeft/personInsultLeft4.png' ,
-  './photos/personLeft/personInsultLeft3.png',
-  './photos/personLeft/personInsultLeft2.png',
-  './photos/personLeft/personInsultLeft1.png',
-  './photos/personLeft/personAILeft.png',
-  './photos/personLeft/personAdviceLeft4.png',
-  './photos/personLeft/personAdviceLeft3.png',
-  './photos/personLeft/personAdviceLeft2.png',
-  './photos/personLeft/personAdviceLeft1.png',
-  './photos/explosion.png',
+  {
+    imgLoc: './photos/explosion.png',
+    altText: 'A large explosion!'
+  },
+  {
+    imgLoc: './photos/personLeft/personInsultLeft4.png',
+    altText: 'Stick figure on the left is incredibly angry!'
+  },
+  {
+    imgLoc: './photos/personLeft/personInsultLeft3.png',
+    altText: 'Stick figure on the left is quite mad!'
+  },
+  {
+    imgLoc: './photos/personLeft/personInsultLeft2.png',
+    altText: 'Stick figure on the left is rather annoyed!'
+  },
+  {
+    imgLoc: './photos/personLeft/personInsultLeft1.png',
+    altText: 'Stick figure on the left is upset.'
+  },
+  {
+    imgLoc: './photos/personLeft/personAILeft.png',
+    altText: 'Stick figure on the left is feeling neutral.'
+  },
+  {
+    imgLoc: './photos/personLeft/personAdviceLeft4.png',
+    altText: 'Stick figure on the left is smiling a little.'
+  },
+  {
+    imgLoc: './photos/personLeft/personAdviceLeft3.png',
+    altText: 'Stick figure on the left is quite pleased!'
+  },
+  {
+    imgLoc: './photos/personLeft/personAdviceLeft2.png',
+    altText: 'Stick figure on the left is raising their arms in joy!'
+  },
+  {
+    imgLoc: './photos/personLeft/personAdviceLeft1.png',
+    altText: 'Stick figure on the left is positively jubilant!'
+  },
+  {
+    imgLoc: './photos/explosion.png',
+    altText: 'A large explosion!'
+  }
 ];
 
 // how to display alt text on these?!?
 // make array for right character image locations
 const rightPictures = [
-  './photos/explosion.png',
-  './photos/personRight/personInsultRight4.png',
-  './photos/personRight/personInsultRight3.png',
-  './photos/personRight/personInsultRight2.png',
-  './photos/personRight/personInsultRight1.png',
-  './photos/personRight/personAIRight.png',
-  './photos/personRight/personAdviceRight4.png',
-  './photos/personRight/personAdviceRight3.png',
-  './photos/personRight/personAdviceRight2.png',
-  './photos/personRight/personAdviceRight1.png',
-  './photos/explosion.png',
+  {
+    imgLoc: './photos/explosion.png',
+    altText: 'A large explosion!'
+  },
+  {
+    imgLoc: './photos/personRight/personInsultRight4.png',
+    altText: 'Stick figure on the right is incredibly angry!'
+  },
+  {
+    imgLoc: './photos/personRight/personInsultRight3.png',
+    altText: 'Stick figure on the right is quite mad!'
+  },
+  {
+    imgLoc: './photos/personRight/personInsultRight2.png',
+    altText: 'Stick figure on the right is rather annoyed!'
+  },
+  {
+    imgLoc: './photos/personRight/personInsultRight1.png',
+    altText: 'Stick figure on the right is upset.'
+  },
+  {
+    imgLoc: './photos/personRight/personAIRight.png',
+    altText: 'Stick figure on the right is feeling neutral.'
+  },
+  {
+    imgLoc: './photos/personRight/personAdviceRight4.png',
+    altText: 'Stick figure on the right is smiling a little.'
+  },
+  {
+    imgLoc: './photos/personRight/personAdviceRight3.png',
+    altText: 'Stick figure on the right is quite pleased!'
+  },
+  {
+    imgLoc: './photos/personRight/personAdviceRight2.png',
+    altText: 'Stick figure on the right is raising their arms in joy!'
+  },
+  {
+    imgLoc: './photos/personRight/personAdviceRight1.png',
+    altText: 'Stick figure on the right is positively jubilant!'
+  },
+  {
+    imgLoc: './photos/explosion.png',
+    altText: 'A large explosion!'
+  }
 ];
 
 // TO DO - implement async/await on the API calls so the text appears as the images are changed. Currently, there is a delay in waiting for the API to return info but the images are swapped out immediately.
@@ -128,9 +193,11 @@ insultApp.rightPersonTextReset = () => {
 
 // function to reset game/counters/images
 insultApp.gameReset = () => {
-  // images reset to neutral
-  insultApp.leftImage.src = leftPictures[4];
-  insultApp.rightImage.src = rightPictures[4];
+  // images and their alt text reset to neutral
+  insultApp.leftImage.src = leftPictures[4].imgLoc;
+  insultApp.leftImage.alt = leftPictures[4].altText;
+  insultApp.rightImage.src = rightPictures[4].imgLoc;
+  insultApp.rightImage.alt = rightPictures[4].altText;
   // speech bubbles clear
   insultApp.leftPersonTextReset();
   insultApp.rightPersonTextReset();
@@ -152,13 +219,15 @@ insultApp.insultListener = () => {
           insultApp.getInsultLeft();
           insultApp.rightCounter--;
           insultApp.isLeftSide = !insultApp.isLeftSide;
-          insultApp.rightImage.src = rightPictures[insultApp.rightCounter];
+          insultApp.rightImage.src = rightPictures[insultApp.rightCounter].imgLoc;
+          insultApp.rightImage.alt = rightPictures[insultApp.rightCounter].altText;
         //player 2 (Right)
         } else {
         insultApp.getInsultRight();
         insultApp.leftCounter--;
         insultApp.isLeftSide = !insultApp.isLeftSide;
-        insultApp.leftImage.src = leftPictures[insultApp.leftCounter];
+        insultApp.leftImage.src = leftPictures[insultApp.leftCounter].imgLoc;
+        insultApp.leftImage.alt = leftPictures[insultApp.leftCounter].altText;
       };
     };
   });
@@ -177,13 +246,15 @@ insultApp.adviceListener = () => {
           insultApp.getAdviceLeft();
           insultApp.rightCounter++;
           insultApp.isLeftSide = !insultApp.isLeftSide;
-          insultApp.rightImage.src = rightPictures[insultApp.rightCounter];
+          insultApp.rightImage.src = rightPictures[insultApp.rightCounter].imgLoc;
+          insultApp.rightImage.alt = rightPictures[insultApp.rightCounter].altText;
         //player 2 (Right)
         } else {
         insultApp.getAdviceRight();
         insultApp.leftCounter++;
         insultApp.isLeftSide = !insultApp.isLeftSide;
-        insultApp.leftImage.src = leftPictures[insultApp.leftCounter];
+        insultApp.leftImage.src = leftPictures[insultApp.leftCounter].imgLoc;
+        insultApp.leftImage.alt = leftPictures[insultApp.leftCounter].altText;
       };
     };
   });
@@ -193,8 +264,10 @@ insultApp.adviceListener = () => {
 insultApp.init = () => {
   insultApp.leftImage = document.getElementById('leftPersonImage');
   insultApp.rightImage = document.getElementById('rightPersonImage');
-  insultApp.leftImage.src = leftPictures[insultApp.leftCounter];
-  insultApp.rightImage.src = rightPictures[insultApp.rightCounter];
+  insultApp.leftImage.src = leftPictures[insultApp.leftCounter].imgLoc;
+  insultApp.leftImage.alt = leftPictures[insultApp.leftCounter].altText;
+  insultApp.rightImage.src = rightPictures[insultApp.rightCounter].imgLoc;
+  insultApp.rightImage.alt = rightPictures[insultApp.rightCounter].altText;
   insultApp.insultListener();
   insultApp.adviceListener();
 };
