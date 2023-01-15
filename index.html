@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Prompt&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./styles/styles.css">
+  <script src="https://kit.fontawesome.com/4a6b8331d3.js" crossorigin="anonymous"></script>
   <title>A Battle of Wits and Clicks!</title>
 </head>
 <body>
@@ -28,7 +29,10 @@
         </div>
       </div>
       <!--middle speech bubble stuff-->
-      <div class="middle">        
+      <div class="middle">  
+        <div class="welcome" id="welcome">
+          <h2>Hello and welcome to the game! You can choose to be a real jerk and insult each other, or give each other positive, helpful advice! Choose wisely! Left player starts.</h2>
+        </div>      
         <div class="leftSpeechContainer leftTail">
           <p id="leftPersonSpeechText"></p>
         </div>
@@ -36,7 +40,11 @@
           <p id="rightPersonSpeechText"></p>
         </div>
         
-        <div class="buttonBox">
+        <div class="turnIndicator">
+          <i></i>
+        </div>
+
+        <div class="buttonBox insultButtonBox">
           <!--insult button goes here-->
           <button class="insultButton" id="insultButton">Insult</button>
         </div>

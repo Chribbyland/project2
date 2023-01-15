@@ -34,10 +34,10 @@
   position: absolute;
   border-left: 20px solid transparent;
   border-right: 20px solid #fff;
-  border-top: 20px solid transparent;
-  border-bottom: 20px solid transparent;
-  left: -40px;
-  bottom: 40px;
+  border-top: 50px solid transparent;
+  border-bottom: 0px solid transparent;
+  left: -35px;
+  bottom: 30%;
 }
 
 .rightTail:before {
@@ -47,8 +47,8 @@
   position: absolute;
   border-left: 20px solid #fff;
   border-right: 20px solid transparent;
-  border-top: 20px solid transparent;
-  border-bottom: 20px solid transparent;
-  right: -40px;
-  bottom: 40px;
+  border-top: 0px solid transparent;
+  border-bottom: 50px solid transparent;
+  right: -35px;
+  bottom: 45%;
 }

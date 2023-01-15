@@ -13,30 +13,48 @@
 .middle {
   display: flex;
   flex-direction: column;
-  border: 1px solid red;
   justify-content: flex-end;
   min-width: 30%;
+  max-width: 50%;
 }
 
-.speechContainer {
-  border: 1px solid rebeccapurple;
+.welcome {
+  text-align: center;
 }
 
-.leftPerson {
-  border: 1px solid darkorchid;
+.leftSpeechContainer {
+  display: none;
 }
 
-.rightPerson {
-  border: 1px solid seagreen;
+.rightSpeechContainer {
+  display: none;
 }
+
+// .leftPerson {
+//   border: 1px solid darkorchid;
+// }
+
+// .rightPerson {
+//   border: 1px solid seagreen;
+// }
 
 // styling the two buttons
 .buttonBox {
   text-align: center;
   button {
-    background-color: transparent;
-    border: 2px solid goldenrod;
+    background-color: white;
+    border: 2px solid rgb(227, 227, 227);
     font-size: 3rem;
     margin-bottom: 10px;
   }
+}
+
+.turnIndicator {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.rightTurnIndicator {
+  display: flex;
 }

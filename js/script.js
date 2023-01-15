@@ -39,12 +39,14 @@ insultApp.replaceInsultLeft = (filteredInsult) => {
     // replace existing content
     const insultLeftText = document.querySelector('#leftPersonSpeechText');
     insultLeftText.innerHTML = filteredInsult;
+    insultApp.turnIndicatorRight();
 }
 
 insultApp.replaceInsultRight = (filteredInsult) => {
     // replace existing content
     const insultRightText = document.querySelector('#rightPersonSpeechText');
     insultRightText.innerHTML = filteredInsult;
+    insultApp.turnIndicatorLeft();
 };
 
 insultApp.getAdviceLeft = () => {
@@ -57,6 +59,7 @@ insultApp.getAdviceLeft = () => {
     const adviceLeftText = document.querySelector('#leftPersonSpeechText');
     // replace existing content
     adviceLeftText.innerHTML = advice.advice;
+    insultApp.turnIndicatorRight();
   });
 };
 
@@ -70,15 +73,16 @@ insultApp.getAdviceRight = () => {
     const adviceRightText = document.querySelector('#rightPersonSpeechText');
     // replace existing content
     adviceRightText.innerHTML = advice.advice;
+    insultApp.turnIndicatorLeft();
   });
 };
 
 // nasty words ahead!
 insultApp.languageFilter = (jsonResult) => {
-  let badWords = / anal| anus| arse| ass| ballsack| balls| bastard| bitch| blowjob| boner| boob| bugger| bum| butt| buttplug| clitoris| cock| crap| cunt| cum| dick| dildo| dyke| fag| feck| fellate| fellatio| fuck| hitler| homo| jerk| jew| jizz| labia| muff| penis| piss| poop| prick| pube| pussy| queer| rape| retard| scrotum| sex| shit| slut| spunk| semen| tit| turd| twat| vagina| wank| motherfuck| whore/gi;
+  let badWords = / anal| anus| arse| ass| ballsack| balls| bastard| bitch| blowjob| boner| boob| bugger| bum| butt| buttplug| clitoris| cock| crap| cunt| cum| devilcock| dick| dildo| dyke| fag| feck| fellate| fellatio| fuck| hitler| homo| jerk| jew| jizz| labia| muff| penis| piss| poop| prick| pube| pussy| queer| rape| retard| scrotum| sex| shit| slut| spunk| semen| tit| turd| twat| vagina| wank| motherfuck| whore/gi;
   let rawInsult = jsonResult.insult;
   console.log(rawInsult);
-  let filteredInsult = rawInsult.replace(badWords,'____');
+  let filteredInsult = rawInsult.replace(badWords,' ____ ');
   if (insultApp.isLeftSide) {
   insultApp.replaceInsultRight(filteredInsult);
   } else {
@@ -86,15 +90,40 @@ insultApp.languageFilter = (jsonResult) => {
   };
 };
 
+// font awesome icon indicating left player's turn
+insultApp.turnIndicatorLeft = () => {
+  const leftIndicator = document.querySelector('i');
+  console.log('left change hands')
+  leftIndicator.innerHTML = `<i class="fa-regular fa-4x fa-hand-point-left fa-rotate-by" style="--fa-rotate-angle: 35deg;"></i>`
+};
+
+// font awesome icon indicating right player's turn
+insultApp.turnIndicatorRight = () => {
+  const rightIndicator = document.querySelector('i');
+  console.log('right change hands');
+  rightIndicator.innerHTML = `<i class="fa-regular fa-4x fa-hand-point-right fa-rotate-by" style="--fa-rotate-angle: -35deg;"></i>`
+};
+
+// remove welcome message on game start
+// PROBLEM - THIS HAS TO BE CALLED IN A DIFFERENT WAY AS IT BREAKS THE CODE AFTER THE FIRST INSTANCE.
+// Maybe a "Start!" button... then the Insult and Advise (and hand icon) will have to be displayed...and
+// also.. remember to bring back the speech bubbles..!!
+// also also.. remove where this currently called in both event listeners.
+insultApp.removeWelcome = () => {
+  console.log('remove welcome')
+  const elem = document.getElementById("welcome");
+  elem.parentNode.removeChild(elem);
+};
+
 // reset left person text box on game reset
 insultApp.leftPersonTextReset = () => {
-  const reset = document.querySelector('#leftPersonSpeechText')
+  const reset = document.querySelector('#leftPersonSpeechText');
   reset.innerHTML = '';
 };
 
 // reset right person text box on game reset
 insultApp.rightPersonTextReset = () => {
-  const reset = document.querySelector('#rightPersonSpeechText')
+  const reset = document.querySelector('#rightPersonSpeechText');
   reset.innerHTML = '';
 };
 
@@ -108,7 +137,8 @@ insultApp.gameReset = () => {
   // speech bubbles clear
   insultApp.leftPersonTextReset();
   insultApp.rightPersonTextReset();
-  insultApp.leftCounter=  5;
+  insultApp.turnIndicatorLeft();
+  insultApp.leftCounter = 5;
   insultApp.rightCounter = 5;
 };
 
@@ -116,6 +146,7 @@ insultApp.gameReset = () => {
 // insult button conditions
 insultApp.insultListener = () => {
   document.getElementById("insultButton").addEventListener("click", e => {
+    // insultApp.removeWelcome();
     if (insultApp.leftCounter === 0 ||
       insultApp.rightCounter === 0) {
         alert(`You insulted them to death.`); // call function to reset game
@@ -128,9 +159,10 @@ insultApp.insultListener = () => {
           insultApp.isLeftSide = !insultApp.isLeftSide;
           insultApp.rightImage.src = rightPictures[insultApp.rightCounter].imgLoc;
           insultApp.rightImage.alt = rightPictures[insultApp.rightCounter].altText;
+
         //player 2 (Right)
         } else {
-        insultApp.getInsultRight();
+        // insultApp.getInsultRight();
         insultApp.leftCounter--;
         insultApp.isLeftSide = !insultApp.isLeftSide;
         insultApp.leftImage.src = leftPictures[insultApp.leftCounter].imgLoc;
@@ -143,6 +175,7 @@ insultApp.insultListener = () => {
 // advice button conditions
 insultApp.adviceListener = () => {
   document.getElementById("adviceButton").addEventListener("click", e => {
+    // insultApp.removeWelcome();
     if (insultApp.leftCounter === 10 ||
       insultApp.rightCounter === 10) {
         alert(`You praised them into a new dimension!`); // call function to reset game
@@ -175,6 +208,7 @@ insultApp.init = () => {
   insultApp.leftImage.alt = leftPictures[insultApp.leftCounter].altText;
   insultApp.rightImage.src = rightPictures[insultApp.rightCounter].imgLoc;
   insultApp.rightImage.alt = rightPictures[insultApp.rightCounter].altText;
+  insultApp.turnIndicatorLeft();
   insultApp.insultListener();
   insultApp.adviceListener();
 };

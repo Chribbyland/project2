@@ -261,6 +261,10 @@ h1 span {
   font-size: 2rem;
 }
 
+h2 {
+  font-size: 3.5rem;
+}
+
 h3 {
   font-family: "Prompt", sans-serif;
   font-size: 1rem;
@@ -303,10 +307,10 @@ p {
   position: absolute;
   border-left: 20px solid transparent;
   border-right: 20px solid #fff;
-  border-top: 20px solid transparent;
-  border-bottom: 20px solid transparent;
-  left: -40px;
-  bottom: 40px;
+  border-top: 50px solid transparent;
+  border-bottom: 0px solid transparent;
+  left: -35px;
+  bottom: 30%;
 }
 
 .rightTail:before {
@@ -316,10 +320,10 @@ p {
   position: absolute;
   border-left: 20px solid #fff;
   border-right: 20px solid transparent;
-  border-top: 20px solid transparent;
-  border-bottom: 20px solid transparent;
-  right: -40px;
-  bottom: 40px;
+  border-top: 0px solid transparent;
+  border-bottom: 50px solid transparent;
+  right: -35px;
+  bottom: 45%;
 }
 
 .entirePage {
@@ -339,31 +343,47 @@ p {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  border: 1px solid red;
   -webkit-box-pack: end;
       -ms-flex-pack: end;
           justify-content: flex-end;
   min-width: 30%;
+  max-width: 50%;
 }
 
-.speechContainer {
-  border: 1px solid rebeccapurple;
+.welcome {
+  text-align: center;
 }
 
-.leftPerson {
-  border: 1px solid darkorchid;
+.leftSpeechContainer {
+  display: none;
 }
 
-.rightPerson {
-  border: 1px solid seagreen;
+.rightSpeechContainer {
+  display: none;
 }
 
 .buttonBox {
   text-align: center;
 }
 .buttonBox button {
-  background-color: transparent;
-  border: 2px solid goldenrod;
+  background-color: white;
+  border: 2px solid rgb(227, 227, 227);
   font-size: 3rem;
   margin-bottom: 10px;
+}
+
+.turnIndicator {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-bottom: 10px;
+}
+
+.rightTurnIndicator {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
