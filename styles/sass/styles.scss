@@ -1,11 +1,9 @@
 
 @import 'setup';
+@import 'main-styles';
 @import 'fonts';
 @import 'speechBubbles';
 
-h3 {
-  background-color: papayawhip;
-}
 
 .entirePage {
   display: flex;
@@ -13,7 +11,11 @@ h3 {
 }
 
 .middle {
+  display: flex;
+  flex-direction: column;
   border: 1px solid red;
+  justify-content: flex-end;
+  min-width: 30%;
 }
 
 .speechContainer {

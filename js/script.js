@@ -75,7 +75,7 @@ insultApp.getAdviceRight = () => {
 
 // nasty words ahead!
 insultApp.languageFilter = (jsonResult) => {
-  let badWords = / anal| anus| arse| ass| ballsack| balls| bastard| bitch| blowjob| boner| boob| bugger| bum| butt| buttplug| clitoris| cock| crap| cunt| cum| dick| dildo| dyke| fag| feck| fellate| fellatio| fuck| hitler| homo| jerk| jew| jizz| labia| muff| penis| piss| poop| prick| pube| pussy| queer| rape| retard| scrotum| sex| shit| slut| spunk| semen| tit| turd| twat| vagina| wank| |motherfuck| whore/gi;
+  let badWords = / anal| anus| arse| ass| ballsack| balls| bastard| bitch| blowjob| boner| boob| bugger| bum| butt| buttplug| clitoris| cock| crap| cunt| cum| dick| dildo| dyke| fag| feck| fellate| fellatio| fuck| hitler| homo| jerk| jew| jizz| labia| muff| penis| piss| poop| prick| pube| pussy| queer| rape| retard| scrotum| sex| shit| slut| spunk| semen| tit| turd| twat| vagina| wank| motherfuck| whore/gi;
   let rawInsult = jsonResult.insult;
   console.log(rawInsult);
   let filteredInsult = rawInsult.replace(badWords,'____');

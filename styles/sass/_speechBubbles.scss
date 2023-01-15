@@ -1,9 +1,6 @@
 // is this actually importing?!
 
 // temp background for contrast
-body {
-  background: #368dda;
-}
 
 .leftSpeechContainer {
   position: relative;
@@ -14,6 +11,7 @@ body {
   margin: 20px auto;
   text-align: center;
   color: #000;
+  // display: none;
 }
 
 .rightSpeechContainer {
@@ -25,6 +23,7 @@ body {
   margin: 60px auto;
   text-align: center;
   color: #000;
+  // display: none;
 }
 
 // adding tails for the speech containers/bubbles by adding psuedo-element by way of :before
