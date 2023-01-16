@@ -27,19 +27,21 @@ insultApp.getInsult = (e) => {
 };
 
 insultApp.replaceInsultLeft = (filteredInsult) => {
-    // replace existing content
-    const insultLeftText = document.querySelector('#leftPersonSpeechText');
-    insultLeftText.innerHTML = filteredInsult;
-    document.getElementById('leftSpeechContainer').style.visibility = 'visible';
-    insultApp.turnIndicatorRight();
-}
+  // replace existing content
+  const insultLeftText = document.querySelector('#leftPersonSpeechText');
+  insultLeftText.innerHTML = filteredInsult;
+  // make speech bubble visible
+  document.getElementById('leftSpeechContainer').style.visibility = 'visible';
+  insultApp.turnIndicatorRight();
+};
 
 insultApp.replaceInsultRight = (filteredInsult) => {
-    // replace existing content
-    const insultRightText = document.querySelector('#rightPersonSpeechText');
-    insultRightText.innerHTML = filteredInsult;
-    document.getElementById('rightSpeechContainer').style.visibility = 'visible';
-    insultApp.turnIndicatorLeft();
+  // replace existing content
+  const insultRightText = document.querySelector('#rightPersonSpeechText');
+  insultRightText.innerHTML = filteredInsult;
+  // make speech bubble visible
+  document.getElementById('rightSpeechContainer').style.visibility = 'visible';
+  insultApp.turnIndicatorLeft();
 };
 
 insultApp.getAdviceLeft = (e) => {
@@ -53,7 +55,7 @@ insultApp.getAdviceLeft = (e) => {
     // replace existing content
     adviceLeftText.innerHTML = advice.advice;
     insultApp.turnIndicatorRight();
-    // re-enable advice button
+    // re-enable advice button and make speech bubble visible
     e.target.disabled = false;
     document.getElementById('leftSpeechContainer').style.visibility = 'visible';
   });
@@ -70,7 +72,7 @@ insultApp.getAdviceRight = (e) => {
     // replace existing content
     adviceRightText.innerHTML = advice.advice;
     insultApp.turnIndicatorLeft();
-    // re-enable advice button
+    // re-enable advice button and make speech bubble visible
     e.target.disabled = false;
     document.getElementById('rightSpeechContainer').style.visibility = 'visible';
   });
@@ -127,7 +129,7 @@ insultApp.gameReset = (e) => {
   insultApp.leftImage.alt = leftPictures[5].altText;
   insultApp.rightImage.src = rightPictures[5].imgLoc;
   insultApp.rightImage.alt = rightPictures[5].altText;
-  // speech bubbles clear
+  // clear speech bubbles 
   insultApp.leftPersonTextReset();
   insultApp.rightPersonTextReset();
   insultApp.turnIndicatorLeft();
@@ -145,6 +147,7 @@ insultApp.gameReset = (e) => {
 insultApp.insultListener = () => {
   document.getElementById("insultButton").addEventListener("click", e => {
     e.target.disabled = true;
+    console.log(insultApp.leftCounter, insultApp.rightCounter)
     if (insultApp.leftCounter === 0 ||
       insultApp.rightCounter === 0) {
         alert(`You insulted them to death.`);
