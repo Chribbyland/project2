@@ -343,23 +343,16 @@ p {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   min-width: 30%;
   max-width: 50%;
 }
 
 .welcome {
   text-align: center;
-}
-
-.leftSpeechContainer {
-  display: none;
-}
-
-.rightSpeechContainer {
-  display: none;
+  justify-self: flex-start;
 }
 
 .buttonBox {
@@ -367,12 +360,13 @@ p {
 }
 .buttonBox button {
   background-color: white;
-  border: 2px solid rgb(227, 227, 227);
+  border: thick double rgb(148, 210, 216);
   font-size: 3rem;
+  padding: 5px 10px;
   margin-bottom: 10px;
 }
 
-.turnIndicator {
+.turnIndicatorContainer {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

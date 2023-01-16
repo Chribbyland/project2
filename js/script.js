@@ -13,7 +13,7 @@ insultApp.rightCounter = 5;
 // make array for left character image locations, including alt text stored as a property in the array
 
 // TO DO - implement async/await on the API calls so the text appears as the images are changed. Currently, there is a delay in waiting for the API to return info but the images are swapped out immediately.
-insultApp.getInsultLeft = () => {
+insultApp.getInsult = (e) => {
   fetch('https://proxy-ugwolsldnq-uc.a.run.app/https://evilinsult.com/generate_insult.php?lang=en&type=jsonfetch(`https://proxy-ugwolsldnq-uc.a.run.app/https://evilinsult.com/generate_insult.php?lang=en&type=json&version='+Math.floor(Math.random()*100000+1))
   .then(function (response) {
     return response.json();
@@ -21,17 +21,8 @@ insultApp.getInsultLeft = () => {
   .then(function (jsonResult) {
     // run language filter
     insultApp.languageFilter(jsonResult);
-  });
-};
-
-insultApp.getInsultRight = () => {
-  fetch('https://proxy-ugwolsldnq-uc.a.run.app/https://evilinsult.com/generate_insult.php?lang=en&type=jsonfetch(`https://proxy-ugwolsldnq-uc.a.run.app/https://evilinsult.com/generate_insult.php?lang=en&type=json&version='+Math.floor(Math.random()*100000+1))
-  .then(function (response) {
-    return response.json();
-  })
-  .then(function (jsonResult) {
-    // run language filter
-    insultApp.languageFilter(jsonResult);
+    // re-enable insult button
+    e.target.disabled = false;
   });
 };
 
@@ -39,6 +30,7 @@ insultApp.replaceInsultLeft = (filteredInsult) => {
     // replace existing content
     const insultLeftText = document.querySelector('#leftPersonSpeechText');
     insultLeftText.innerHTML = filteredInsult;
+    document.getElementById('leftSpeechContainer').style.visibility = 'visible';
     insultApp.turnIndicatorRight();
 }
 
@@ -46,10 +38,11 @@ insultApp.replaceInsultRight = (filteredInsult) => {
     // replace existing content
     const insultRightText = document.querySelector('#rightPersonSpeechText');
     insultRightText.innerHTML = filteredInsult;
+    document.getElementById('rightSpeechContainer').style.visibility = 'visible';
     insultApp.turnIndicatorLeft();
 };
 
-insultApp.getAdviceLeft = () => {
+insultApp.getAdviceLeft = (e) => {
   fetch('https://api.adviceslip.com/advice?type=json&version='+Math.floor(Math.random()*100000+1))
   .then(function (response) {
     return response.json();
@@ -60,10 +53,13 @@ insultApp.getAdviceLeft = () => {
     // replace existing content
     adviceLeftText.innerHTML = advice.advice;
     insultApp.turnIndicatorRight();
+    // re-enable advice button
+    e.target.disabled = false;
+    document.getElementById('leftSpeechContainer').style.visibility = 'visible';
   });
 };
 
-insultApp.getAdviceRight = () => {
+insultApp.getAdviceRight = (e) => {
   fetch('https://api.adviceslip.com/advice?type=json&version='+Math.floor(Math.random()*100000+1))
   .then(function (response) {
     return response.json();
@@ -74,14 +70,16 @@ insultApp.getAdviceRight = () => {
     // replace existing content
     adviceRightText.innerHTML = advice.advice;
     insultApp.turnIndicatorLeft();
+    // re-enable advice button
+    e.target.disabled = false;
+    document.getElementById('rightSpeechContainer').style.visibility = 'visible';
   });
 };
 
 // nasty words ahead!
 insultApp.languageFilter = (jsonResult) => {
-  let badWords = / anal| anus| arse| ass| ballsack| balls| bastard| bitch| blowjob| boner| boob| bugger| bum| butt| buttplug| clitoris| cock| crap| cunt| cum| devilcock| dick| dildo| dyke| fag| feck| fellate| fellatio| fuck| hitler| homo| jerk| jew| jizz| labia| muff| penis| piss| poop| prick| pube| pussy| queer| rape| retard| scrotum| sex| shit| slut| spunk| semen| tit| turd| twat| vagina| wank| motherfuck| whore/gi;
+  let badWords = / abortion| anal| anus| arse| ass| ballsack| balls| bastard| bitch| blowjob| boner| boob| bugger| bum| butt| buttplug| clitoris| cock| crap| cunt| cum| devilcock| dick| dildo| dyke| fag| feck| fellate| fellatio| fuck| hitler| homo| jerk| jew| jizz| labia| muff| penis| piss| poop| prick| pube| pussy| queer| rape| retard| scrotum| sex| shit| slut| spunk| semen| tit| turd| twat| vagina| wank| motherfuck| whore/gi;
   let rawInsult = jsonResult.insult;
-  console.log(rawInsult);
   let filteredInsult = rawInsult.replace(badWords,' ____ ');
   if (insultApp.isLeftSide) {
   insultApp.replaceInsultRight(filteredInsult);
@@ -93,26 +91,21 @@ insultApp.languageFilter = (jsonResult) => {
 // font awesome icon indicating left player's turn
 insultApp.turnIndicatorLeft = () => {
   const leftIndicator = document.querySelector('i');
-  console.log('left change hands')
   leftIndicator.innerHTML = `<i class="fa-regular fa-4x fa-hand-point-left fa-rotate-by" style="--fa-rotate-angle: 35deg;"></i>`
 };
 
 // font awesome icon indicating right player's turn
 insultApp.turnIndicatorRight = () => {
   const rightIndicator = document.querySelector('i');
-  console.log('right change hands');
   rightIndicator.innerHTML = `<i class="fa-regular fa-4x fa-hand-point-right fa-rotate-by" style="--fa-rotate-angle: -35deg;"></i>`
 };
 
-// remove welcome message on game start
-// PROBLEM - THIS HAS TO BE CALLED IN A DIFFERENT WAY AS IT BREAKS THE CODE AFTER THE FIRST INSTANCE.
-// Maybe a "Start!" button... then the Insult and Advise (and hand icon) will have to be displayed...and
-// also.. remember to bring back the speech bubbles..!!
-// also also.. remove where this currently called in both event listeners.
+// remove welcome message and start button on game start
 insultApp.removeWelcome = () => {
-  console.log('remove welcome')
-  const elem = document.getElementById("welcome");
-  elem.parentNode.removeChild(elem);
+  const byeWelcome = document.getElementById("welcome");
+  byeWelcome.parentNode.removeChild(byeWelcome);
+  const byeStartBox = document.getElementById("startButtonBox");
+  byeStartBox.parentNode.removeChild(byeStartBox);
 };
 
 // reset left person text box on game reset
@@ -128,7 +121,7 @@ insultApp.rightPersonTextReset = () => {
 };
 
 // function to reset game/counters/images
-insultApp.gameReset = () => {
+insultApp.gameReset = (e) => {
   // images and their alt text reset to neutral
   insultApp.leftImage.src = leftPictures[5].imgLoc;
   insultApp.leftImage.alt = leftPictures[5].altText;
@@ -140,21 +133,27 @@ insultApp.gameReset = () => {
   insultApp.turnIndicatorLeft();
   insultApp.leftCounter = 5;
   insultApp.rightCounter = 5;
+  // re-enable advice button
+  e.target.disabled = false;
+  // hiding speech bubbles until user clicks insult/advise
+  document.getElementById('leftSpeechContainer').style.visibility = 'hidden';
+  document.getElementById('rightSpeechContainer').style.visibility = 'hidden';
 };
 
 // add event listeners
 // insult button conditions
 insultApp.insultListener = () => {
   document.getElementById("insultButton").addEventListener("click", e => {
-    // insultApp.removeWelcome();
+    e.target.disabled = true;
     if (insultApp.leftCounter === 0 ||
       insultApp.rightCounter === 0) {
-        alert(`You insulted them to death.`); // call function to reset game
-        insultApp.gameReset();
+        alert(`You insulted them to death.`);
+        // call function to reset game
+        insultApp.gameReset(e);
       //player 1 (Left)
       } else {
         if (insultApp.isLeftSide) {
-          insultApp.getInsultLeft();
+          insultApp.getInsult(e);
           insultApp.rightCounter--;
           insultApp.isLeftSide = !insultApp.isLeftSide;
           insultApp.rightImage.src = rightPictures[insultApp.rightCounter].imgLoc;
@@ -162,7 +161,7 @@ insultApp.insultListener = () => {
 
         //player 2 (Right)
         } else {
-        // insultApp.getInsultRight();
+        insultApp.getInsult(e);
         insultApp.leftCounter--;
         insultApp.isLeftSide = !insultApp.isLeftSide;
         insultApp.leftImage.src = leftPictures[insultApp.leftCounter].imgLoc;
@@ -175,22 +174,23 @@ insultApp.insultListener = () => {
 // advice button conditions
 insultApp.adviceListener = () => {
   document.getElementById("adviceButton").addEventListener("click", e => {
-    // insultApp.removeWelcome();
+    e.target.disabled = true;
     if (insultApp.leftCounter === 10 ||
       insultApp.rightCounter === 10) {
-        alert(`You praised them into a new dimension!`); // call function to reset game
-        insultApp.gameReset();
+        alert(`You praised them into a new dimension!`);
+        // call function to reset game
+        insultApp.gameReset(e);
       //player 1 (Left)
       } else {
         if (insultApp.isLeftSide) {
-          insultApp.getAdviceLeft();
           insultApp.rightCounter++;
+          insultApp.getAdviceLeft(e);
           insultApp.isLeftSide = !insultApp.isLeftSide;
           insultApp.rightImage.src = rightPictures[insultApp.rightCounter].imgLoc;
           insultApp.rightImage.alt = rightPictures[insultApp.rightCounter].altText;
         //player 2 (Right)
         } else {
-        insultApp.getAdviceRight();
+        insultApp.getAdviceRight(e);
         insultApp.leftCounter++;
         insultApp.isLeftSide = !insultApp.isLeftSide;
         insultApp.leftImage.src = leftPictures[insultApp.leftCounter].imgLoc;
@@ -198,6 +198,89 @@ insultApp.adviceListener = () => {
       };
     };
   });
+};
+
+// listen for "Start" button click event
+insultApp.gameStartListener = () => {
+  document.getElementById('startButton').addEventListener("click", e => {
+  insultApp.gameStart();
+  });
+};
+
+// initialize middle section for gameplay after start button is clicked
+  // left person speech container 
+insultApp.setMiddle = () => {
+  const leftSpeechContainer = document.createElement('div');
+  leftSpeechContainer.setAttribute('class', 'leftSpeechContainer leftTail');
+  leftSpeechContainer.setAttribute('id', 'leftSpeechContainer');
+  document.getElementById('middle').appendChild(leftSpeechContainer);
+
+  // left person text field
+  const leftPersonSpeechText = document.createElement('p');
+  leftPersonSpeechText.setAttribute('class', 'leftPersonSpeechText');
+  leftPersonSpeechText.setAttribute('id', 'leftPersonSpeechText');
+  document.getElementById('leftSpeechContainer').appendChild(leftPersonSpeechText);
+
+  // right person speech container 
+  const rightSpeechContainer = document.createElement('div');
+  rightSpeechContainer.setAttribute('class', 'rightSpeechContainer rightTail');
+  rightSpeechContainer.setAttribute('id', 'rightSpeechContainer');
+  document.getElementById('middle').appendChild(rightSpeechContainer);
+
+  // right person text field
+  const rightPersonSpeechText = document.createElement('p');
+  rightPersonSpeechText.setAttribute('class', 'rightPersonSpeechText');
+  rightPersonSpeechText.setAttribute('id', 'rightPersonSpeechText');
+  document.getElementById('rightSpeechContainer').appendChild(rightPersonSpeechText);
+
+  // turn indicator container
+  const turnIndicatorContainer = document.createElement('div');
+  turnIndicatorContainer.setAttribute('class', 'turnIndicatorContainer');
+  turnIndicatorContainer.setAttribute('id', 'turnIndicatorContainer');
+  document.getElementById('middle').appendChild(turnIndicatorContainer);
+
+  // font awesome <i>
+  const turnIndicator = document.createElement('i');
+  document.getElementById('turnIndicatorContainer').appendChild(turnIndicator);
+
+  // insult button container
+  const insultButtonBox = document.createElement('div');
+  insultButtonBox.setAttribute('class', 'buttonBox', 'insultButtonBox');
+  insultButtonBox.setAttribute('id', 'insultButtonBox');
+  document.getElementById('middle').appendChild(insultButtonBox);
+
+  // insult button 
+  const insultButton = document.createElement('button');
+  insultButton.setAttribute('class', 'insultButton');
+  insultButton.setAttribute('id', 'insultButton');
+  insultButton.innerText = "Insult!"
+  document.getElementById('insultButtonBox').appendChild(insultButton);
+  
+  // advice button container
+  const adviceButtonBox = document.createElement('div');
+  adviceButtonBox.setAttribute('class', 'buttonBox', 'adviceButtonBox');
+  adviceButtonBox.setAttribute('id', 'adviceButtonBox');
+  document.getElementById('middle').appendChild(adviceButtonBox);
+
+  // advice button
+  const adviceButton = document.createElement('button');
+  adviceButton.setAttribute('class', 'adviceButton');
+  adviceButton.setAttribute('id', 'adviceButton');
+  adviceButton.innerText = "Advise!"
+  document.getElementById('adviceButtonBox').appendChild(adviceButton);
+
+  // hiding speech bubbles until user clicks insult/advise
+  document.getElementById('leftSpeechContainer').style.visibility = 'hidden';
+  document.getElementById('rightSpeechContainer').style.visibility = 'hidden';
+};
+
+insultApp.gameStart = () => {
+  // kicks off after user clicks Start button
+  insultApp.removeWelcome();
+  insultApp.setMiddle();
+  insultApp.turnIndicatorLeft();
+  insultApp.insultListener();
+  insultApp.adviceListener();
 };
 
 // init function to kick off the code
@@ -208,9 +291,7 @@ insultApp.init = () => {
   insultApp.leftImage.alt = leftPictures[insultApp.leftCounter].altText;
   insultApp.rightImage.src = rightPictures[insultApp.rightCounter].imgLoc;
   insultApp.rightImage.alt = rightPictures[insultApp.rightCounter].altText;
-  insultApp.turnIndicatorLeft();
-  insultApp.insultListener();
-  insultApp.adviceListener();
+  insultApp.gameStartListener();
 };
 
 insultApp.init();

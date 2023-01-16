@@ -13,21 +13,14 @@
 .middle {
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: space-between; // may need to be flex-end once speech bubbles are back??
   min-width: 30%;
   max-width: 50%;
 }
 
 .welcome {
   text-align: center;
-}
-
-.leftSpeechContainer {
-  display: none;
-}
-
-.rightSpeechContainer {
-  display: none;
+  justify-self: flex-start;
 }
 
 // .leftPerson {
@@ -43,13 +36,14 @@
   text-align: center;
   button {
     background-color: white;
-    border: 2px solid rgb(227, 227, 227);
+    border: thick double rgb(148, 210, 216);
     font-size: 3rem;
+    padding: 5px 10px;
     margin-bottom: 10px;
   }
 }
 
-.turnIndicator {
+.turnIndicatorContainer {
   display: flex;
   justify-content: center;
   margin-bottom: 10px;

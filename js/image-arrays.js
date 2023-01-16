@@ -41,8 +41,8 @@ export const leftPictures = [
     altText: 'Stick figure on the left is positively jubilant!'
   },
   {
-    imgLoc: './photos/explosion.png',
-    altText: 'A large explosion!'
+    imgLoc: './photos/zen.png',
+    altText: 'A cartoon brain smiling and looking very zen-like!'
   }
 ];
 
@@ -90,8 +90,8 @@ export const rightPictures = [
     altText: 'Stick figure on the right is positively jubilant!'
   },
   {
-    imgLoc: './photos/explosion.png',
-    altText: 'A large explosion!'
+    imgLoc: './photos/zen.png',
+    altText: 'A cartoon brain smiling and looking very zen-like!'
   }
 ];
 

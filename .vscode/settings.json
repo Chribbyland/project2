@@ -34,5 +34,8 @@
 		"titleBar.inactiveBackground": "#4eb7c699",
 		"titleBar.inactiveForeground": "#15202b99"
 	},
-	"peacock.color": "#4eb7c6"
+	"peacock.color": "#4eb7c6",
+	"cSpell.words": [
+		"gameplay"
+	]
 }
