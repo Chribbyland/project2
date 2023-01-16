@@ -326,6 +326,17 @@ p {
   bottom: 45%;
 }
 
+@media (max-width: 480px) {
+  #leftPersonImage {
+    width: 100px;
+  }
+  #rightPersonImage {
+    width: 100px;
+  }
+  .leftPerson {
+    background-color: red;
+  }
+}
 .entirePage {
   display: -webkit-box;
   display: -ms-flexbox;
