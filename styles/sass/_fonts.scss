@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Prompt&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Handlee&display=swap');
+
+html {
+  font-size: 62.5%; /* makes font 10px */
+}
+
+h1 {
+  font-family: 'Prompt', sans-serif;
+  font-size: 5rem;
+  text-align: center;
+  background-color: rgba($color: #e79bb75c, $alpha: 1.0);
+  padding: 20px;
+  margin-top: 0;
+  span {
+    font-size: 2rem;
+  }
+}
+
+h3 {
+  font-family: 'Prompt', sans-serif;
+  font-size: 1rem;
+  text-align: center;
+}
+
+p {
+  font-family: 'Handlee', cursive;
+  font-size: 2.5rem;
+  text-align: center;
+  line-height: 3rem;
+}

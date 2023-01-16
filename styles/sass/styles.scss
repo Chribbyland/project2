@@ -1,0 +1,40 @@
+
+@import 'setup';
+@import 'fonts';
+@import 'speechBubbles';
+
+h3 {
+  background-color: papayawhip;
+}
+
+.entirePage {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.middle {
+  border: 1px solid red;
+}
+
+.speechContainer {
+  border: 1px solid rebeccapurple;
+}
+
+.leftPerson {
+  border: 1px solid darkorchid;
+}
+
+.rightPerson {
+  border: 1px solid seagreen;
+}
+
+// styling the two buttons
+.buttonBox {
+  text-align: center;
+  button {
+    background-color: transparent;
+    border: 2px solid goldenrod;
+    font-size: 3rem;
+    margin-bottom: 10px;
+  }
+}
