@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Prompt&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Handlee&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Marck+Script&display=swap");
 html {
   line-height: 1.15;
   -ms-text-size-adjust: 100%;
@@ -228,20 +229,40 @@ html {
   overflow: hidden;
 }
 
+body {
+  background-color: #9ec0ef;
+}
+
+h1 {
+  background-color: #9ec0ef;
+}
+
+h3 {
+  background-color: #9ec0ef;
+}
+
+.middle {
+  min-width: 40%;
+}
+
 html {
   font-size: 62.5%; /* makes font 10px */
 }
 
 h1 {
-  font-family: "Prompt", sans-serif;
+  font-family: "Abril Fatface", cursive;
   font-size: 5rem;
+  color: #030B15;
   text-align: center;
-  background-color: #e79bb7;
   padding: 20px;
   margin-top: 0;
 }
 h1 span {
   font-size: 2rem;
+}
+
+h2 {
+  font-size: 3.5rem;
 }
 
 h3 {
@@ -255,10 +276,6 @@ p {
   font-size: 2.5rem;
   text-align: center;
   line-height: 3rem;
-}
-
-body {
-  background: #368dda;
 }
 
 .leftSpeechContainer {
@@ -290,10 +307,10 @@ body {
   position: absolute;
   border-left: 20px solid transparent;
   border-right: 20px solid #fff;
-  border-top: 20px solid transparent;
-  border-bottom: 20px solid transparent;
-  left: -40px;
-  bottom: 40px;
+  border-top: 50px solid transparent;
+  border-bottom: 0px solid transparent;
+  left: -35px;
+  bottom: 30%;
 }
 
 .rightTail:before {
@@ -303,14 +320,10 @@ body {
   position: absolute;
   border-left: 20px solid #fff;
   border-right: 20px solid transparent;
-  border-top: 20px solid transparent;
-  border-bottom: 20px solid transparent;
-  right: -40px;
-  bottom: 40px;
-}
-
-h3 {
-  background-color: papayawhip;
+  border-top: 0px solid transparent;
+  border-bottom: 50px solid transparent;
+  right: -35px;
+  bottom: 45%;
 }
 
 .entirePage {
@@ -323,27 +336,48 @@ h3 {
 }
 
 .middle {
-  border: 1px solid red;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  min-width: 30%;
+  max-width: 50%;
 }
 
-.speechContainer {
-  border: 1px solid rebeccapurple;
-}
-
-.leftPerson {
-  border: 1px solid darkorchid;
-}
-
-.rightPerson {
-  border: 1px solid seagreen;
+.welcome {
+  text-align: center;
+  justify-self: flex-start;
 }
 
 .buttonBox {
   text-align: center;
 }
 .buttonBox button {
-  background-color: transparent;
-  border: 2px solid goldenrod;
+  background-color: white;
+  border: thick double rgb(148, 210, 216);
   font-size: 3rem;
+  padding: 5px 10px;
   margin-bottom: 10px;
+}
+
+.turnIndicatorContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-bottom: 10px;
+}
+
+.rightTurnIndicator {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }

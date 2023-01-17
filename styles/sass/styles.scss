@@ -1,11 +1,9 @@
 
 @import 'setup';
+@import 'main-styles';
 @import 'fonts';
 @import 'speechBubbles';
 
-h3 {
-  background-color: papayawhip;
-}
 
 .entirePage {
   display: flex;
@@ -13,28 +11,44 @@ h3 {
 }
 
 .middle {
-  border: 1px solid red;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; // may need to be flex-end once speech bubbles are back??
+  min-width: 30%;
+  max-width: 50%;
 }
 
-.speechContainer {
-  border: 1px solid rebeccapurple;
+.welcome {
+  text-align: center;
+  justify-self: flex-start;
 }
 
-.leftPerson {
-  border: 1px solid darkorchid;
-}
+// .leftPerson {
+//   border: 1px solid darkorchid;
+// }
 
-.rightPerson {
-  border: 1px solid seagreen;
-}
+// .rightPerson {
+//   border: 1px solid seagreen;
+// }
 
 // styling the two buttons
 .buttonBox {
   text-align: center;
   button {
-    background-color: transparent;
-    border: 2px solid goldenrod;
+    background-color: white;
+    border: thick double rgb(148, 210, 216);
     font-size: 3rem;
+    padding: 5px 10px;
     margin-bottom: 10px;
   }
+}
+
+.turnIndicatorContainer {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.rightTurnIndicator {
+  display: flex;
 }
