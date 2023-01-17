@@ -20,7 +20,7 @@
   background: #fff;
   border-radius: 40px;
   padding: 24px;
-  margin: 60px auto;
+  margin: 20px 0;
   text-align: center;
   color: #000;
   // display: none;
@@ -34,7 +34,7 @@
   position: absolute;
   border-left: 20px solid transparent;
   border-right: 20px solid #fff;
-  border-top: 50px solid transparent;
+  border-top: 31px solid transparent;
   border-bottom: 0px solid transparent;
   left: -35px;
   bottom: 30%;
@@ -48,7 +48,15 @@
   border-left: 20px solid #fff;
   border-right: 20px solid transparent;
   border-top: 0px solid transparent;
-  border-bottom: 50px solid transparent;
+  border-bottom: 30px solid transparent;
   right: -35px;
   bottom: 45%;
+}
+
+.rightPersonSpeechText, .leftPersonSpeechText {
+  margin: 0;
+  
+  
+  
+  
 }

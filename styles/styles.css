@@ -243,6 +243,13 @@ h3 {
 
 .middle {
   min-width: 40%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 html {
@@ -295,7 +302,7 @@ p {
   background: #fff;
   border-radius: 40px;
   padding: 24px;
-  margin: 60px auto;
+  margin: 20px 0;
   text-align: center;
   color: #000;
 }
@@ -307,7 +314,7 @@ p {
   position: absolute;
   border-left: 20px solid transparent;
   border-right: 20px solid #fff;
-  border-top: 50px solid transparent;
+  border-top: 31px solid transparent;
   border-bottom: 0px solid transparent;
   left: -35px;
   bottom: 30%;
@@ -321,11 +328,133 @@ p {
   border-left: 20px solid #fff;
   border-right: 20px solid transparent;
   border-top: 0px solid transparent;
-  border-bottom: 50px solid transparent;
+  border-bottom: 30px solid transparent;
   right: -35px;
   bottom: 45%;
 }
 
+.rightPersonSpeechText, .leftPersonSpeechText {
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .leftSpeechContainer,
+.rightSpeechContainer {
+    padding: 15px;
+    margin: 20px auto;
+  }
+  h1 {
+    font-size: 3.5rem;
+  }
+  h2 {
+    font-size: 2.5rem;
+  }
+  p {
+    font-size: 2rem;
+  }
+}
+@media (max-width: 486px) {
+  h1 {
+    font-size: 2.7rem;
+    margin: 0;
+  }
+  h2 {
+    font-size: 1.78rem;
+  }
+  .middle {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .middle .welcome {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    background-color: white;
+    width: 140%;
+    -ms-flex-item-align: center;
+        align-self: center;
+    position: absolute;
+    top: 400px;
+    max-width: -webkit-fit-content;
+    max-width: -moz-fit-content;
+    max-width: fit-content;
+  }
+  .leftPersonImage, .rightPersonImage {
+    height: 35vh;
+  }
+  #leftPersonImage, #rightPersonImage {
+    height: 25vh;
+    max-width: auto;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  .insultButton, .adviceButton {
+    font-size: 1.5rem;
+  }
+  .entirePage {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+  }
+  .startButton {
+    margin-top: 20px;
+  }
+  footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+  }
+  #adviceButtonBox {
+    -webkit-box-ordinal-group: 1;
+        -ms-flex-order: 0;
+            order: 0;
+  }
+  .leftSpeechContainer {
+    margin: 0;
+    word-wrap: break-word;
+  }
+  .rightSpeechContainer {
+    margin: 20px 0 0 0;
+    word-wrap: break-word;
+    word-wrap: break-word;
+  }
+  .buttonBoxes {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: space-evenly;
+        -ms-flex-pack: space-evenly;
+            justify-content: space-evenly;
+  }
+  .turnIndicatorContainer {
+    margin-top: 10px;
+  }
+}
+@media (max-width: 349px) {
+  .leftPerson, .rightPerson {
+    display: none;
+  }
+  .leftSpeechContainer, .rightSpeechContainer {
+    width: 100%;
+  }
+}
 .entirePage {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -347,7 +476,7 @@ p {
       -ms-flex-pack: justify;
           justify-content: space-between;
   min-width: 30%;
-  max-width: 50%;
+  max-width: 48%;
 }
 
 .welcome {

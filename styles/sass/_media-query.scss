@@ -1,0 +1,117 @@
+@media (max-width: 940px) {}
+
+
+@media (max-width: 768px) {
+    .leftSpeechContainer,
+        .rightSpeechContainer {
+            padding: 15px;
+            margin: 20px auto;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+        }
+
+        p {
+            font-size: 2rem;
+        }
+}
+
+@media (max-width: 486px) {
+
+    h1 {
+        font-size: 2.7rem;
+        margin: 0;
+    }
+    h2 {
+        font-size: 1.78rem;
+    }
+    .middle{
+        display: flex;
+        flex-direction: column;
+        
+    .welcome {
+        display: flex;
+        flex-direction: column;
+        background-color: white;
+        width: 140%;
+        align-self: center;
+        position: absolute;
+        top: 400px;
+        max-width: fit-content;
+        
+        }
+    }
+
+    .leftPersonImage, .rightPersonImage {
+        height: 35vh;
+    }
+
+    #leftPersonImage, #rightPersonImage {
+        height: 25vh;
+        max-width: auto;
+        display: flex;
+    }
+    .insultButton, .adviceButton {
+    font-size: 1.5rem;
+    }
+
+    .entirePage {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+    }
+    
+    .startButton {
+        margin-top: 20px;
+    }
+
+    footer {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        text-align: center;
+
+    }
+    #adviceButtonBox {
+        order: 0;
+    }
+
+    .leftSpeechContainer {
+        margin: 0;
+        word-wrap: break-word;
+        
+    }
+
+    .rightSpeechContainer {
+        margin: 20px 0 0 0;
+        word-wrap: break-word;
+        word-wrap: break-word;
+    }
+
+    .buttonBoxes {
+        display: flex;
+        justify-content: space-evenly;
+    }
+
+    .turnIndicatorContainer {
+        margin-top: 10px;
+    }
+}
+    
+        
+        
+@media (max-width: 349px) {
+
+    .leftPerson, .rightPerson {
+        display: none;
+    }
+
+    .leftSpeechContainer, .rightSpeechContainer {
+        width: 100%;
+    }
+}
