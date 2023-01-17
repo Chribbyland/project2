@@ -355,6 +355,7 @@ p {
 }
 @media (max-width: 486px) {
   h1 {
+    font-size: 2.7rem;
     margin: 0;
   }
   h2 {
@@ -391,11 +392,14 @@ p {
     height: 35vh;
   }
   #leftPersonImage, #rightPersonImage {
-    height: 40vh;
+    height: 25vh;
     max-width: auto;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
+  }
+  .insultButton, .adviceButton {
+    font-size: 1.5rem;
   }
   .entirePage {
     display: -webkit-box;
@@ -435,6 +439,20 @@ p {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
+    -webkit-box-pack: space-evenly;
+        -ms-flex-pack: space-evenly;
+            justify-content: space-evenly;
+  }
+  .turnIndicatorContainer {
+    margin-top: 10px;
+  }
+}
+@media (max-width: 349px) {
+  .leftPerson, .rightPerson {
+    display: none;
+  }
+  .leftSpeechContainer, .rightSpeechContainer {
+    width: 100%;
   }
 }
 .entirePage {

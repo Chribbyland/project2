@@ -8,21 +8,23 @@
             margin: 20px auto;
         }
 
-                h1 {
-                    font-size: 3.5rem;
-                }
-        
-                h2 {
-                    font-size: 2.5rem;
-                }
-        
-                p {
-                    font-size: 2rem;
-                }
+        h1 {
+            font-size: 3.5rem;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+        }
+
+        p {
+            font-size: 2rem;
+        }
 }
 
 @media (max-width: 486px) {
+
     h1 {
+        font-size: 2.7rem;
         margin: 0;
     }
     h2 {
@@ -50,34 +52,22 @@
     }
 
     #leftPersonImage, #rightPersonImage {
-        height: 40vh;
+        height: 25vh;
         max-width: auto;
         display: flex;
     }
-
-    
-    
-    .rightPersonImage {
-        
+    .insultButton, .adviceButton {
+    font-size: 1.5rem;
     }
 
     .entirePage {
         display: flex;
         flex-wrap: wrap;
-       flex-direction: row;
+        flex-direction: row;
     }
-
-    #middle {
-        
-    }
-
     
     .startButton {
         margin-top: 20px;
-    }
-
-    .buttonCounterContainer {
-        
     }
 
     footer {
@@ -85,6 +75,7 @@
         bottom: 0;
         width: 100%;
         text-align: center;
+
     }
     #adviceButtonBox {
         order: 0;
@@ -100,21 +91,27 @@
         margin: 20px 0 0 0;
         word-wrap: break-word;
         word-wrap: break-word;
-            
-       
-        
     }
 
     .buttonBoxes {
         display: flex;
+        justify-content: space-evenly;
     }
 
     .turnIndicatorContainer {
-        
+        margin-top: 10px;
     }
 }
     
         
         
-    
-    
+@media (max-width: 349px) {
+
+    .leftPerson, .rightPerson {
+        display: none;
+    }
+
+    .leftSpeechContainer, .rightSpeechContainer {
+        width: 100%;
+    }
+}
