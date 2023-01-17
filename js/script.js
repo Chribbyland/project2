@@ -7,8 +7,8 @@ import { leftPictures, rightPictures } from './image-arrays.js';
 insultApp.isLeftSide = true;
 
 // setting counter to middle value. Counter's range is 0-10 and refers to the two arrays of pictures below, leftPictures and rightPictures.
-insultApp.leftCounter = 5;
-insultApp.rightCounter = 5; 
+insultApp.leftCounter = Math.floor(leftPictures.length/2);
+insultApp.rightCounter = Math.floor(rightPictures.length/2); 
 
 // make array for left character image locations, including alt text stored as a property in the array
 
