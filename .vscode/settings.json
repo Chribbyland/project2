@@ -37,5 +37,6 @@
 	"peacock.color": "#4eb7c6",
 	"cSpell.words": [
 		"gameplay"
-	]
+	],
+	"liveServer.settings.port": 5501
 }
