@@ -1,263 +1,211 @@
 // Creating a namespace object to hold the app
 const insultApp = {};
+import { leftPictures, rightPictures } from './image-arrays.js';
+import { languageFilter } from './language-filter.js';
+import { setMiddle } from './DOM-manipulation.js';
+// future goal: these can be namespaced (remember to update when called!)
+insultApp.setMiddle = setMiddle;
+insultApp.languageFilter = languageFilter; 
 
-// variable to determine which side will call API/fill text bubble
+// variable to determine which side will call API/fill text bubble. When isLeftSide = true, the left (top) speech bubble will receive text.
 insultApp.isLeftSide = true;
 
-// setting counter to middle value. Counter's range is 0-10 and refers to the two arrays of pictures below, leftPictures and rightPictures.
+// setting counter to middle value. Counter's range is 0-10 and refers to the two arrays of pictures (imported from image-arrays.js) - leftPictures and rightPictures.
+// Future goal: use JS to deal with picture arrays -  more dynamic.
+// Math.floor(leftPictures.length/2);
+// Math.floor(rightPictures.length/2);
 insultApp.leftCounter = 5;
-insultApp.rightCounter = 5; 
+insultApp.rightCounter = 5;
 
-// make array for left character image locations, including alt text stored as a property in the array
-const leftPictures = [
-  {
-    imgLoc: './photos/explosion.png',
-    altText: 'A large explosion!'
-  },
-  {
-    imgLoc: './photos/personLeft/personInsultLeft4.png',
-    altText: 'Stick figure on the left is incredibly angry!'
-  },
-  {
-    imgLoc: './photos/personLeft/personInsultLeft3.png',
-    altText: 'Stick figure on the left is quite mad!'
-  },
-  {
-    imgLoc: './photos/personLeft/personInsultLeft2.png',
-    altText: 'Stick figure on the left is rather annoyed!'
-  },
-  {
-    imgLoc: './photos/personLeft/personInsultLeft1.png',
-    altText: 'Stick figure on the left is upset.'
-  },
-  {
-    imgLoc: './photos/personLeft/personAILeft.png',
-    altText: 'Stick figure on the left is feeling neutral.'
-  },
-  {
-    imgLoc: './photos/personLeft/personAdviceLeft4.png',
-    altText: 'Stick figure on the left is smiling a little.'
-  },
-  {
-    imgLoc: './photos/personLeft/personAdviceLeft3.png',
-    altText: 'Stick figure on the left is quite pleased!'
-  },
-  {
-    imgLoc: './photos/personLeft/personAdviceLeft2.png',
-    altText: 'Stick figure on the left is raising their arms in joy!'
-  },
-  {
-    imgLoc: './photos/personLeft/personAdviceLeft1.png',
-    altText: 'Stick figure on the left is positively jubilant!'
-  },
-  {
-    imgLoc: './photos/explosion.png',
-    altText: 'A large explosion!'
-  }
-];
-
-// how to display alt text on these?!?
-// make array for right character image locations
-const rightPictures = [
-  {
-    imgLoc: './photos/explosion.png',
-    altText: 'A large explosion!'
-  },
-  {
-    imgLoc: './photos/personRight/personInsultRight4.png',
-    altText: 'Stick figure on the right is incredibly angry!'
-  },
-  {
-    imgLoc: './photos/personRight/personInsultRight3.png',
-    altText: 'Stick figure on the right is quite mad!'
-  },
-  {
-    imgLoc: './photos/personRight/personInsultRight2.png',
-    altText: 'Stick figure on the right is rather annoyed!'
-  },
-  {
-    imgLoc: './photos/personRight/personInsultRight1.png',
-    altText: 'Stick figure on the right is upset.'
-  },
-  {
-    imgLoc: './photos/personRight/personAIRight.png',
-    altText: 'Stick figure on the right is feeling neutral.'
-  },
-  {
-    imgLoc: './photos/personRight/personAdviceRight4.png',
-    altText: 'Stick figure on the right is smiling a little.'
-  },
-  {
-    imgLoc: './photos/personRight/personAdviceRight3.png',
-    altText: 'Stick figure on the right is quite pleased!'
-  },
-  {
-    imgLoc: './photos/personRight/personAdviceRight2.png',
-    altText: 'Stick figure on the right is raising their arms in joy!'
-  },
-  {
-    imgLoc: './photos/personRight/personAdviceRight1.png',
-    altText: 'Stick figure on the right is positively jubilant!'
-  },
-  {
-    imgLoc: './photos/explosion.png',
-    altText: 'A large explosion!'
-  }
-];
-
-// TO DO - implement async/await on the API calls so the text appears as the images are changed. Currently, there is a delay in waiting for the API to return info but the images are swapped out immediately.
-insultApp.getInsultLeft = () => {
+// retrieve insult from evilinsult API (via a proxy to mitigate CORS error)
+// future goal: delay picture swap till API call is complete
+insultApp.getInsult = (e) => {
+  // +Math.floor(...) function used as a 'cache breaking' technique to ensure API sends fresh data (new, random result) when requested
   fetch('https://proxy-ugwolsldnq-uc.a.run.app/https://evilinsult.com/generate_insult.php?lang=en&type=jsonfetch(`https://proxy-ugwolsldnq-uc.a.run.app/https://evilinsult.com/generate_insult.php?lang=en&type=json&version='+Math.floor(Math.random()*100000+1))
   .then(function (response) {
     return response.json();
   })
   .then(function (jsonResult) {
     // run language filter
-    insultApp.languageFilter(jsonResult);
+    insultApp.languageFilter(jsonResult, insultApp.replaceInsultLeft, insultApp.replaceInsultRight, insultApp.isLeftSide);
+    // re-enable insult button
+    e.target.disabled = false;
   });
 };
 
-insultApp.getInsultRight = () => {
-  fetch('https://proxy-ugwolsldnq-uc.a.run.app/https://evilinsult.com/generate_insult.php?lang=en&type=jsonfetch(`https://proxy-ugwolsldnq-uc.a.run.app/https://evilinsult.com/generate_insult.php?lang=en&type=json&version='+Math.floor(Math.random()*100000+1))
-  .then(function (response) {
-    return response.json();
-  })
-  .then(function (jsonResult) {
-    // run language filter
-    insultApp.languageFilter(jsonResult);
-  });
-};
-
-insultApp.replaceInsultLeft = (filteredInsult) => {
-    // replace existing content
-    const insultLeftText = document.querySelector('#leftPersonSpeechText');
-    insultLeftText.innerHTML = filteredInsult;
-}
-
-insultApp.replaceInsultRight = (filteredInsult) => {
-    // replace existing content
-    const insultRightText = document.querySelector('#rightPersonSpeechText');
-    insultRightText.innerHTML = filteredInsult;
-};
-
-insultApp.getAdviceLeft = () => {
+// retrieve advice from adviceslip API. Cache-breaking technique used again to 
+insultApp.getAdvice = (e, isLeft) => {
   fetch('https://api.adviceslip.com/advice?type=json&version='+Math.floor(Math.random()*100000+1))
   .then(function (response) {
     return response.json();
   })
   .then(function (jsonResult) {
     const advice = jsonResult.slip;
-    const adviceLeftText = document.querySelector('#leftPersonSpeechText');
+    // if isLeft = true, the left/top speech bubble will populate, and vice versa
+    const side = isLeft ? '#leftPersonSpeechText' : '#rightPersonSpeechText';
+    const container = isLeft ? 'leftSpeechContainer' : 'rightSpeechContainer';
+    const adviceLeftText = document.querySelector(side);
     // replace existing content
     adviceLeftText.innerHTML = advice.advice;
+    // toggle the font awesome turn indicator to the correct player
+    if(isLeft) {
+      insultApp.turnIndicatorRight();
+    } else {
+      insultApp.turnIndicatorLeft();
+    }
+    // re-enable advice button and make speech bubble visible
+    e.target.disabled = false;
+    document.getElementById(container).style.visibility = 'visible';
   });
 };
 
-insultApp.getAdviceRight = () => {
-  fetch('https://api.adviceslip.com/advice?type=json&version='+Math.floor(Math.random()*100000+1))
-  .then(function (response) {
-    return response.json();
-  })
-  .then(function (jsonResult) {
-    const advice = jsonResult.slip;
-    const adviceRightText = document.querySelector('#rightPersonSpeechText');
-    // replace existing content
-    adviceRightText.innerHTML = advice.advice;
-  });
+// future goal: reduce insultApp.replaceInsultLeft and insultApp.replaceInsultRight into one function, and combine into insultApp.getInsult, much like how insultApp.getAdvice is structured.
+insultApp.replaceInsultLeft = (filteredInsult) => {
+  // replace existing speech bubble content left
+  const insultLeftText = document.querySelector('#leftPersonSpeechText');
+  insultLeftText.innerHTML = filteredInsult;
+  // make speech bubble visible, as it is hidden on game start/reset
+  document.getElementById('leftSpeechContainer').style.visibility = 'visible';
+  // toggle the font awesome turn indicator to the correct player
+  insultApp.turnIndicatorRight();
 };
 
-// nasty words ahead!
-insultApp.languageFilter = (jsonResult) => {
-  let badWords = / anal| anus| arse| ass| ballsack| balls| bastard| bitch| blowjob| boner| boob| bugger| bum| butt| buttplug| clitoris| cock| crap| cunt| cum| dick| dildo| dyke| fag| feck| fellate| fellatio| fuck| hitler| homo| jerk| jew| jizz| labia| muff| penis| piss| poop| prick| pube| pussy| queer| rape| retard| scrotum| sex| shit| slut| spunk| semen| tit| turd| twat| vagina| wank| whore/gi;
-  let rawInsult = jsonResult.insult;
-  console.log(rawInsult);
-  let filteredInsult = rawInsult.replace(badWords,'____');
-  if (insultApp.isLeftSide) {
-  insultApp.replaceInsultRight(filteredInsult);
-  } else {
-  insultApp.replaceInsultLeft(filteredInsult);
-  };
+insultApp.replaceInsultRight = (filteredInsult) => {
+  // replace existing speech bubble content right
+  const insultRightText = document.querySelector('#rightPersonSpeechText');
+  insultRightText.innerHTML = filteredInsult;
+  // make speech bubble visible, as it is hidden on game start/reset
+  document.getElementById('rightSpeechContainer').style.visibility = 'visible';
+  // toggle the font awesome turn indicator to the correct player
+  insultApp.turnIndicatorLeft();
 };
 
-// reset left person text box on game reset
-insultApp.leftPersonTextReset = () => {
-  const reset = document.querySelector('#leftPersonSpeechText')
-  reset.innerHTML = '';
+// future goal: can also refactor these two into one function
+// font awesome icon indicating right player's turn. Customized to rotate 35 degrees to point up toward the character on the left.
+insultApp.turnIndicatorLeft = () => {
+  const leftIndicator = document.querySelector('i');
+  leftIndicator.innerHTML = `<i class="fa-regular fa-4x fa-hand-point-left fa-rotate-by" style="--fa-rotate-angle: 35deg;"></i>`
 };
 
-// reset right person text box on game reset
-insultApp.rightPersonTextReset = () => {
-  const reset = document.querySelector('#rightPersonSpeechText')
+// font awesome icon indicating right player's turn. Customized to rotate -35 degrees to point up toward the character on the right.
+insultApp.turnIndicatorRight = () => {
+  const rightIndicator = document.querySelector('i');
+  rightIndicator.innerHTML = `<i class="fa-regular fa-4x fa-hand-point-right fa-rotate-by" style="--fa-rotate-angle: -35deg;"></i>`
+};
+
+// remove welcome message and start button on game start
+insultApp.removeWelcome = () => {
+  const byeWelcome = document.getElementById("welcome");
+  byeWelcome.parentNode.removeChild(byeWelcome);
+  const byeStartBox = document.getElementById("startButtonBox");
+  byeStartBox.parentNode.removeChild(byeStartBox);
+};
+
+insultApp.textReset = () => {
+  const reset = document.querySelector('#leftPersonSpeechText', '#rightPersonSpeechText');
   reset.innerHTML = '';
 };
 
 // function to reset game/counters/images
-insultApp.gameReset = () => {
+// future goal: use Math function from above on hard coded numbers
+insultApp.gameReset = (e) => {
   // images and their alt text reset to neutral
   insultApp.leftImage.src = leftPictures[5].imgLoc;
   insultApp.leftImage.alt = leftPictures[5].altText;
   insultApp.rightImage.src = rightPictures[5].imgLoc;
   insultApp.rightImage.alt = rightPictures[5].altText;
-  // speech bubbles clear
-  insultApp.leftPersonTextReset();
-  insultApp.rightPersonTextReset();
-  insultApp.leftCounter=  5;
+  // clear speech bubbles 
+  insultApp.textReset();
+  // set turn indicator to left player
+  insultApp.turnIndicatorLeft();
+  // counters to middle
+  insultApp.leftCounter = 5;
   insultApp.rightCounter = 5;
+  // re-enable advice button
+  e.target.disabled = false;
+  // hiding speech bubbles until user clicks insult/advise
+  document.getElementById('leftSpeechContainer').style.visibility = 'hidden';
+  document.getElementById('rightSpeechContainer').style.visibility = 'hidden';
+};
+
+// function that triggers when counter reaches either limit, 0 or 10, and alerts with respective message, then runs gameReset function
+insultApp.checkEndGame = (e, isAdvice) => {
+  const counter = isAdvice ? 10 : 0;
+  const alertMsg = isAdvice ? 'You praised them into a new dimension!' : 'You insulted them to death.';
+  // wrapped in a setTimeout of 1 second to allow user to see the final explosion/zen graphic before alert appears.
+  setTimeout(() => {
+  if (insultApp.leftCounter === counter ||
+    insultApp.rightCounter === counter) {
+      alert(alertMsg);
+      // call function to reset game
+      insultApp.gameReset(e);
+    };
+  }, 1000)
 };
 
 // add event listeners
-// insult button conditions
-insultApp.insultListener = () => {
-  document.getElementById("insultButton").addEventListener("click", e => {
-    if (insultApp.leftCounter === 0 ||
-      insultApp.rightCounter === 0) {
-        alert(`You insulted them to death.`); // call function to reset game
-        insultApp.gameReset();
-      //player 1 (Left)
+insultApp.getAdviceOrInsult = (button, isAdvice) => {
+  const fetchData = (e) => {
+    if(isAdvice) {
+      insultApp.getAdvice(e, insultApp.isLeftSide);
+    } else {
+      insultApp.getInsult(e);
+    };
+  };
+
+  document.getElementById(button).addEventListener("click", e => {
+    e.target.disabled = true;
+    if (insultApp.isLeftSide) {
+      fetchData(e);
+      insultApp.isLeftSide = !insultApp.isLeftSide;
+      // future goal: explore ternary code here instead of if/else
+      if(isAdvice) {
+        insultApp.rightCounter++;
       } else {
-        if (insultApp.isLeftSide) {
-          insultApp.getInsultLeft();
-          insultApp.rightCounter--;
-          insultApp.isLeftSide = !insultApp.isLeftSide;
-          insultApp.rightImage.src = rightPictures[insultApp.rightCounter].imgLoc;
-          insultApp.rightImage.alt = rightPictures[insultApp.rightCounter].altText;
-        //player 2 (Right)
-        } else {
-        insultApp.getInsultRight();
+        insultApp.rightCounter--;
+      }
+      // inelegant solution for the image changing before the API call from evilinsult is retrieved.
+      setTimeout(() => {
+        insultApp.rightImage.src = rightPictures[insultApp.rightCounter].imgLoc;
+        insultApp.rightImage.alt = rightPictures[insultApp.rightCounter].altText;
+      }, "420")
+      // checking to see if in an end game situation
+      insultApp.checkEndGame(e, isAdvice);
+      //player 2 (Right)
+      } else {
+      fetchData(e);
+      insultApp.isLeftSide = !insultApp.isLeftSide;
+      // again, ternary statement here in future
+      if(isAdvice) {
+        insultApp.leftCounter++;
+      } else {
         insultApp.leftCounter--;
-        insultApp.isLeftSide = !insultApp.isLeftSide;
+      }
+      // inelegant solution for the image changing before the API call from evilinsult is retrieved.
+      setTimeout(() => {
         insultApp.leftImage.src = leftPictures[insultApp.leftCounter].imgLoc;
         insultApp.leftImage.alt = leftPictures[insultApp.leftCounter].altText;
-      };
+      }, "420")
+      // checking to see if in an end game situation
+      insultApp.checkEndGame(e, isAdvice);
     };
   });
 };
 
-// advice button conditions
-insultApp.adviceListener = () => {
-  document.getElementById("adviceButton").addEventListener("click", e => {
-    if (insultApp.leftCounter === 10 ||
-      insultApp.rightCounter === 10) {
-        alert(`You praised them into a new dimension!`); // call function to reset game
-        insultApp.gameReset();
-      //player 1 (Left)
-      } else {
-        if (insultApp.isLeftSide) {
-          insultApp.getAdviceLeft();
-          insultApp.rightCounter++;
-          insultApp.isLeftSide = !insultApp.isLeftSide;
-          insultApp.rightImage.src = rightPictures[insultApp.rightCounter].imgLoc;
-          insultApp.rightImage.alt = rightPictures[insultApp.rightCounter].altText;
-        //player 2 (Right)
-        } else {
-        insultApp.getAdviceRight();
-        insultApp.leftCounter++;
-        insultApp.isLeftSide = !insultApp.isLeftSide;
-        insultApp.leftImage.src = leftPictures[insultApp.leftCounter].imgLoc;
-        insultApp.leftImage.alt = leftPictures[insultApp.leftCounter].altText;
-      };
-    };
+// listen for "Start" button click event
+insultApp.gameStartListener = () => {
+  document.getElementById('startButton').addEventListener("click", e => {
+  insultApp.gameStart();
   });
+};
+
+insultApp.gameStart = () => {
+  // kicks off after user clicks Start button
+  insultApp.removeWelcome();
+  insultApp.setMiddle();
+  insultApp.turnIndicatorLeft();
+  insultApp.getAdviceOrInsult('insultButton', false);
+  insultApp.getAdviceOrInsult('adviceButton', true);
 };
 
 // init function to kick off the code
@@ -268,8 +216,7 @@ insultApp.init = () => {
   insultApp.leftImage.alt = leftPictures[insultApp.leftCounter].altText;
   insultApp.rightImage.src = rightPictures[insultApp.rightCounter].imgLoc;
   insultApp.rightImage.alt = rightPictures[insultApp.rightCounter].altText;
-  insultApp.insultListener();
-  insultApp.adviceListener();
+  insultApp.gameStartListener();
 };
 
 insultApp.init();
