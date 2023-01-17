@@ -11,9 +11,6 @@ insultApp.languageFilter = languageFilter;
 insultApp.isLeftSide = true;
 
 // setting counter to middle value. Counter's range is 0-10 and refers to the two arrays of pictures (imported from image-arrays.js) - leftPictures and rightPictures.
-// Future goal: use JS to deal with picture arrays -  more dynamic.
-// Math.floor(leftPictures.length/2);
-// Math.floor(rightPictures.length/2);
 insultApp.leftCounter = 5;
 insultApp.rightCounter = 5;
 
@@ -119,8 +116,8 @@ insultApp.gameReset = (e) => {
   // set turn indicator to left player
   insultApp.turnIndicatorLeft();
   // counters to middle
-  insultApp.leftCounter = 5;
-  insultApp.rightCounter = 5;
+  insultApp.leftCounter = Math.ceil(leftPictures.length/2);
+  insultApp.rightCounter = Math.ceil(rightPictures.length/2);
   // re-enable advice button
   e.target.disabled = false;
   // hiding speech bubbles until user clicks insult/advise
