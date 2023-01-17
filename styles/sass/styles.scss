@@ -3,6 +3,7 @@
 @import 'main-styles';
 @import 'fonts';
 @import 'speechBubbles';
+@import 'media-query';
 
 
 .entirePage {
@@ -15,7 +16,7 @@
   flex-direction: column;
   justify-content: space-between; // may need to be flex-end once speech bubbles are back??
   min-width: 30%;
-  max-width: 50%;
+  max-width: 48%;
 }
 
 .welcome {

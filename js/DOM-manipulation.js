@@ -48,7 +48,8 @@ export const setMiddle = () => {
 
   // insult button container
   const insultButtonBox = document.createElement('div');
-  insultButtonBox.setAttribute('class', 'buttonBox', 'insultButtonBox');
+
+  insultButtonBox.setAttribute('class', 'buttonBox insultButtonBox');
   insultButtonBox.setAttribute('id', 'insultButtonBox');
   document.getElementById('buttonBoxes').appendChild(insultButtonBox);
 
@@ -61,7 +62,7 @@ export const setMiddle = () => {
   
   // advice button container
   const adviceButtonBox = document.createElement('div');
-  adviceButtonBox.setAttribute('class', 'buttonBox', 'adviceButtonBox');
+  adviceButtonBox.setAttribute('class', 'buttonBox adviceButtonBox');
   adviceButtonBox.setAttribute('id', 'adviceButtonBox');
   document.getElementById('buttonBoxes').appendChild(adviceButtonBox);
 
