@@ -4,11 +4,82 @@
 @media (max-width: 768px) {}
 
 @media (max-width: 480px) {
-    #leftPersonImage {
+    h1 {
+        margin: 0;
+    }
+    h2 {
+        font-size: 2.5rem;
+    }
+
+    .welcome {
+        background-color: white;
+    }
+
+    .startButton {
+        margin-top: 20px;
+    }
+
+    #leftPersonImage, #rightPersonImage, {
             width: 100px;
         }
     
         .leftPerson {
-            background-color: red;
+            // background-color: green;
         }
+        .rightPerson {
+            // background-color: blue;
+        }
+
+    .entirePage {
+        display: flex;
+        flex-wrap: wrap;
+        max-width:fit-content;
+            
+        .leftPerson {
+            height: 30vh;
+            order: -1;
+            flex-grow: 1;
+
+        }
+
+        .leftSpeechContainer {
+            order: 0;
+            flex-grow: 1;
+
+            
+        
+        }
+
+
+        .rightPerson {
+            display: flex;
+            max-width: 100%;
+            height: 30vh;
+            order: 3;
+            
+        }
+
+        .leftSpeechContainer {
+            order: 3;
+            
+        }
+
+        .insultButton {
+            font-size: 2rem;
+            flex-direction: row;
+            
+        }
+
+        .adviceButton {
+            font-size: 2rem;
+        }
+
+        
+    }
+    footer {
+        width: 100%;
+        position: fixed;
+        bottom: 0;
+        text-align: center;
+    }
 }
