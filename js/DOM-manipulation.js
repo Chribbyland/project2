@@ -48,6 +48,7 @@ export const setMiddle = () => {
 
   // insult button container
   const insultButtonBox = document.createElement('div');
+
   insultButtonBox.setAttribute('class', 'buttonBox insultButtonBox');
   insultButtonBox.setAttribute('id', 'insultButtonBox');
   document.getElementById('buttonBoxes').appendChild(insultButtonBox);

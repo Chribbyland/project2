@@ -10,4 +10,3 @@ export const languageFilter = (jsonResult, replaceLeft, replaceRight, side) => {
   replaceLeft(filteredInsult);
   };
 };
-
