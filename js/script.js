@@ -124,8 +124,8 @@ insultApp.gameReset = (e) => {
   // set turn indicator to left player
   insultApp.turnIndicatorLeft();
   // counters to middle
-  insultApp.leftCounter = Math.ceil(leftPictures.length/2);
-  insultApp.rightCounter = Math.ceil(rightPictures.length/2);
+  insultApp.leftCounter = Math.floor(leftPictures.length/2);
+  insultApp.rightCounter = Math.floor(rightPictures.length/2);
 
   // re-enable advice button
   e.target.disabled = false;
