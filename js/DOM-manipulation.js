@@ -24,21 +24,33 @@ export const setMiddle = () => {
   rightPersonSpeechText.setAttribute('id', 'rightPersonSpeechText');
   document.getElementById('rightSpeechContainer').appendChild(rightPersonSpeechText);
 
+  // buttonCounter container
+  const buttonCounterContainer = document.createElement('div');
+  buttonCounterContainer.setAttribute('class', 'buttonCounterContainer');
+  buttonCounterContainer.setAttribute('id', 'buttonCounterContainer');
+  document.getElementById('middle').appendChild(buttonCounterContainer);
+
   // turn indicator container
   const turnIndicatorContainer = document.createElement('div');
   turnIndicatorContainer.setAttribute('class', 'turnIndicatorContainer');
   turnIndicatorContainer.setAttribute('id', 'turnIndicatorContainer');
-  document.getElementById('middle').appendChild(turnIndicatorContainer);
+  document.getElementById('buttonCounterContainer').appendChild(turnIndicatorContainer);
 
   // font awesome <i>
   const turnIndicator = document.createElement('i');
   document.getElementById('turnIndicatorContainer').appendChild(turnIndicator);
 
+  // buttonBoxes container
+  const buttonBoxes = document.createElement('div');
+  buttonBoxes.setAttribute('class', 'buttonBoxes');
+  buttonBoxes.setAttribute('id', 'buttonBoxes');
+  document.getElementById('buttonCounterContainer').appendChild(buttonBoxes);
+
   // insult button container
   const insultButtonBox = document.createElement('div');
   insultButtonBox.setAttribute('class', 'buttonBox', 'insultButtonBox');
   insultButtonBox.setAttribute('id', 'insultButtonBox');
-  document.getElementById('middle').appendChild(insultButtonBox);
+  document.getElementById('buttonBoxes').appendChild(insultButtonBox);
 
   // insult button 
   const insultButton = document.createElement('button');
@@ -51,7 +63,7 @@ export const setMiddle = () => {
   const adviceButtonBox = document.createElement('div');
   adviceButtonBox.setAttribute('class', 'buttonBox', 'adviceButtonBox');
   adviceButtonBox.setAttribute('id', 'adviceButtonBox');
-  document.getElementById('middle').appendChild(adviceButtonBox);
+  document.getElementById('buttonBoxes').appendChild(adviceButtonBox);
 
   // advice button
   const adviceButton = document.createElement('button');
