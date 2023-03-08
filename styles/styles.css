@@ -339,7 +339,7 @@ p {
 
 @media (max-width: 768px) {
   .leftSpeechContainer,
-.rightSpeechContainer {
+  .rightSpeechContainer {
     padding: 15px;
     margin: 20px auto;
   }
@@ -455,6 +455,56 @@ p {
     width: 100%;
   }
 }
+.popup {
+  background-color: #ffffff;
+  border: 2px solid black;
+  width: 450px;
+  padding: 0px 40px 30px 40px;
+  position: absolute;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  left: 50%;
+  top: 50%;
+  border-radius: 8px;
+  display: none;
+  text-align: center;
+}
+.popup h2 {
+  margin-top: 0px;
+}
+
+.popup button {
+  display: block;
+  margin: 0 0 0px auto;
+  background-color: transparent;
+  font-size: 40px;
+  padding-right: 0px;
+  padding-top: 20px;
+  color: #c5c5c5;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  -webkit-transition: 0.35s;
+  transition: 0.35s;
+}
+.popup button:hover,
+.popup button :focus {
+  border: none;
+  border-radius: 0px;
+  color: red;
+}
+
+.popup p {
+  font-size: 2.2rem;
+  text-align: justify;
+  margin: 20px 0;
+  line-height: 25px;
+}
+
+.close-popup {
+  border: 2px solid;
+}
+
 .entirePage {
   display: -webkit-box;
   display: -ms-flexbox;

@@ -9,61 +9,75 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Prompt&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./styles/styles.css">
-<script src="https://kit.fontawesome.com/f3e33d9ac3.js" crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/f3e33d9ac3.js" crossorigin="anonymous"></script>
   <title>A Battle of Wits and Clicks!</title>
 </head>
+
 <body>
   <main>
     <!-- main heading goes here-->
     <header>
-    <h1>A Battle of Wits <span>and Clicks!</span></h1>
+      <h1>A Battle of Wits <span>and Clicks!</span></h1>
     </header>
     <main>
-    <!--the site wil be divided into three main columns, 1. for left person, 2. middle speech bubbles and buttons, 3. person 2-->
-    <div class="entirePage">
-    <!--left person stuff starts here-->
-      <div class="leftPerson">
-        <div class="leftPersonImage">
-          <!--left person image goes here-->
-          <img id="leftPersonImage">
+      <!-- adding a popup alert on page load -->
+      <div class="popup">
+        <button class="close-popup" id="close">&times;</button>
+        <h2>Note:</h2>
+        <p>
+          The Evil Insult API is temporarily unavailable. Please enjoy advising each other into oblivion instead!
+        </p>
+        <!-- fix this later. make functional. -->
+        <!-- <a href="#">Bummer, but ok!</a> -->
+      </div>
+      <!--the site wil be divided into three main columns, 1. for left person, 2. middle speech bubbles and buttons, 3. person 2-->
+      <div class="entirePage">
+        <!--left person stuff starts here-->
+        <div class="leftPerson">
+          <div class="leftPersonImage">
+            <!--left person image goes here-->
+            <img id="leftPersonImage">
+          </div>
+        </div>
+        <!--middle speech bubble stuff-->
+        <div class="middle" id="middle">
+          <div class="welcome" id="welcome">
+
+            <h2>Hello and welcome to the game!</h2>
+            <h2>You can choose to be a real jerk and insult each other, or give each other positive, helpful advice!
+            </h2>
+            <h2>Choose wisely!</h2>
+            <h2>Left player starts.</h2>
+            </h2>
+
+          </div>
+
+          <div class="buttonBox startButtonBox" id="startButtonBox">
+            <!-- Game Start button -->
+            <button class="startButton" id="startButton">Start!</button>
+          </div>
+        </div>
+
+        <!--right person stuff starts here-->
+        <div class="rightPerson">
+          <div class="rightPersonImage">
+            <!--right person image goes here-->
+            <img id="rightPersonImage">
+          </div>
         </div>
       </div>
-      <!--middle speech bubble stuff-->
-      <div class="middle" id="middle">  
-        <div class="welcome" id="welcome">
+    </main>
 
-          <h2>Hello and welcome to the game!</h2> <h2>You can choose to be a real jerk and insult each other, or give each other positive, helpful advice!</h2>
-          <h2>Choose wisely!</h2> 
-          <h2>Left player starts.</h2></h2>
-
-        </div>
-        
-        <div class="buttonBox startButtonBox" id="startButtonBox">
-          <!-- Game Start button -->
-          <button class="startButton" id="startButton">Start!</button>
-        </div>
-      </div> 
-      
-  <!--right person stuff starts here-->
-      <div class="rightPerson">
-        <div class="rightPersonImage">
-          <!--right person image goes here-->
-          <img id="rightPersonImage">
-        </div>
+    <!-- Add a script tag for the file we'll write our JS in -->
+    <script type="module" src="js/script.js"></script>
+    <footer>
+      <div class="authors">
+        <h3>copyright Chribbyland and Juno College 2023</h3>
       </div>
-    </div>
-  </main>
-
-  <!-- Add a script tag for the file we'll write our JS in -->
-  <script type="module" src="js/script.js"></script>
-<footer>
-  <div class="authors">
-    <h3>copyright Chribbyland and Juno College 2023</h3>
-  </div>
-  <div class="info">
-    <!--nice to have, a question mark icon that opens up a comment? that gives credit to API creators-->
-  </div>
-</footer>
+      <div class="info">
+        <!--nice to have, a question mark icon that opens up a comment? that gives credit to API creators-->
+      </div>
+    </footer>
 </body>
 
 <html>
