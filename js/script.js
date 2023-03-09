@@ -33,10 +33,8 @@ insultApp.rightCounter = Math.floor(rightPictures.length/2);
 // setting picture array start point to middle value. Range is 0-10 and refers to the two arrays of pictures (imported from image-arrays.js) - leftPictures and rightPictures.
 // Math.floor(leftPictures.length/2);
 // Math.floor(rightPictures.length/2);
-
-// Forgot to change this to similar to line 15-16
-insultApp.leftCounter = 5;
-insultApp.rightCounter = 5;
+insultApp.leftCounter = Math.floor(leftPictures.length/2);
+insultApp.rightCounter = Math.floor(rightPictures.length/2);
 
 // retrieve insult from evilinsult API (via a proxy to mitigate CORS error)
 // future goal: delay picture swap till API call is complete
