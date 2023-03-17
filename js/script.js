@@ -4,18 +4,18 @@ import { leftPictures, rightPictures } from './image-arrays.js';
 import { languageFilter } from './language-filter.js';
 import { setMiddle } from './DOM-manipulation.js';
 
-// functionality for pop-up alert on page load
-window.addEventListener("load", function () {
-  setTimeout(
-    function open(event) {
-      document.querySelector(".popup").style.display = "block";
-    },
-    1000
-  )
-});
-document.querySelector("#close").addEventListener("click", function () {
-  document.querySelector(".popup").style.display = "none";
-});
+// functionality for pop-up alert on page load (DISABLED for now, as proxy is operational again)
+// window.addEventListener("load", function () {
+//   setTimeout(
+//     function open(event) {
+//       document.querySelector(".popup").style.display = "block";
+//     },
+//     1000
+//   )
+// });
+// document.querySelector("#close").addEventListener("click", function () {
+//   document.querySelector(".popup").style.display = "none";
+// });
 
 // future goal: these can be namespaced (remember to update when called!)
 insultApp.setMiddle = setMiddle;
@@ -40,7 +40,7 @@ insultApp.rightCounter = Math.floor(rightPictures.length/2);
 // future goal: delay picture swap till API call is complete
 insultApp.getInsult = (e) => {
   // +Math.floor(...) function used as a 'cache breaking' technique to ensure API sends fresh data (new, random result) when requested
-  fetch('https://proxy-ugwolsldnq-uc.a.run.app/https://evilinsult.com/generate_insult.php?lang=en&type=jsonfetch(`https://proxy-ugwolsldnq-uc.a.run.app/https://evilinsult.com/generate_insult.php?lang=en&type=json&version='+Math.floor(Math.random()*100000+1))
+  fetch('https://proxy.junocollege.com/https://evilinsult.com/generate_insult.php?lang=en&type=jsonfetch(`https://proxy.junocollege.com/https://evilinsult.com/generate_insult.php?lang=en&type=json&version='+Math.floor(Math.random()*100000+1))
   .then(function (response) {
     return response.json();
   })
