@@ -236,6 +236,14 @@ insultApp.init = () => {
   insultApp.leftImage.alt = leftPictures[insultApp.leftCounter].altText;
   insultApp.rightImage.src = rightPictures[insultApp.rightCounter].imgLoc;
   insultApp.rightImage.alt = rightPictures[insultApp.rightCounter].altText;
+  Swal.fire({
+    title: "Warning!",
+    text: "Naughty language ahead.",
+    icon: "success",
+    iconHtml: '<span style="font-size: 2em;">🙈</span>',
+    showCancelButton: true,
+    confirmButtonText: "OK",
+  });
   insultApp.gameStartListener();
 };
 
