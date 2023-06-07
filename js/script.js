@@ -156,9 +156,15 @@ insultApp.checkEndGame = (e, isAdvice) => {
   setTimeout(() => {
   if (insultApp.leftCounter === counter ||
     insultApp.rightCounter === counter) {
-      alert(alertMsg);
-      // call function to reset game
-      insultApp.gameReset(e);
+      Swal.fire({
+        text: alertMsg,
+        iconHtml: '<span style="font-size: 2em;">😬</span>',
+      }).then(() => {
+        // call function to reset game
+        insultApp.gameReset(e);
+
+      });
+      
     };
   }, 1000)
 };
