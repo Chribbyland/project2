@@ -237,12 +237,13 @@ insultApp.init = () => {
   insultApp.rightImage.src = rightPictures[insultApp.rightCounter].imgLoc;
   insultApp.rightImage.alt = rightPictures[insultApp.rightCounter].altText;
   Swal.fire({
-    title: "Warning!",
-    text: "Naughty language ahead.",
-    icon: "success",
+    title: 'Warning!',
+    text: 'Naughty language ahead. To filter out naughty words, select G-Rated below.',
+    icon: 'success',
     iconHtml: '<span style="font-size: 2em;">🙈</span>',
     showCancelButton: true,
-    confirmButtonText: "OK",
+    cancelButtonText: 'G-Rated',
+    confirmButtonText: 'R-Rated',
   });
   insultApp.gameStartListener();
 };
