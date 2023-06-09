@@ -1,5 +1,9 @@
 body {
     background-color: #9ec0ef;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 h1 {
@@ -15,3 +19,4 @@ h3 {
     display: flex;
     flex-direction: column;
 }
+

@@ -156,9 +156,15 @@ insultApp.checkEndGame = (e, isAdvice) => {
   setTimeout(() => {
   if (insultApp.leftCounter === counter ||
     insultApp.rightCounter === counter) {
-      alert(alertMsg);
-      // call function to reset game
-      insultApp.gameReset(e);
+      Swal.fire({
+        text: alertMsg,
+        iconHtml: '<span style="font-size: 2em;">😬</span>',
+      }).then(() => {
+        // call function to reset game
+        insultApp.gameReset(e);
+
+      });
+      
     };
   }, 1000)
 };
@@ -236,6 +242,15 @@ insultApp.init = () => {
   insultApp.leftImage.alt = leftPictures[insultApp.leftCounter].altText;
   insultApp.rightImage.src = rightPictures[insultApp.rightCounter].imgLoc;
   insultApp.rightImage.alt = rightPictures[insultApp.rightCounter].altText;
+  Swal.fire({
+    title: 'Warning!',
+    text: 'Naughty language ahead. To filter out naughty words, select G-Rated below.',
+    icon: 'success',
+    iconHtml: '<span style="font-size: 2em;">🙈</span>',
+    showCancelButton: true,
+    cancelButtonText: 'G-Rated',
+    confirmButtonText: 'R-Rated',
+  });
   insultApp.gameStartListener();
 };
 
