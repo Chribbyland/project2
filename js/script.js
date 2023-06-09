@@ -268,6 +268,8 @@ insultApp.init = () => {
     }
   });
 
+  
+
 
 
 
