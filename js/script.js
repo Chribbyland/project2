@@ -250,7 +250,28 @@ insultApp.init = () => {
     showCancelButton: true,
     cancelButtonText: 'G-Rated',
     confirmButtonText: 'R-Rated',
+  })
+  // confirmation of users choice of censorship or not
+  .then((result) => {
+    if (result.isConfirmed) {
+      Swal.fire(
+        `Fuckin' rad!`,
+        'Naughty words inbound!',
+        'success'
+      )
+    } else {
+      Swal.fire(
+        `Safe mode active!`,
+        'Your sensitive eyes are safe.',
+        'success'
+      )
+    }
   });
+
+
+
+
+
   insultApp.gameStartListener();
 };
 
