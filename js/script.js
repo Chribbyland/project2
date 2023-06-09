@@ -1,7 +1,7 @@
 // Creating a namespace object to hold the app
 const insultApp = {};
 import { leftPictures, rightPictures } from './image-arrays.js';
-import { languageFilter } from './language-filter.js';
+import { toggleFilter, languageFilter } from './language-filter.js';
 import { setMiddle } from './DOM-manipulation.js';
 
 // functionality for pop-up alert on page load (DISABLED for now, as proxy is operational again)
@@ -254,12 +254,14 @@ insultApp.init = () => {
   // confirmation of users choice of censorship or not
   .then((result) => {
     if (result.isConfirmed) {
+      toggleFilter(false); // Disable the language filter
       Swal.fire(
         `Fuckin' rad!`,
         'Naughty words inbound!',
         'success'
       )
     } else {
+      toggleFilter(true); // Enable the language filter
       Swal.fire(
         `Safe mode active!`,
         'Your sensitive eyes are safe.',
@@ -267,12 +269,6 @@ insultApp.init = () => {
       )
     }
   });
-
-
-
-
-
   insultApp.gameStartListener();
 };
-
 insultApp.init();
