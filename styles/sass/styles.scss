@@ -88,3 +88,14 @@ button:focus {
 .switch.off {
   background-color: #d9534f;
 }
+
+header {
+  display: flex;
+  flex-direction: column;
+}
+
+#toggleButton {
+  width: fit-content;
+  align-self: center;
+
+}
