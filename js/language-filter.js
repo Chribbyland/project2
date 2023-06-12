@@ -27,6 +27,12 @@ export const languageFilter = (jsonResult, replaceLeft, replaceRight, side) => {
 };
 
 
+const toggleButton = document.createElement("button");
+toggleButton.id = "toggleButton";
+toggleButton.textContent = "On";
 toggleButton.addEventListener("click", toggleFilter);
 
-document.body.appendChild(toggleButton);
+window.addEventListener("DOMContentLoaded", function () {
+  const heading = document.querySelector("h1");
+  heading.insertAdjacentElement("afterend", toggleButton);
+});

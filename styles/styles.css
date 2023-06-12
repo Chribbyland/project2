@@ -263,6 +263,11 @@ h3 {
           flex-direction: column;
 }
 
+.switch {
+  display: block;
+  margin-top: 10px;
+}
+
 html {
   font-size: 62.5%; /* makes font 10px */
 }
@@ -605,4 +610,22 @@ button:focus {
 
 .switch.off {
   background-color: #d9534f;
+}
+
+header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+#toggleButton {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  -ms-flex-item-align: center;
+      align-self: center;
 }
