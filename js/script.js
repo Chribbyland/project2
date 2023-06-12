@@ -269,6 +269,7 @@ insultApp.init = () => {
       )
     }
   });
+
   insultApp.gameStartListener();
 };
 insultApp.init();
