@@ -1,7 +1,7 @@
 // Creating a namespace object to hold the app
 const insultApp = {};
 import { leftPictures, rightPictures } from './image-arrays.js';
-import { languageFilter } from './language-filter.js';
+import { toggleFilter, languageFilter } from './language-filter.js';
 import { setMiddle } from './DOM-manipulation.js';
 
 // functionality for pop-up alert on page load (DISABLED for now, as proxy is operational again)
@@ -19,63 +19,63 @@ import { setMiddle } from './DOM-manipulation.js';
 
 // future goal: these can be namespaced (remember to update when called!)
 insultApp.setMiddle = setMiddle;
-insultApp.languageFilter = languageFilter; 
+insultApp.languageFilter = languageFilter;
+insultApp.toggleFilter = toggleFilter;
 
 // variable to determine which side will call API/fill text bubble. When isLeftSide = true, the left (top) speech bubble will receive text.
 insultApp.isLeftSide = true;
 
-
 // setting counter to middle value. Counter's range is 0-10 and refers to the two arrays of pictures below, leftPictures and rightPictures.
-insultApp.leftCounter = Math.floor(leftPictures.length/2);
-insultApp.rightCounter = Math.floor(rightPictures.length/2); 
+insultApp.leftCounter = Math.floor(leftPictures.length / 2);
+insultApp.rightCounter = Math.floor(rightPictures.length / 2);
 
 // make array for left character image locations, including alt text stored as a property in the array
 // setting picture array start point to middle value. Range is 0-10 and refers to the two arrays of pictures (imported from image-arrays.js) - leftPictures and rightPictures.
 // Math.floor(leftPictures.length/2);
 // Math.floor(rightPictures.length/2);
-insultApp.leftCounter = Math.floor(leftPictures.length/2);
-insultApp.rightCounter = Math.floor(rightPictures.length/2);
+insultApp.leftCounter = Math.floor(leftPictures.length / 2);
+insultApp.rightCounter = Math.floor(rightPictures.length / 2);
 
 // retrieve insult from evilinsult API (via a proxy to mitigate CORS error)
 // future goal: delay picture swap till API call is complete
 insultApp.getInsult = (e) => {
   // +Math.floor(...) function used as a 'cache breaking' technique to ensure API sends fresh data (new, random result) when requested
-  fetch('https://proxy.junocollege.com/https://evilinsult.com/generate_insult.php?lang=en&type=jsonfetch(`https://proxy.junocollege.com/https://evilinsult.com/generate_insult.php?lang=en&type=json&version='+Math.floor(Math.random()*100000+1))
-  .then(function (response) {
-    return response.json();
-  })
-  .then(function (jsonResult) {
-    // run language filter
-    insultApp.languageFilter(jsonResult, insultApp.replaceInsultLeft, insultApp.replaceInsultRight, insultApp.isLeftSide);
-    // re-enable insult button
-    e.target.disabled = false;
-  });
+  fetch('https://proxy.junocollege.com/https://evilinsult.com/generate_insult.php?lang=en&type=jsonfetch(`https://proxy.junocollege.com/https://evilinsult.com/generate_insult.php?lang=en&type=json&version=' + Math.floor(Math.random() * 100000 + 1))
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (jsonResult) {
+      // run language filter
+      insultApp.languageFilter(jsonResult, insultApp.replaceInsultLeft, insultApp.replaceInsultRight, insultApp.isLeftSide);
+      // re-enable insult button
+      e.target.disabled = false;
+    });
 };
 
 // retrieve advice from adviceslip API. Cache-breaking technique used again to 
 insultApp.getAdvice = (e, isLeft) => {
-  fetch('https://api.adviceslip.com/advice?type=json&version='+Math.floor(Math.random()*100000+1))
-  .then(function (response) {
-    return response.json();
-  })
-  .then(function (jsonResult) {
-    const advice = jsonResult.slip;
-    // if isLeft = true, the left/top speech bubble will populate, and vice versa
-    const side = isLeft ? '#leftPersonSpeechText' : '#rightPersonSpeechText';
-    const container = isLeft ? 'leftSpeechContainer' : 'rightSpeechContainer';
-    const adviceLeftText = document.querySelector(side);
-    // replace existing content
-    adviceLeftText.innerHTML = advice.advice;
-    // toggle the font awesome turn indicator to the correct player
-    if(isLeft) {
-      insultApp.turnIndicatorRight();
-    } else {
-      insultApp.turnIndicatorLeft();
-    }
-    // re-enable advice button and make speech bubble visible
-    e.target.disabled = false;
-    document.getElementById(container).style.visibility = 'visible';
-  });
+  fetch('https://api.adviceslip.com/advice?type=json&version=' + Math.floor(Math.random() * 100000 + 1))
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (jsonResult) {
+      const advice = jsonResult.slip;
+      // if isLeft = true, the left/top speech bubble will populate, and vice versa
+      const side = isLeft ? '#leftPersonSpeechText' : '#rightPersonSpeechText';
+      const container = isLeft ? 'leftSpeechContainer' : 'rightSpeechContainer';
+      const adviceLeftText = document.querySelector(side);
+      // replace existing content
+      adviceLeftText.innerHTML = advice.advice;
+      // toggle the font awesome turn indicator to the correct player
+      if (isLeft) {
+        insultApp.turnIndicatorRight();
+      } else {
+        insultApp.turnIndicatorLeft();
+      }
+      // re-enable advice button and make speech bubble visible
+      e.target.disabled = false;
+      document.getElementById(container).style.visibility = 'visible';
+    });
 };
 
 // future goal: reduce insultApp.replaceInsultLeft and insultApp.replaceInsultRight into one function, and combine into insultApp.getInsult, much like how insultApp.getAdvice is structured.
@@ -138,8 +138,8 @@ insultApp.gameReset = (e) => {
   // set turn indicator to left player
   insultApp.turnIndicatorLeft();
   // counters to middle
-  insultApp.leftCounter = Math.floor(leftPictures.length/2);
-  insultApp.rightCounter = Math.floor(rightPictures.length/2);
+  insultApp.leftCounter = Math.floor(leftPictures.length / 2);
+  insultApp.rightCounter = Math.floor(rightPictures.length / 2);
 
   // re-enable advice button
   e.target.disabled = false;
@@ -154,8 +154,8 @@ insultApp.checkEndGame = (e, isAdvice) => {
   const alertMsg = isAdvice ? 'You praised them into a new dimension!' : 'You insulted them to death.';
   // wrapped in a setTimeout of 1 second to allow user to see the final explosion/zen graphic before alert appears.
   setTimeout(() => {
-  if (insultApp.leftCounter === counter ||
-    insultApp.rightCounter === counter) {
+    if (insultApp.leftCounter === counter ||
+      insultApp.rightCounter === counter) {
       Swal.fire({
         text: alertMsg,
         iconHtml: '<span style="font-size: 2em;">😬</span>',
@@ -164,7 +164,7 @@ insultApp.checkEndGame = (e, isAdvice) => {
         insultApp.gameReset(e);
 
       });
-      
+
     };
   }, 1000)
 };
@@ -172,7 +172,7 @@ insultApp.checkEndGame = (e, isAdvice) => {
 // add event listeners
 insultApp.getAdviceOrInsult = (button, isAdvice) => {
   const fetchData = (e) => {
-    if(isAdvice) {
+    if (isAdvice) {
       insultApp.getAdvice(e, insultApp.isLeftSide);
     } else {
       insultApp.getInsult(e);
@@ -185,7 +185,7 @@ insultApp.getAdviceOrInsult = (button, isAdvice) => {
       fetchData(e);
       insultApp.isLeftSide = !insultApp.isLeftSide;
       // future goal: explore ternary code here instead of if/else
-      if(isAdvice) {
+      if (isAdvice) {
         insultApp.rightCounter++;
       } else {
         insultApp.rightCounter--;
@@ -198,11 +198,11 @@ insultApp.getAdviceOrInsult = (button, isAdvice) => {
       // checking to see if in an end game situation
       insultApp.checkEndGame(e, isAdvice);
       //player 2 (Right)
-      } else {
+    } else {
       fetchData(e);
       insultApp.isLeftSide = !insultApp.isLeftSide;
       // again, ternary statement here in future
-      if(isAdvice) {
+      if (isAdvice) {
         insultApp.leftCounter++;
       } else {
         insultApp.leftCounter--;
@@ -221,7 +221,7 @@ insultApp.getAdviceOrInsult = (button, isAdvice) => {
 // listen for "Start" button click event
 insultApp.gameStartListener = () => {
   document.getElementById('startButton').addEventListener("click", e => {
-  insultApp.gameStart();
+    insultApp.gameStart();
   });
 };
 
@@ -250,8 +250,30 @@ insultApp.init = () => {
     showCancelButton: true,
     cancelButtonText: 'G-Rated',
     confirmButtonText: 'R-Rated',
-  });
+  })
+    // confirmation of users choice of censorship or not
+    .then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: `Fuckin' rad!`,
+          text: 'Naughty words inbound!',
+          icon: 'success'
+        }).then(function () {
+          toggleFilter(false); // Disable the language filter
+          console.log('No language filter via swal')
+        });
+      } else {
+        Swal.fire({
+          title: `Safe mode active!`,
+          text: 'Your sensitive eyes are safe.',
+          icon: 'success'
+        }).then(function () {
+          console.log('Language filter via swal');
+          toggleFilter(true); // Enable the language filter
+        });
+      };
+    });
+
   insultApp.gameStartListener();
 };
-
 insultApp.init();

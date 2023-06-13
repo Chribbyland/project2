@@ -263,6 +263,11 @@ h3 {
           flex-direction: column;
 }
 
+.switch {
+  display: block;
+  margin-top: 10px;
+}
+
 html {
   font-size: 62.5%; /* makes font 10px */
 }
@@ -584,4 +589,43 @@ button:focus {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+}
+
+.switch {
+  width: 60px;
+  height: 30px;
+  background-color: #ccc;
+  border-radius: 15px;
+  border: none;
+  color: #fff;
+  font-weight: bold;
+  text-transform: uppercase;
+  -webkit-transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease;
+}
+
+.switch.on {
+  background-color: #5cb85c;
+}
+
+.switch.off {
+  background-color: #d9534f;
+}
+
+header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+#toggleButton {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  -ms-flex-item-align: center;
+      align-self: center;
 }
