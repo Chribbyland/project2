@@ -68,9 +68,9 @@ insultApp.getAdvice = (e, isLeft) => {
       adviceLeftText.innerHTML = advice.advice;
       // toggle the font awesome turn indicator to the correct player
       if (isLeft) {
-        insultApp.turnIndicatorRight();
+        insultApp.turnIndicator('right', -35);
       } else {
-        insultApp.turnIndicatorLeft();
+        insultApp.turnIndicator('left', 35);
       }
       // re-enable advice button and make speech bubble visible
       e.target.disabled = false;
@@ -86,7 +86,7 @@ insultApp.replaceInsultLeft = (filteredInsult) => {
   // make speech bubble visible, as it is hidden on game start/reset
   document.getElementById('leftSpeechContainer').style.visibility = 'visible';
   // toggle the font awesome turn indicator to the correct player
-  insultApp.turnIndicatorRight();
+  insultApp.turnIndicator('right', -35);
 };
 
 insultApp.replaceInsultRight = (filteredInsult) => {
@@ -96,20 +96,18 @@ insultApp.replaceInsultRight = (filteredInsult) => {
   // make speech bubble visible, as it is hidden on game start/reset
   document.getElementById('rightSpeechContainer').style.visibility = 'visible';
   // toggle the font awesome turn indicator to the correct player
-  insultApp.turnIndicatorLeft();
+  insultApp.turnIndicator('left', 35);
 };
 
-// future goal: can also refactor these two into one function
 // font awesome icon indicating right player's turn. Customized to rotate 35 degrees to point up toward the character on the left.
-insultApp.turnIndicatorLeft = () => {
-  const leftIndicator = document.querySelector('i');
-  leftIndicator.innerHTML = `<i class="fa-regular fa-4x fa-hand-point-left fa-rotate-by" style="--fa-rotate-angle: 35deg;"></i>`
-};
+insultApp.turnIndicator = (direction, rotationAngle) => {
+  const indicator = document.querySelector('i');
 
-// font awesome icon indicating right player's turn. Customized to rotate -35 degrees to point up toward the character on the right.
-insultApp.turnIndicatorRight = () => {
-  const rightIndicator = document.querySelector('i');
-  rightIndicator.innerHTML = `<i class="fa-regular fa-4x fa-hand-point-right fa-rotate-by" style="--fa-rotate-angle: -35deg;"></i>`
+  if (direction === 'left') {
+    indicator.innerHTML = `<i class="fa-regular fa-4x fa-hand-point-left fa-rotate-by" style="--fa-rotate-angle: ${rotationAngle}deg;"></i>`;
+  } else if (direction === 'right') {
+    indicator.innerHTML = `<i class="fa-regular fa-4x fa-hand-point-right fa-rotate-by" style="--fa-rotate-angle: ${rotationAngle}deg;"></i>`;
+  }
 };
 
 // remove welcome message and start button on game start
@@ -136,7 +134,7 @@ insultApp.gameReset = (e) => {
   // clear speech bubbles 
   insultApp.textReset();
   // set turn indicator to left player
-  insultApp.turnIndicatorLeft();
+  insultApp.turnIndicator('left', 35);
   // counters to middle
   insultApp.leftCounter = Math.floor(leftPictures.length / 2);
   insultApp.rightCounter = Math.floor(rightPictures.length / 2);
@@ -229,7 +227,7 @@ insultApp.gameStart = () => {
   // kicks off after user clicks Start button
   insultApp.removeWelcome();
   insultApp.setMiddle();
-  insultApp.turnIndicatorLeft();
+  insultApp.turnIndicator('left', 35);
   insultApp.getAdviceOrInsult('insultButton', false);
   insultApp.getAdviceOrInsult('adviceButton', true);
 };
