@@ -99,10 +99,11 @@ insultApp.replaceInsultRight = (filteredInsult) => {
   insultApp.turnIndicator('left', 35);
 };
 
-// font awesome icon indicating right player's turn. Customized to rotate 35 degrees to point up toward the character on the left.
+// font awesome icon indicating player's turn. Customized to rotate 35 degrees to point up toward active player.
 insultApp.turnIndicator = (direction, rotationAngle) => {
   const indicator = document.querySelector('i');
 
+  // ADD ANIMATION TO INDICATOR
   if (direction === 'left') {
     indicator.innerHTML = `<i class="fa-regular fa-4x fa-hand-point-left fa-rotate-by" style="--fa-rotate-angle: ${rotationAngle}deg;"></i>`;
   } else if (direction === 'right') {
