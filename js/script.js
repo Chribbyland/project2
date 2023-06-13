@@ -25,7 +25,6 @@ insultApp.toggleFilter = toggleFilter;
 // variable to determine which side will call API/fill text bubble. When isLeftSide = true, the left (top) speech bubble will receive text.
 insultApp.isLeftSide = true;
 
-
 // setting counter to middle value. Counter's range is 0-10 and refers to the two arrays of pictures below, leftPictures and rightPictures.
 insultApp.leftCounter = Math.floor(leftPictures.length / 2);
 insultApp.rightCounter = Math.floor(rightPictures.length / 2);

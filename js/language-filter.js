@@ -1,11 +1,12 @@
 //language filter for the main js
 let filterEnabled = true;
 
-export const toggleFilter = (enabled) => {
-  filterEnabled = enabled;
+export const toggleFilter = () => {
+  filterEnabled = !filterEnabled;
   const toggleButton = document.getElementById("toggleButton");
   toggleButton.textContent = filterEnabled ? "On" : "Off";
 };
+
 export const languageFilter = (jsonResult, replaceLeft, replaceRight, side) => {
   if (!filterEnabled) {
     if (side) {
