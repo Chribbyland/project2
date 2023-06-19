@@ -1,0 +1,15 @@
+.fa-rotate-by {
+  animation-name: rotateIndicator;
+  animation-duration: 1s;
+  animation-iteration-count: 1;
+}
+
+
+@keyframes rotateIndicator {
+  from {
+    transform: rotate(30deg);
+  }
+  to {
+    transform: rotate(-30deg);
+  }
+}
