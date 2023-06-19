@@ -104,6 +104,9 @@ insultApp.turnIndicator = (direction, rotationAngle) => {
   const indicator = document.querySelector('i');
 
   // ADD ANIMATION TO INDICATOR
+  // Let's talk this over!
+  // Instead of toggling the image and angle of the indicator, we can add a class to the indicator that will rotate it via a JS event listener. This will allow us to add a CSS animation to the indicator, which will make it look much smoother.
+  // Have to adjust all insultApp.turnIndicator calls to add/remove the class instead of toggling the image and angle.
   if (direction === 'left') {
     indicator.innerHTML = `<i class="fa-regular fa-4x fa-hand-point-left fa-rotate-by" style="--fa-rotate-angle: ${rotationAngle}deg;"></i>`;
   } else if (direction === 'right') {
