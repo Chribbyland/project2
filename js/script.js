@@ -68,9 +68,9 @@ insultApp.getAdvice = (e, isLeft) => {
       adviceLeftText.innerHTML = advice.advice;
       // toggle the font awesome turn indicator to the correct player
       if (isLeft) {
-        insultApp.turnIndicator('right', -35);
+        insultApp.turnIndicator('right', 75);
       } else {
-        insultApp.turnIndicator('left', 35);
+        insultApp.turnIndicator('left', -75);
       }
       // re-enable advice button and make speech bubble visible
       e.target.disabled = false;
@@ -86,7 +86,7 @@ insultApp.replaceInsultLeft = (filteredInsult) => {
   // make speech bubble visible, as it is hidden on game start/reset
   document.getElementById('leftSpeechContainer').style.visibility = 'visible';
   // toggle the font awesome turn indicator to the correct player
-  insultApp.turnIndicator('right', -35);
+  insultApp.turnIndicator('right', 75);
 };
 
 insultApp.replaceInsultRight = (filteredInsult) => {
@@ -96,22 +96,27 @@ insultApp.replaceInsultRight = (filteredInsult) => {
   // make speech bubble visible, as it is hidden on game start/reset
   document.getElementById('rightSpeechContainer').style.visibility = 'visible';
   // toggle the font awesome turn indicator to the correct player
-  insultApp.turnIndicator('left', 35);
+  insultApp.turnIndicator('left', -75);
 };
 
-// font awesome icon indicating player's turn. Customized to rotate 35 degrees to point up toward active player.
+// font awesome icon indicating player's turn. Customized to rotate 75 degrees to point up toward active player.
 insultApp.turnIndicator = (direction, rotationAngle) => {
   const indicator = document.querySelector('i');
 
   // ADD ANIMATION TO INDICATOR
-  // Let's talk this over!
-  // Instead of toggling the image and angle of the indicator, we can add a class to the indicator that will rotate it via a JS event listener. This will allow us to add a CSS animation to the indicator, which will make it look much smoother.
-  // Have to adjust all insultApp.turnIndicator calls to add/remove the class instead of toggling the image and angle.
+  // Remove the animation class to reset the rotation
+  indicator.classList.remove('fa-rotate-by');
   if (direction === 'left') {
-    indicator.innerHTML = `<i class="fa-regular fa-4x fa-hand-point-left fa-rotate-by" style="--fa-rotate-angle: ${rotationAngle}deg;"></i>`;
+    indicator.innerHTML = `<i class="fa-solid fa-4x fa-arrow-up fa-rotate-by" style="--fa-rotate-angle: ${rotationAngle}deg;"></i>`;
   } else if (direction === 'right') {
-    indicator.innerHTML = `<i class="fa-regular fa-4x fa-hand-point-right fa-rotate-by" style="--fa-rotate-angle: ${rotationAngle}deg;"></i>`;
-  }
+    indicator.innerHTML = `<i class="fa-solid fa-4x fa-arrow-up fa-rotate-by" style="--fa-rotate-angle: ${rotationAngle}deg;"></i>`;
+  };
+  // Update CSS variable to set the rotation angle
+  indicator.style.setProperty('--fa-rotate-angle', `${rotationAngle}deg`);
+  // Trigger a reflow before adding the animation class back
+  void indicator.offsetWidth;
+  // Add the animation class to trigger the rotation animation
+  indicator.classList.add('fa-rotate-by');
 };
 
 // remove welcome message and start button on game start
@@ -138,7 +143,7 @@ insultApp.gameReset = (e) => {
   // clear speech bubbles 
   insultApp.textReset();
   // set turn indicator to left player
-  insultApp.turnIndicator('left', 35);
+  insultApp.turnIndicator('left', -75);
   // counters to middle
   insultApp.leftCounter = Math.floor(leftPictures.length / 2);
   insultApp.rightCounter = Math.floor(rightPictures.length / 2);
@@ -231,7 +236,7 @@ insultApp.gameStart = () => {
   // kicks off after user clicks Start button
   insultApp.removeWelcome();
   insultApp.setMiddle();
-  insultApp.turnIndicator('left', 35);
+  insultApp.turnIndicator('left', -75);
   insultApp.getAdviceOrInsult('insultButton', false);
   insultApp.getAdviceOrInsult('adviceButton', true);
 };
