@@ -526,29 +526,58 @@ p {
           animation-name: rotateIndicator;
   -webkit-animation-duration: 1s;
           animation-duration: 1s;
-  -webkit-animation-iteration-count: 1;
-          animation-iteration-count: 1;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards; /* Keep the final state of the animation */
+}
+
+.fa-rotate-by-reversed {
+  -webkit-animation-name: rotateIndicatorReversed;
+          animation-name: rotateIndicatorReversed;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards; /* Keep the final state of the animation */
 }
 
 @-webkit-keyframes rotateIndicator {
   from {
-    -webkit-transform: rotate(30deg);
-            transform: rotate(30deg);
+    -webkit-transform: rotate(35deg);
+            transform: rotate(35deg); /* Initial position for Left player's turn */
   }
   to {
-    -webkit-transform: rotate(-30deg);
-            transform: rotate(-30deg);
+    -webkit-transform: rotate(-35deg);
+            transform: rotate(-35deg); /* Final position for Right player's turn */
   }
 }
 
 @keyframes rotateIndicator {
   from {
-    -webkit-transform: rotate(30deg);
-            transform: rotate(30deg);
+    -webkit-transform: rotate(35deg);
+            transform: rotate(35deg); /* Initial position for Left player's turn */
   }
   to {
-    -webkit-transform: rotate(-30deg);
-            transform: rotate(-30deg);
+    -webkit-transform: rotate(-35deg);
+            transform: rotate(-35deg); /* Final position for Right player's turn */
+  }
+}
+@-webkit-keyframes rotateIndicatorReversed {
+  from {
+    -webkit-transform: rotate(-35deg);
+            transform: rotate(-35deg); /* Initial position for Right player's turn */
+  }
+  to {
+    -webkit-transform: rotate(35deg);
+            transform: rotate(35deg); /* Final position for Left player's turn */
+  }
+}
+@keyframes rotateIndicatorReversed {
+  from {
+    -webkit-transform: rotate(-35deg);
+            transform: rotate(-35deg); /* Initial position for Right player's turn */
+  }
+  to {
+    -webkit-transform: rotate(35deg);
+            transform: rotate(35deg); /* Final position for Left player's turn */
   }
 }
 .entirePage {
