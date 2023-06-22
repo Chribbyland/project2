@@ -304,6 +304,7 @@ p {
 .leftSpeechContainer {
   position: relative;
   width: 90%;
+  min-height: 70px;
   background: #fff;
   border-radius: 40px;
   padding: 24px;
@@ -315,12 +316,19 @@ p {
 .rightSpeechContainer {
   position: relative;
   width: 90%;
+  min-height: 70px;
   background: #fff;
   border-radius: 40px;
   padding: 24px;
   margin: 20px 0;
   text-align: center;
   color: #000;
+}
+
+.dissolve-effect {
+  opacity: 0;
+  -webkit-transition: opacity 300ms;
+  transition: opacity 300ms;
 }
 
 .leftTail:before {
@@ -346,7 +354,6 @@ p {
   border-top: 0px solid transparent;
   border-bottom: 30px solid transparent;
   right: -35px;
-  bottom: 45%;
 }
 
 .rightPersonSpeechText, .leftPersonSpeechText {
