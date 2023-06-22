@@ -35,6 +35,6 @@ toggleButton.textContent = "On";
 toggleButton.addEventListener("click", toggleFilter);
 
 window.addEventListener("DOMContentLoaded", function () {
-  const heading = document.querySelector("h1");
+  const heading = document.querySelector("h3");
   heading.insertAdjacentElement("afterend", toggleButton);
 });
