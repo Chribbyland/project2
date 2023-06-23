@@ -282,16 +282,67 @@ insultApp.init = () => {
         })
       }
     });
+    const toggleSwitch = document.getElementById("toggleSwitch");
+    const onText = document.querySelector(".onoff .switchText:first-child p");
+    const offText = document.querySelector(".onoff .switchText:last-child p");
+
+    toggleSwitch.addEventListener("change", function () {
+      if (this.checked) {
+        wrapTextWithSpans(onText);
+        wrapTextWithSpans(offText);
+        applyGlowEffect(offText);
+        removeGlowEffect(onText);
+      } else {
+        wrapTextWithSpans(onText);
+        wrapTextWithSpans(offText);
+        applyGlowEffect(onText);
+        removeGlowEffect(offText);
+      }
+    });
+
+    function wrapTextWithSpans(textElement) {
+      const text = textElement.textContent;
+      const letters = text.split("");
+      const wrappedText = letters
+        .map((letter) => `<span>${letter}</span>`)
+        .join("");
+      textElement.innerHTML = wrappedText;
+    }
+
+    function applyGlowEffect(textElement) {
+      const letters = textElement.querySelectorAll("span");
+      letters.forEach((letter) => letter.classList.add("glow"));
+    }
+
+    function removeGlowEffect(textElement) {
+      const letters = textElement.querySelectorAll("span");
+      letters.forEach((letter) => letter.classList.remove("glow"));
+    }
 
     function moveSliderToRight() {
-      const toggleSwitch = document.getElementById("toggleSwitch");
       toggleSwitch.checked = true;
+      wrapTextWithSpans(onText);
+      wrapTextWithSpans(offText);
+      applyGlowEffect(offText);
+      removeGlowEffect(onText);
     }
 
     function moveSliderToLeft() {
-      const toggleSwitch = document.getElementById("toggleSwitch");
       toggleSwitch.checked = false;
+      wrapTextWithSpans(onText);
+      wrapTextWithSpans(offText);
+      applyGlowEffect(onText);
+      removeGlowEffect(offText);
     }
+    // function moveSliderToRight() {
+    //   const toggleSwitch = document.getElementById("toggleSwitch");
+    //   toggleSwitch.checked = true;
+    // }
+
+    // function moveSliderToLeft() {
+    //   const toggleSwitch = document.getElementById("toggleSwitch");
+    //   toggleSwitch.checked = false;
+    // }
 
   insultApp.gameStartListener();
 };
