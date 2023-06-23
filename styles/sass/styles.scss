@@ -116,8 +116,9 @@ header {
 //chat GPT suggestion
 .toggle {
   position: relative;
-  display: inline-block;
-  width: 60px;
+  display: flex;
+  align-items: center;
+  width: auto;
   height: 34px;
 }
 
@@ -126,26 +127,48 @@ header {
 }
 
 .toggle label {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border-radius: 34px;
-  background-color: #ccc;
-  cursor: pointer;
+  // position: absolute;
+  // top: 0;
+  // left: 0;
+  // width: 100%;
+  // height: 100%;
+  // border-radius: 34px;
+  // background-color: #ccc;
+  // cursor: pointer;
+  position: relative;
+    flex: 0 0 auto;
+    /* Add flex property */
+    width: 45px;
+    /* Set desired width for the toggle label */
+    height: 20px;
+    /* Set desired height for the toggle label */
+    border-radius: 20px;
+    /* Adjust border-radius to match height */
+    background-color: #ccc;
+    cursor: pointer;
+    
 }
 
 .toggle label:before {
+  // content: "";
+  // position: absolute;
+  // top: 4px;
+  // left: 4px;
+  // width: 26px;
+  // height: 26px;
+  // border-radius: 50%;
+  // background-color: white;
+  // transition: transform 0.2s;
   content: "";
-  position: absolute;
-  top: 4px;
-  left: 4px;
-  width: 26px;
-  height: 26px;
-  border-radius: 50%;
-  background-color: white;
-  transition: transform 0.2s;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: white;
+    transition: transform 0.2s;
+  // z-index: 2;
 }
 
 .toggle input:checked+label {
@@ -154,6 +177,52 @@ header {
 
 .toggle input:checked+label:before {
   transform: translateX(26px);
+}
+
+.onoff {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.switchText p {
+  margin: 0 10px;
+  font-size: 1.5em;
+}
+
+.onoff p {
+  position: relative;
+}
+
+.onoff p span {
+  display: inline-block;
+  transition: box-shadow 0.5s;
+}
+
+.SwitchText p.glow span {
+  animation: glowing 2s infinite;
+  color: yellow;
+}
+
+@keyframes glowing {
+  0% {
+      opacity: 1;
+      text-shadow: 0 0 5px yellow, 0 0 20px yellow, 0 0 30px yellow, 0 0 40px yellow, 0 0 50px yellow;
+    }
+  
+    50% {
+      opacity: 0.5;
+      text-shadow: none;
+    }
+  
+    100% {
+      opacity: 1;
+      text-shadow: 0 0 5px yellow, 0 0 20px yellow, 0 0 30px yellow, 0 0 40px yellow, 0 0 50px yellow;
+    }
+}
+
+.glow {
+  text-shadow: 0 0 10px white, 0 0 20px white, 0 0 30px white, 0 0 40px white, 0 0 70px yellow, 0 0 80px yellow, 0 0 100px yellow, 0 0 150px yellow;
 }
 
 
