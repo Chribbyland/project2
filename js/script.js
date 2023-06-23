@@ -250,36 +250,50 @@ insultApp.init = () => {
   insultApp.rightImage.src = rightPictures[insultApp.rightCounter].imgLoc;
   insultApp.rightImage.alt = rightPictures[insultApp.rightCounter].altText;
   Swal.fire({
-    title: 'Warning!',
-    text: 'Naughty language ahead. To filter out naughty words, select G-Rated below.',
-    icon: 'success',
+    title: "Warning!",
+    text: "Naughty language ahead. To filter out naughty words, select G-Rated below.",
+    icon: "success",
     iconHtml: '<span style="font-size: 2em;">🙈</span>',
     showCancelButton: true,
-    cancelButtonText: 'G-Rated',
-    confirmButtonText: 'R-Rated',
+    cancelButtonText: "G-Rated",
+    confirmButtonText: "R-Rated",
   })
     // confirmation of users choice of censorship or not
     .then((result) => {
       if (result.isConfirmed) {
         Swal.fire({
           title: `Fuckin' rad!`,
-          text: 'Naughty words inbound!',
-          icon: 'success'
+          text: "Naughty words inbound!",
+          icon: "success",
         }).then(function () {
-          toggleFilter(false); // Disable the language filter
-          console.log('No language filter via swal')
+          toggleFilter(true); // Disable the language filter
+          console.log("No language filter via swal");
+          moveSliderToRight();
+          insultApp.gameStartListener();
         });
-      } else {
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
         Swal.fire({
           title: `Safe mode active!`,
-          text: 'Your sensitive eyes are safe.',
-          icon: 'success'
+          text: "Your sensitive eyes are safe.",
+          icon: "success",
         }).then(function () {
-          console.log('Language filter via swal');
-          toggleFilter(true); // Enable the language filter
+          console.log("Language filter via swal");
+          toggleFilter(false); // Enable the language filter
+          moveSliderToLeft();
+          insultApp.gameStartListener();
         });
-      };
+      }
     });
+
+    function moveSliderToRight() {
+      const toggleSwitch = document.getElementById("toggleSwitch");
+      toggleSwitch.checked = true;
+    }
+
+    function moveSliderToLeft() {
+      const toggleSwitch = document.getElementById("toggleSwitch");
+      toggleSwitch.checked = false;
+    }
 
   insultApp.gameStartListener();
 };
