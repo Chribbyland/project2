@@ -587,6 +587,11 @@ p {
             transform: rotate(35deg); /* Final position for Left player's turn */
   }
 }
+.flip {
+  -webkit-transform: scaleX(-1);
+          transform: scaleX(-1);
+}
+
 .entirePage {
   display: -webkit-box;
   display: -ms-flexbox;
