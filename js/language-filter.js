@@ -39,17 +39,17 @@
 //   heading.insertAdjacentElement("afterend", toggleButton);
 // });
 
-let filterEnabled = true;
+let filterEnabled;
 
-export const toggleFilter = () => {
-  filterEnabled = !filterEnabled;
+export const toggleFilter = (enabled) => {
+  filterEnabled = enabled;
 };
   
 export const languageFilter = (jsonResult, replaceLeft, replaceRight, side) => {
   if (!filterEnabled) {
-    let badWords = / anal| and| anus| arse| ass| ballsack| balls| bastard| bitch| blowjob| boner| boob| bugger| bum| butt| buttplug| clitoris| cock| crap| cunt| cum| devilcock| dick| dildo| dyke| fag| feck| fellate| fellatio| fuck| hitler| homo| jerk| jew| jizz| labia| motherfuck| muff| penis| piss| poop| prick| pube| pussy| queer| rape| retard| scrotum| sex| shit| slut| spunk| semen| tampon| tit| turd| twat| vagina| wank| whore/gi;
+    console.log("filter is ENABLED")
+    let badWords = / anal| and| anus| arse| ass| ballsack| balls| bastard| bitch| blowjob| boner| boob| bugger| bum| butt| buttplug| clitoris| cock| crap| cunt| cum| devilcock| dick| dildo| dipshit| dyke| fag| feck| fellate| fellatio| fuck| hitler| homo| jerk| jew| jizz| labia| motherfuck| muff| penis| piss| poop| prick| pube| pussy| queer| rape| retard| scrotum| sex| shit| slut| spunk| semen| tampon| tit| turd| twat| vagina| wank| whore/gi;
   let rawInsult = jsonResult.insult;
-  console.log(rawInsult);
   let filteredInsult = rawInsult.replace(badWords, '____');
   if (side) {
     replaceRight(filteredInsult);
@@ -57,6 +57,7 @@ export const languageFilter = (jsonResult, replaceLeft, replaceRight, side) => {
     replaceLeft(filteredInsult);
   }
 } else {
+    console.log("filter is NOT ENABLED")
     if (side) {
       replaceRight(jsonResult.insult);
     } else {
@@ -66,10 +67,12 @@ export const languageFilter = (jsonResult, replaceLeft, replaceRight, side) => {
   }
 };
 
-const toggleSwitch = document.getElementById("toggleSwitch");
-toggleSwitch.addEventListener("change", toggleFilter);
-  
 window.addEventListener("DOMContentLoaded", function () {
+  const toggleSwitch = document.getElementById("toggleSwitch");
+  toggleSwitch.addEventListener("change", function () {
+    toggleFilter(toggleSwitch.checked);
+  });
+
   const heading = document.querySelector("h3");
-  heading.insertAdjacentElement("afterend", toggleButton);
+  // heading.insertAdjacentElement("afterend");
 });

@@ -31,8 +31,6 @@ insultApp.rightCounter = Math.floor(rightPictures.length / 2);
 
 // make array for left character image locations, including alt text stored as a property in the array
 // setting picture array start point to middle value. Range is 0-10 and refers to the two arrays of pictures (imported from image-arrays.js) - leftPictures and rightPictures.
-// Math.floor(leftPictures.length/2);
-// Math.floor(rightPictures.length/2);
 insultApp.leftCounter = Math.floor(leftPictures.length / 2);
 insultApp.rightCounter = Math.floor(rightPictures.length / 2);
 
@@ -266,10 +264,10 @@ insultApp.init = () => {
           text: "Naughty words inbound!",
           icon: "success",
         }).then(function () {
+          moveSliderToLeft();
           toggleFilter(true); // Disable the language filter
-          console.log("No language filter via swal");
-          moveSliderToRight();
-          insultApp.gameStartListener();
+          console.log("Language filter DISABLED via swal");
+          insultApp.gameStart();
         });
       } else if (result.dismiss === Swal.DismissReason.cancel) {
         Swal.fire({
@@ -277,11 +275,11 @@ insultApp.init = () => {
           text: "Your sensitive eyes are safe.",
           icon: "success",
         }).then(function () {
-          console.log("Language filter via swal");
+          moveSliderToRight();
           toggleFilter(false); // Enable the language filter
-          moveSliderToLeft();
-          insultApp.gameStartListener();
-        });
+          console.log("Language filter ENABLED via swal");
+          insultApp.gameStart();
+        })
       }
     });
 
