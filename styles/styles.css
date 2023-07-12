@@ -313,6 +313,7 @@ p {
 .leftSpeechContainer {
   position: relative;
   width: 90%;
+  min-height: 70px;
   background: #fff;
   border-radius: 40px;
   padding: 24px;
@@ -324,12 +325,19 @@ p {
 .rightSpeechContainer {
   position: relative;
   width: 90%;
+  min-height: 70px;
   background: #fff;
   border-radius: 40px;
   padding: 24px;
   margin: 20px 0;
   text-align: center;
   color: #000;
+}
+
+.dissolve-effect {
+  opacity: 0;
+  -webkit-transition: opacity 300ms;
+  transition: opacity 300ms;
 }
 
 .leftTail:before {
@@ -355,7 +363,6 @@ p {
   border-top: 0px solid transparent;
   border-bottom: 30px solid transparent;
   right: -35px;
-  bottom: 45%;
 }
 
 .rightPersonSpeechText, .leftPersonSpeechText {
@@ -535,31 +542,65 @@ p {
           animation-name: rotateIndicator;
   -webkit-animation-duration: 1s;
           animation-duration: 1s;
-  -webkit-animation-iteration-count: 1;
-          animation-iteration-count: 1;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards; /* Keep the final state of the animation */
+}
+
+.fa-rotate-by-reversed {
+  -webkit-animation-name: rotateIndicatorReversed;
+          animation-name: rotateIndicatorReversed;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards; /* Keep the final state of the animation */
 }
 
 @-webkit-keyframes rotateIndicator {
   from {
-    -webkit-transform: rotate(30deg);
-            transform: rotate(30deg);
+    -webkit-transform: rotate(35deg);
+            transform: rotate(35deg); /* Initial position for Left player's turn */
   }
   to {
-    -webkit-transform: rotate(-30deg);
-            transform: rotate(-30deg);
+    -webkit-transform: rotate(-35deg);
+            transform: rotate(-35deg); /* Final position for Right player's turn */
   }
 }
 
 @keyframes rotateIndicator {
   from {
-    -webkit-transform: rotate(30deg);
-            transform: rotate(30deg);
+    -webkit-transform: rotate(35deg);
+            transform: rotate(35deg); /* Initial position for Left player's turn */
   }
   to {
-    -webkit-transform: rotate(-30deg);
-            transform: rotate(-30deg);
+    -webkit-transform: rotate(-35deg);
+            transform: rotate(-35deg); /* Final position for Right player's turn */
   }
 }
+@-webkit-keyframes rotateIndicatorReversed {
+  from {
+    -webkit-transform: rotate(-35deg);
+            transform: rotate(-35deg); /* Initial position for Right player's turn */
+  }
+  to {
+    -webkit-transform: rotate(35deg);
+            transform: rotate(35deg); /* Final position for Left player's turn */
+  }
+}
+@keyframes rotateIndicatorReversed {
+  from {
+    -webkit-transform: rotate(-35deg);
+            transform: rotate(-35deg); /* Initial position for Right player's turn */
+  }
+  to {
+    -webkit-transform: rotate(35deg);
+            transform: rotate(35deg); /* Final position for Left player's turn */
+  }
+}
+.flip {
+  -webkit-transform: scaleX(-1);
+          transform: scaleX(-1);
+}
+
 .entirePage {
   display: -webkit-box;
   display: -ms-flexbox;

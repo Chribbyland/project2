@@ -35,9 +35,7 @@ insultApp.leftCounter = Math.floor(leftPictures.length / 2);
 insultApp.rightCounter = Math.floor(rightPictures.length / 2);
 
 // retrieve insult from evilinsult API (via a proxy to mitigate CORS error)
-// future goal: delay picture swap till API call is complete
 insultApp.getInsult = (e) => {
-  // +Math.floor(...) function used as a 'cache breaking' technique to ensure API sends fresh data (new, random result) when requested
   fetch('https://proxy.junocollege.com/https://evilinsult.com/generate_insult.php?lang=en&type=jsonfetch(`https://proxy.junocollege.com/https://evilinsult.com/generate_insult.php?lang=en&type=json&version=' + Math.floor(Math.random() * 100000 + 1))
     .then(function (response) {
       return response.json();
@@ -50,7 +48,7 @@ insultApp.getInsult = (e) => {
     });
 };
 
-// retrieve advice from adviceslip API. Cache-breaking technique used again to 
+// retrieve advice from adviceslip API. Cache-breaking technique used again to ensure API sends fresh data (new, random result) when requested
 insultApp.getAdvice = (e, isLeft) => {
   fetch('https://api.adviceslip.com/advice?type=json&version=' + Math.floor(Math.random() * 100000 + 1))
     .then(function (response) {
@@ -61,14 +59,27 @@ insultApp.getAdvice = (e, isLeft) => {
       // if isLeft = true, the left/top speech bubble will populate, and vice versa
       const side = isLeft ? '#leftPersonSpeechText' : '#rightPersonSpeechText';
       const container = isLeft ? 'leftSpeechContainer' : 'rightSpeechContainer';
-      const adviceLeftText = document.querySelector(side);
+      const adviceText = document.querySelector(side);
+      // Clear the innerHTML of the opposite side's adviceText
+      const oppositeSide = isLeft ? '#rightPersonSpeechText' : '#leftPersonSpeechText';
+      const oppositeAdviceText = document.querySelector(oppositeSide);
+      oppositeAdviceText.innerHTML = '...';
+      // Fade out the current advice text
+      adviceText.style.opacity = 0;
+      adviceText.style.transition = 'opacity 0ms';
+      // Set the new advice text and fade it in
+      setTimeout(function () {
+        adviceText.innerHTML = advice.advice;
+        adviceText.style.transition = 'opacity 350ms';
+        adviceText.style.opacity = 1;
+      }, 0);
       // replace existing content
-      adviceLeftText.innerHTML = advice.advice;
+      adviceText.innerHTML = advice.advice;
       // toggle the font awesome turn indicator to the correct player
       if (isLeft) {
-        insultApp.turnIndicator('right', 75);
+        insultApp.turnIndicator('right', 35);
       } else {
-        insultApp.turnIndicator('left', -75);
+        insultApp.turnIndicator('left', -35);
       }
       // re-enable advice button and make speech bubble visible
       e.target.disabled = false;
@@ -80,41 +91,46 @@ insultApp.getAdvice = (e, isLeft) => {
 insultApp.replaceInsultLeft = (filteredInsult) => {
   // replace existing speech bubble content left
   const insultLeftText = document.querySelector('#leftPersonSpeechText');
+  const insultRightText = document.querySelector('#rightPersonSpeechText');
   insultLeftText.innerHTML = filteredInsult;
+  // clear current player's speech bubble content
+  insultRightText.innerHTML = '...';
   // make speech bubble visible, as it is hidden on game start/reset
   document.getElementById('leftSpeechContainer').style.visibility = 'visible';
   // toggle the font awesome turn indicator to the correct player
-  insultApp.turnIndicator('right', 75);
+  insultApp.turnIndicator('right', 35);
 };
 
 insultApp.replaceInsultRight = (filteredInsult) => {
   // replace existing speech bubble content right
   const insultRightText = document.querySelector('#rightPersonSpeechText');
+  const insultLeftText = document.querySelector('#leftPersonSpeechText');
   insultRightText.innerHTML = filteredInsult;
+  // clear current player's speech bubble content
+  insultLeftText.innerHTML = '...';
   // make speech bubble visible, as it is hidden on game start/reset
   document.getElementById('rightSpeechContainer').style.visibility = 'visible';
   // toggle the font awesome turn indicator to the correct player
-  insultApp.turnIndicator('left', -75);
+  insultApp.turnIndicator('left', -35);
 };
 
 // font awesome icon indicating player's turn. Customized to rotate 75 degrees to point up toward active player.
-insultApp.turnIndicator = (direction, rotationAngle) => {
+insultApp.turnIndicator = (direction) => {
   const indicator = document.querySelector('i');
 
   // ADD ANIMATION TO INDICATOR
   // Remove the animation class to reset the rotation
-  indicator.classList.remove('fa-rotate-by');
+  indicator.classList.remove('fa-rotate-by', 'fa-rotate-by-reversed');
+
   if (direction === 'left') {
-    indicator.innerHTML = `<i class="fa-solid fa-4x fa-arrow-up fa-rotate-by" style="--fa-rotate-angle: ${rotationAngle}deg;"></i>`;
+    indicator.innerHTML = `<i class="fa-solid fa-4x fa-arrow-up fa-rotate-by"></i>`;
+    // Add the animation class for clockwise rotation
+    indicator.classList.add('fa-rotate-by');
   } else if (direction === 'right') {
-    indicator.innerHTML = `<i class="fa-solid fa-4x fa-arrow-up fa-rotate-by" style="--fa-rotate-angle: ${rotationAngle}deg;"></i>`;
-  };
-  // Update CSS variable to set the rotation angle
-  indicator.style.setProperty('--fa-rotate-angle', `${rotationAngle}deg`);
-  // Trigger a reflow before adding the animation class back
-  void indicator.offsetWidth;
-  // Add the animation class to trigger the rotation animation
-  indicator.classList.add('fa-rotate-by');
+    indicator.innerHTML = `<i class="fa-solid fa-4x fa-arrow-up fa-rotate-by-reversed"></i>`;
+    // Add the animation class for counterclockwise rotation
+    indicator.classList.add('fa-rotate-by-reversed');
+  }
 };
 
 // remove welcome message and start button on game start
@@ -141,7 +157,7 @@ insultApp.gameReset = (e) => {
   // clear speech bubbles 
   insultApp.textReset();
   // set turn indicator to left player
-  insultApp.turnIndicator('left', -75);
+  insultApp.turnIndicator('left', -35);
   // counters to middle
   insultApp.leftCounter = Math.floor(leftPictures.length / 2);
   insultApp.rightCounter = Math.floor(rightPictures.length / 2);
@@ -234,7 +250,7 @@ insultApp.gameStart = () => {
   // kicks off after user clicks Start button
   insultApp.removeWelcome();
   insultApp.setMiddle();
-  insultApp.turnIndicator('left', -75);
+  insultApp.turnIndicator('left', -35);
   insultApp.getAdviceOrInsult('insultButton', false);
   insultApp.getAdviceOrInsult('adviceButton', true);
 };
