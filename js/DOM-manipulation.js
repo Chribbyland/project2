@@ -1,5 +1,5 @@
 // initialize middle section for gameplay after start button is clicked
-  // left person speech container 
+// left person speech container 
 export const setMiddle = () => {
   const leftSpeechContainer = document.createElement('div');
   leftSpeechContainer.setAttribute('class', 'leftSpeechContainer leftTail');
@@ -48,7 +48,6 @@ export const setMiddle = () => {
 
   // insult button container
   const insultButtonBox = document.createElement('div');
-
   insultButtonBox.setAttribute('class', 'buttonBox insultButtonBox');
   insultButtonBox.setAttribute('id', 'insultButtonBox');
   document.getElementById('buttonBoxes').appendChild(insultButtonBox);
@@ -59,7 +58,7 @@ export const setMiddle = () => {
   insultButton.setAttribute('id', 'insultButton');
   insultButton.innerText = "Insult!"
   document.getElementById('insultButtonBox').appendChild(insultButton);
-  
+
   // advice button container
   const adviceButtonBox = document.createElement('div');
   adviceButtonBox.setAttribute('class', 'buttonBox adviceButtonBox');

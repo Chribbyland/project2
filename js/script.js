@@ -17,22 +17,20 @@ import { setMiddle } from './DOM-manipulation.js';
 //   document.querySelector(".popup").style.display = "none";
 // });
 
-// future goal: these can be namespaced (remember to update when called!)
+// initial game status (text boxes are empty, buttons are enabled, etc.)
 insultApp.setMiddle = setMiddle;
 insultApp.languageFilter = languageFilter;
 insultApp.toggleFilter = toggleFilter;
-
 // variable to determine which side will call API/fill text bubble. When isLeftSide = true, the left (top) speech bubble will receive text.
 insultApp.isLeftSide = true;
 
-// setting counter to middle value. Counter's range is 0-10 and refers to the two arrays of pictures below, leftPictures and rightPictures.
-insultApp.leftCounter = Math.floor(leftPictures.length / 2);
-insultApp.rightCounter = Math.floor(rightPictures.length / 2);
-
-// make array for left character image locations, including alt text stored as a property in the array
 // setting picture array start point to middle value. Range is 0-10 and refers to the two arrays of pictures (imported from image-arrays.js) - leftPictures and rightPictures.
 insultApp.leftCounter = Math.floor(leftPictures.length / 2);
 insultApp.rightCounter = Math.floor(rightPictures.length / 2);
+
+// WORK IN PROGRESS — separating getInsult and getAdvice into API-calls.js
+// insultApp.getInsult = getInsult;
+// insultApp.getAdvice = getAdvice;
 
 // retrieve insult from evilinsult API (via a proxy to mitigate CORS error)
 insultApp.getInsult = (e) => {
@@ -118,8 +116,8 @@ insultApp.replaceInsultRight = (filteredInsult) => {
 insultApp.turnIndicator = (direction) => {
   const indicator = document.querySelector('i');
 
-  // ADD ANIMATION TO INDICATOR
-  // Remove the animation class to reset the rotation
+  // indicator animation
+  // remove the animation class to reset the rotation
   indicator.classList.remove('fa-rotate-by', 'fa-rotate-by-reversed');
 
   if (direction === 'left') {
@@ -183,9 +181,7 @@ insultApp.checkEndGame = (e, isAdvice) => {
       }).then(() => {
         // call function to reset game
         insultApp.gameReset(e);
-
       });
-
     };
   }, 1000)
 };
@@ -215,7 +211,7 @@ insultApp.getAdviceOrInsult = (button, isAdvice) => {
       setTimeout(() => {
         insultApp.rightImage.src = rightPictures[insultApp.rightCounter].imgLoc;
         insultApp.rightImage.alt = rightPictures[insultApp.rightCounter].altText;
-      }, "420")
+      }, "480")
       // checking to see if in an end game situation
       insultApp.checkEndGame(e, isAdvice);
       //player 2 (Right)
@@ -232,7 +228,7 @@ insultApp.getAdviceOrInsult = (button, isAdvice) => {
       setTimeout(() => {
         insultApp.leftImage.src = leftPictures[insultApp.leftCounter].imgLoc;
         insultApp.leftImage.alt = leftPictures[insultApp.leftCounter].altText;
-      }, "420")
+      }, "480")
       // checking to see if in an end game situation
       insultApp.checkEndGame(e, isAdvice);
     };
@@ -282,7 +278,7 @@ insultApp.init = () => {
         }).then(function () {
           moveSliderToLeft();
           toggleFilter(true); // Disable the language filter
-          console.log("Language filter DISABLED via swal");
+          // console.log("Language filter DISABLED via swal");
           insultApp.gameStart();
         });
       } else if (result.dismiss === Swal.DismissReason.cancel) {
@@ -293,7 +289,7 @@ insultApp.init = () => {
         }).then(function () {
           moveSliderToRight();
           toggleFilter(false); // Enable the language filter
-          console.log("Language filter ENABLED via swal");
+          // console.log("Language filter ENABLED via swal");
           insultApp.gameStart();
         })
       }

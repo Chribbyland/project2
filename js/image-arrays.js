@@ -1,4 +1,5 @@
 // array for left character image locations, including alt text stored as a property in the array
+// images are all "left player" images, flipped with CSS via className 'flip' for the right player
 export const leftPictures = [
   {
     imgLoc: './photos/explosion.png',
