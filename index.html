@@ -20,20 +20,20 @@
     <!-- main heading goes here-->
     <header>
       <h1>A Battle of Wits <span>and Clicks!</span></h1>
-      <div id="app-cover">
-        <div class="row">
-          <div class="toggle-button-cover">
-            <div class="button-cover">
-              <div class="button r" id="button-1">
-                <input type="checkbox" class="checkbox" />
-                <div class="knobs"></div>
-                <div class="layer"></div>
-              </div>
-            </div>
-          </div>
+      <h3>Language Filter</h3>
+      <div class="onoff">
+        <div class="switchText">
+          <p>OFF</p>
+        </div>
+        <div class="toggle">
+          <input type="checkbox" id="toggleSwitch">
+          <label for="toggleSwitch"></label>
+        </div>
+        <div class="switchText">
+          <p>ON</p>
         </div>
       </div>
-    </header>
+      </header>
 
 
     <!-- adding a popup alert on page load (if proxy server misbehaves) -->
@@ -88,7 +88,7 @@
   <script type="module" src="js/script.js"></script>
   <footer>
     <div class="authors">
-      <h3>copyright Chribbyland and Juno College 2023</h3>
+      <h4>copyright Chribbyland and Juno College 2023</h4>
     </div>
     <div class="info">
       <!--nice to have, a question mark icon that opens up a comment? that gives credit to API creators-->

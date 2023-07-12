@@ -31,8 +31,6 @@ insultApp.rightCounter = Math.floor(rightPictures.length / 2);
 
 // make array for left character image locations, including alt text stored as a property in the array
 // setting picture array start point to middle value. Range is 0-10 and refers to the two arrays of pictures (imported from image-arrays.js) - leftPictures and rightPictures.
-// Math.floor(leftPictures.length/2);
-// Math.floor(rightPictures.length/2);
 insultApp.leftCounter = Math.floor(leftPictures.length / 2);
 insultApp.rightCounter = Math.floor(rightPictures.length / 2);
 
@@ -250,36 +248,101 @@ insultApp.init = () => {
   insultApp.rightImage.src = rightPictures[insultApp.rightCounter].imgLoc;
   insultApp.rightImage.alt = rightPictures[insultApp.rightCounter].altText;
   Swal.fire({
-    title: 'Warning!',
-    text: 'Naughty language ahead. To filter out naughty words, select G-Rated below.',
-    icon: 'success',
+    title: "Warning!",
+    text: "Naughty language ahead. To filter out naughty words, select G-Rated below.",
+    icon: "success",
     iconHtml: '<span style="font-size: 2em;">🙈</span>',
     showCancelButton: true,
-    cancelButtonText: 'G-Rated',
-    confirmButtonText: 'R-Rated',
+    cancelButtonText: "G-Rated",
+    confirmButtonText: "R-Rated",
   })
     // confirmation of users choice of censorship or not
     .then((result) => {
       if (result.isConfirmed) {
         Swal.fire({
           title: `Fuckin' rad!`,
-          text: 'Naughty words inbound!',
-          icon: 'success'
+          text: "Naughty words inbound!",
+          icon: "success",
         }).then(function () {
-          toggleFilter(false); // Disable the language filter
-          console.log('No language filter via swal')
+          moveSliderToLeft();
+          toggleFilter(true); // Disable the language filter
+          console.log("Language filter DISABLED via swal");
+          insultApp.gameStart();
         });
-      } else {
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
         Swal.fire({
           title: `Safe mode active!`,
-          text: 'Your sensitive eyes are safe.',
-          icon: 'success'
+          text: "Your sensitive eyes are safe.",
+          icon: "success",
         }).then(function () {
-          console.log('Language filter via swal');
-          toggleFilter(true); // Enable the language filter
-        });
-      };
+          moveSliderToRight();
+          toggleFilter(false); // Enable the language filter
+          console.log("Language filter ENABLED via swal");
+          insultApp.gameStart();
+        })
+      }
     });
+    const toggleSwitch = document.getElementById("toggleSwitch");
+    const onText = document.querySelector(".onoff .switchText:first-child p");
+    const offText = document.querySelector(".onoff .switchText:last-child p");
+
+    toggleSwitch.addEventListener("change", function () {
+      if (this.checked) {
+        wrapTextWithSpans(onText);
+        wrapTextWithSpans(offText);
+        applyGlowEffect(offText);
+        removeGlowEffect(onText);
+      } else {
+        wrapTextWithSpans(onText);
+        wrapTextWithSpans(offText);
+        applyGlowEffect(onText);
+        removeGlowEffect(offText);
+      }
+    });
+
+    function wrapTextWithSpans(textElement) {
+      const text = textElement.textContent;
+      const letters = text.split("");
+      const wrappedText = letters
+        .map((letter) => `<span>${letter}</span>`)
+        .join("");
+      textElement.innerHTML = wrappedText;
+    }
+
+    function applyGlowEffect(textElement) {
+      const letters = textElement.querySelectorAll("span");
+      letters.forEach((letter) => letter.classList.add("glow"));
+    }
+
+    function removeGlowEffect(textElement) {
+      const letters = textElement.querySelectorAll("span");
+      letters.forEach((letter) => letter.classList.remove("glow"));
+    }
+
+    function moveSliderToRight() {
+      toggleSwitch.checked = true;
+      wrapTextWithSpans(onText);
+      wrapTextWithSpans(offText);
+      applyGlowEffect(offText);
+      removeGlowEffect(onText);
+    }
+
+    function moveSliderToLeft() {
+      toggleSwitch.checked = false;
+      wrapTextWithSpans(onText);
+      wrapTextWithSpans(offText);
+      applyGlowEffect(onText);
+      removeGlowEffect(offText);
+    }
+    // function moveSliderToRight() {
+    //   const toggleSwitch = document.getElementById("toggleSwitch");
+    //   toggleSwitch.checked = true;
+    // }
+
+    // function moveSliderToLeft() {
+    //   const toggleSwitch = document.getElementById("toggleSwitch");
+    //   toggleSwitch.checked = false;
+    // }
 
   insultApp.gameStartListener();
 };
