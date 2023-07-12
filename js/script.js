@@ -4,19 +4,6 @@ import { leftPictures, rightPictures } from './image-arrays.js';
 import { toggleFilter, languageFilter } from './language-filter.js';
 import { setMiddle } from './DOM-manipulation.js';
 
-// functionality for pop-up alert on page load (DISABLED for now, as proxy is operational again)
-// window.addEventListener("load", function () {
-//   setTimeout(
-//     function open(event) {
-//       document.querySelector(".popup").style.display = "block";
-//     },
-//     1000
-//   )
-// });
-// document.querySelector("#close").addEventListener("click", function () {
-//   document.querySelector(".popup").style.display = "none";
-// });
-
 // future goal: these can be namespaced (remember to update when called!)
 insultApp.setMiddle = setMiddle;
 insultApp.languageFilter = languageFilter;
@@ -350,16 +337,7 @@ insultApp.init = () => {
       applyGlowEffect(onText);
       removeGlowEffect(offText);
     }
-    // function moveSliderToRight() {
-    //   const toggleSwitch = document.getElementById("toggleSwitch");
-    //   toggleSwitch.checked = true;
-    // }
-
-    // function moveSliderToLeft() {
-    //   const toggleSwitch = document.getElementById("toggleSwitch");
-    //   toggleSwitch.checked = false;
-    // }
-
+    
   insultApp.gameStartListener();
 };
 insultApp.init();
