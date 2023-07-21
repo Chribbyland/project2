@@ -1,26 +1,15 @@
 // Creating a namespace object to hold the app
-const insultApp = {};
+export const insultApp = {};
 import { leftPictures, rightPictures } from './image-arrays.js';
 import { toggleFilter, languageFilter } from './language-filter.js';
 import { setMiddle } from './DOM-manipulation.js';
-
-// functionality for pop-up alert on page load (DISABLED for now, as proxy is operational again)
-// window.addEventListener("load", function () {
-//   setTimeout(
-//     function open(event) {
-//       document.querySelector(".popup").style.display = "block";
-//     },
-//     1000
-//   )
-// });
-// document.querySelector("#close").addEventListener("click", function () {
-//   document.querySelector(".popup").style.display = "none";
-// });
+import { getInsult, getAdvice } from './API-calls.js'
 
 // initial game status (text boxes are empty, buttons are enabled, etc.)
 insultApp.setMiddle = setMiddle;
 insultApp.languageFilter = languageFilter;
 insultApp.toggleFilter = toggleFilter;
+
 // variable to determine which side will call API/fill text bubble. When isLeftSide = true, the left (top) speech bubble will receive text.
 insultApp.isLeftSide = true;
 
@@ -28,98 +17,41 @@ insultApp.isLeftSide = true;
 insultApp.leftCounter = Math.floor(leftPictures.length / 2);
 insultApp.rightCounter = Math.floor(rightPictures.length / 2);
 
-// WORK IN PROGRESS — separating getInsult and getAdvice into API-calls.js
-// insultApp.getInsult = getInsult;
-// insultApp.getAdvice = getAdvice;
+// API calls from API-calls.js
+insultApp.getInsult = getInsult;
+insultApp.getAdvice = getAdvice;
 
-// retrieve insult from evilinsult API (via a proxy to mitigate CORS error)
-insultApp.getInsult = (e) => {
-  fetch('https://proxy.junocollege.com/https://evilinsult.com/generate_insult.php?lang=en&type=jsonfetch(`https://proxy.junocollege.com/https://evilinsult.com/generate_insult.php?lang=en&type=json&version=' + Math.floor(Math.random() * 100000 + 1))
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (jsonResult) {
-      // run language filter
-      insultApp.languageFilter(jsonResult, insultApp.replaceInsultLeft, insultApp.replaceInsultRight, insultApp.isLeftSide);
-      // re-enable insult button
-      e.target.disabled = false;
-    });
-};
 
-// retrieve advice from adviceslip API. Cache-breaking technique used again to ensure API sends fresh data (new, random result) when requested
-insultApp.getAdvice = (e, isLeft) => {
-  fetch('https://api.adviceslip.com/advice?type=json&version=' + Math.floor(Math.random() * 100000 + 1))
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (jsonResult) {
-      const advice = jsonResult.slip;
-      // if isLeft = true, the left/top speech bubble will populate, and vice versa
-      const side = isLeft ? '#leftPersonSpeechText' : '#rightPersonSpeechText';
-      const container = isLeft ? 'leftSpeechContainer' : 'rightSpeechContainer';
-      const adviceText = document.querySelector(side);
-      // Clear the innerHTML of the opposite side's adviceText
-      const oppositeSide = isLeft ? '#rightPersonSpeechText' : '#leftPersonSpeechText';
-      const oppositeAdviceText = document.querySelector(oppositeSide);
-      oppositeAdviceText.innerHTML = '...';
-      // Fade out the current advice text
-      adviceText.style.opacity = 0;
-      adviceText.style.transition = 'opacity 0ms';
-      // Set the new advice text and fade it in
-      setTimeout(function () {
-        adviceText.innerHTML = advice.advice;
-        adviceText.style.transition = 'opacity 350ms';
-        adviceText.style.opacity = 1;
-      }, 0);
-      // replace existing content
-      adviceText.innerHTML = advice.advice;
-      // toggle the font awesome turn indicator to the correct player
-      if (isLeft) {
-        insultApp.turnIndicator('right', 35);
-      } else {
-        insultApp.turnIndicator('left', -35);
-      }
-      // re-enable advice button and make speech bubble visible
-      e.target.disabled = false;
-      document.getElementById(container).style.visibility = 'visible';
-    });
-};
-
-// future goal: reduce insultApp.replaceInsultLeft and insultApp.replaceInsultRight into one function, and combine into insultApp.getInsult, much like how insultApp.getAdvice is structured.
-insultApp.replaceInsultLeft = (filteredInsult) => {
-  // replace existing speech bubble content left
+// Semi-broken right now - combining replaceInsultLeft and replaceInsultRight together..
+// future goal: combine into insultApp.getInsult, much like how insultApp.getAdvice is structured.
+insultApp.replaceInsult = (filteredInsult, isLeft) => {
   const insultLeftText = document.querySelector('#leftPersonSpeechText');
   const insultRightText = document.querySelector('#rightPersonSpeechText');
-  insultLeftText.innerHTML = filteredInsult;
-  // clear current player's speech bubble content
-  insultRightText.innerHTML = '...';
-  // make speech bubble visible, as it is hidden on game start/reset
-  document.getElementById('leftSpeechContainer').style.visibility = 'visible';
-  // toggle the font awesome turn indicator to the correct player
-  insultApp.turnIndicator('right', 35);
-};
-
-insultApp.replaceInsultRight = (filteredInsult) => {
-  // replace existing speech bubble content right
-  const insultRightText = document.querySelector('#rightPersonSpeechText');
-  const insultLeftText = document.querySelector('#leftPersonSpeechText');
-  insultRightText.innerHTML = filteredInsult;
-  // clear current player's speech bubble content
-  insultLeftText.innerHTML = '...';
-  // make speech bubble visible, as it is hidden on game start/reset
-  document.getElementById('rightSpeechContainer').style.visibility = 'visible';
-  // toggle the font awesome turn indicator to the correct player
-  insultApp.turnIndicator('left', -35);
+  if (isLeft) {
+    insultLeftText.innerHTML = filteredInsult;
+    // clear current player's speech bubble content
+    insultRightText.innerHTML = '...';
+    // make speech bubble visible, as it is hidden on game start/reset
+    document.getElementById('leftSpeechContainer').style.visibility = 'visible';
+    // toggle the font awesome turn indicator to the correct player
+    insultApp.turnIndicator('right', 35);
+  } else {
+    insultRightText.innerHTML = filteredInsult;
+    // clear current player's speech bubble content
+    insultLeftText.innerHTML = '...';
+    // make speech bubble visible, as it is hidden on game start/reset
+    document.getElementById('rightSpeechContainer').style.visibility = 'visible';
+    // toggle the font awesome turn indicator to the correct player
+    insultApp.turnIndicator('left', -35);
+  }
 };
 
 // font awesome icon indicating player's turn. Customized to rotate 75 degrees to point up toward active player.
 insultApp.turnIndicator = (direction) => {
   const indicator = document.querySelector('i');
-
   // indicator animation
   // remove the animation class to reset the rotation
   indicator.classList.remove('fa-rotate-by', 'fa-rotate-by-reversed');
-
   if (direction === 'left') {
     indicator.innerHTML = `<i class="fa-solid fa-4x fa-arrow-up fa-rotate-by"></i>`;
     // Add the animation class for clockwise rotation
@@ -294,67 +226,67 @@ insultApp.init = () => {
         })
       }
     });
-    const toggleSwitch = document.getElementById("toggleSwitch");
-    const onText = document.querySelector(".onoff .switchText:first-child p");
-    const offText = document.querySelector(".onoff .switchText:last-child p");
+  const toggleSwitch = document.getElementById("toggleSwitch");
+  const onText = document.querySelector(".onoff .switchText:first-child p");
+  const offText = document.querySelector(".onoff .switchText:last-child p");
 
-    toggleSwitch.addEventListener("change", function () {
-      if (this.checked) {
-        wrapTextWithSpans(onText);
-        wrapTextWithSpans(offText);
-        applyGlowEffect(offText);
-        removeGlowEffect(onText);
-      } else {
-        wrapTextWithSpans(onText);
-        wrapTextWithSpans(offText);
-        applyGlowEffect(onText);
-        removeGlowEffect(offText);
-      }
-    });
-
-    function wrapTextWithSpans(textElement) {
-      const text = textElement.textContent;
-      const letters = text.split("");
-      const wrappedText = letters
-        .map((letter) => `<span>${letter}</span>`)
-        .join("");
-      textElement.innerHTML = wrappedText;
-    }
-
-    function applyGlowEffect(textElement) {
-      const letters = textElement.querySelectorAll("span");
-      letters.forEach((letter) => letter.classList.add("glow"));
-    }
-
-    function removeGlowEffect(textElement) {
-      const letters = textElement.querySelectorAll("span");
-      letters.forEach((letter) => letter.classList.remove("glow"));
-    }
-
-    function moveSliderToRight() {
-      toggleSwitch.checked = true;
+  toggleSwitch.addEventListener("change", function () {
+    if (this.checked) {
       wrapTextWithSpans(onText);
       wrapTextWithSpans(offText);
       applyGlowEffect(offText);
       removeGlowEffect(onText);
-    }
-
-    function moveSliderToLeft() {
-      toggleSwitch.checked = false;
+    } else {
       wrapTextWithSpans(onText);
       wrapTextWithSpans(offText);
       applyGlowEffect(onText);
       removeGlowEffect(offText);
     }
-    // function moveSliderToRight() {
-    //   const toggleSwitch = document.getElementById("toggleSwitch");
-    //   toggleSwitch.checked = true;
-    // }
+  });
 
-    // function moveSliderToLeft() {
-    //   const toggleSwitch = document.getElementById("toggleSwitch");
-    //   toggleSwitch.checked = false;
-    // }
+  function wrapTextWithSpans(textElement) {
+    const text = textElement.textContent;
+    const letters = text.split("");
+    const wrappedText = letters
+      .map((letter) => `<span>${letter}</span>`)
+      .join("");
+    textElement.innerHTML = wrappedText;
+  }
+
+  function applyGlowEffect(textElement) {
+    const letters = textElement.querySelectorAll("span");
+    letters.forEach((letter) => letter.classList.add("glow"));
+  }
+
+  function removeGlowEffect(textElement) {
+    const letters = textElement.querySelectorAll("span");
+    letters.forEach((letter) => letter.classList.remove("glow"));
+  }
+
+  function moveSliderToRight() {
+    toggleSwitch.checked = true;
+    wrapTextWithSpans(onText);
+    wrapTextWithSpans(offText);
+    applyGlowEffect(offText);
+    removeGlowEffect(onText);
+  }
+
+  function moveSliderToLeft() {
+    toggleSwitch.checked = false;
+    wrapTextWithSpans(onText);
+    wrapTextWithSpans(offText);
+    applyGlowEffect(onText);
+    removeGlowEffect(offText);
+  }
+  // function moveSliderToRight() {
+  //   const toggleSwitch = document.getElementById("toggleSwitch");
+  //   toggleSwitch.checked = true;
+  // }
+
+  // function moveSliderToLeft() {
+  //   const toggleSwitch = document.getElementById("toggleSwitch");
+  //   toggleSwitch.checked = false;
+  // }
 
   insultApp.gameStartListener();
 };
