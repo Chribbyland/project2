@@ -1,4 +1,8 @@
 import { insultApp } from './script.js'
+
+
+// I broke this... combining replaceInsultLeft and Right.
+
 // retrieve insult from evilinsult API (via a proxy to mitigate CORS error)
 export const getInsult = (e) => {
   fetch('https://proxy.junocollege.com/https://evilinsult.com/generate_insult.php?lang=en&type=jsonfetch(`https://proxy.junocollege.com/https://evilinsult.com/generate_insult.php?lang=en&type=json&version=' + Math.floor(Math.random() * 100000 + 1))

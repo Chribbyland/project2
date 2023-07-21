@@ -229,6 +229,18 @@ html {
   overflow: hidden;
 }
 
+* {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+*:focus {
+  outline: none;
+}
+
 body {
   background-color: #9ec0ef;
   height: 100vh;
@@ -256,6 +268,19 @@ h4 {
   background-color: #9ec0ef;
 }
 
+header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
 .middle {
   min-width: 40%;
   display: -webkit-box;
@@ -270,6 +295,156 @@ h4 {
 .switch {
   display: block;
   margin-top: 10px;
+}
+
+.entirePage {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+.middle {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  min-width: 30%;
+  max-width: 48%;
+}
+
+.welcome {
+  text-align: center;
+  justify-self: flex-start;
+}
+
+.toggle {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: auto;
+  height: 34px;
+}
+
+.toggle input {
+  display: none;
+}
+
+.toggle label {
+  position: relative;
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 auto;
+          flex: 0 0 auto;
+  width: 45px;
+  height: 20px;
+  border-radius: 20px;
+  background-color: #ccc;
+  cursor: pointer;
+}
+
+.toggle label:before {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: white;
+  -webkit-transition: -webkit-transform 0.2s;
+  transition: -webkit-transform 0.2s;
+  transition: transform 0.2s;
+  transition: transform 0.2s, -webkit-transform 0.2s;
+}
+
+.toggle input:checked + label {
+  background-color: #2196F3;
+}
+
+.toggle input:checked + label:before {
+  -webkit-transform: translateX(26px);
+          transform: translateX(26px);
+}
+
+.onoff {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.switchText p {
+  margin: 0 10px;
+  font-size: 1.5em;
+}
+
+.onoff p {
+  position: relative;
+}
+
+.onoff p span {
+  display: inline-block;
+  -webkit-transition: -webkit-box-shadow 0.5s;
+  transition: -webkit-box-shadow 0.5s;
+  transition: box-shadow 0.5s;
+  transition: box-shadow 0.5s, -webkit-box-shadow 0.5s;
+}
+
+.SwitchText p.glow span {
+  -webkit-animation: glowing 2s infinite;
+          animation: glowing 2s infinite;
+  color: yellow;
+}
+
+@-webkit-keyframes glowing {
+  0% {
+    opacity: 1;
+    text-shadow: 0 0 5px yellow, 0 0 20px yellow, 0 0 30px yellow, 0 0 40px yellow, 0 0 50px yellow;
+  }
+  50% {
+    opacity: 0.5;
+    text-shadow: none;
+  }
+  100% {
+    opacity: 1;
+    text-shadow: 0 0 5px yellow, 0 0 20px yellow, 0 0 30px yellow, 0 0 40px yellow, 0 0 50px yellow;
+  }
+}
+
+@keyframes glowing {
+  0% {
+    opacity: 1;
+    text-shadow: 0 0 5px yellow, 0 0 20px yellow, 0 0 30px yellow, 0 0 40px yellow, 0 0 50px yellow;
+  }
+  50% {
+    opacity: 0.5;
+    text-shadow: none;
+  }
+  100% {
+    opacity: 1;
+    text-shadow: 0 0 5px yellow, 0 0 20px yellow, 0 0 30px yellow, 0 0 40px yellow, 0 0 50px yellow;
+  }
+}
+.glow {
+  text-shadow: 0 0 10px white, 0 0 20px white, 0 0 30px white, 0 0 40px white, 0 0 70px yellow, 0 0 80px yellow, 0 0 100px yellow, 0 0 150px yellow;
 }
 
 html {
@@ -308,6 +483,47 @@ p {
   font-size: 2.5rem;
   text-align: center;
   line-height: 3rem;
+}
+
+.buttonBox {
+  text-align: center;
+}
+
+button {
+  background-color: white;
+  font-size: 3rem;
+  border-right: 3px solid #a59eef;
+  border-bottom: 3px solid #a59eef;
+  border-left: 3px solid #9ee9ef;
+  border-top: 3px solid #9ee9ef;
+  border-radius: 10px;
+  padding: 5px 10px;
+  margin-bottom: 10px;
+}
+
+button:hover,
+button:focus {
+  border-right: 3px solid #e9ef9e;
+  border-bottom: 3px solid #e9ef9e;
+  border-left: 3px solid #efcd9e;
+  border-top: 3px solid #efcd9e;
+  border-radius: 10px;
+}
+
+.turnIndicatorContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-bottom: 10px;
+}
+
+.rightTurnIndicator {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 
 .leftSpeechContainer {
@@ -367,6 +583,149 @@ p {
 
 .rightPersonSpeechText, .leftPersonSpeechText {
   margin: 0;
+}
+
+.popup {
+  background-color: #ffffff;
+  border: 2px solid black;
+  width: 450px;
+  padding: 0px 40px 30px 40px;
+  position: absolute;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  left: 50%;
+  top: 50%;
+  border-radius: 8px;
+  display: none;
+  text-align: center;
+}
+.popup h2 {
+  margin-top: 0px;
+}
+
+.popup button {
+  display: block;
+  margin: 0 0 0px auto;
+  background-color: transparent;
+  font-size: 40px;
+  padding-right: 0px;
+  padding-top: 20px;
+  color: #c5c5c5;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  -webkit-transition: 0.35s;
+  transition: 0.35s;
+}
+.popup button:hover,
+.popup button :focus {
+  border: none;
+  border-radius: 0px;
+  color: red;
+}
+
+.popup p {
+  font-size: 2.2rem;
+  text-align: justify;
+  margin: 20px 0;
+  line-height: 25px;
+}
+
+.close-popup {
+  border: 2px solid;
+}
+
+.fa-rotate-by {
+  -webkit-animation-name: rotateIndicator;
+          animation-name: rotateIndicator;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards; /* Keep the final state of the animation */
+}
+
+.fa-rotate-by-reversed {
+  -webkit-animation-name: rotateIndicatorReversed;
+          animation-name: rotateIndicatorReversed;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards; /* Keep the final state of the animation */
+}
+
+@-webkit-keyframes rotateIndicator {
+  from {
+    -webkit-transform: rotate(35deg);
+            transform: rotate(35deg); /* Initial position for Left player's turn */
+  }
+  to {
+    -webkit-transform: rotate(-35deg);
+            transform: rotate(-35deg); /* Final position for Right player's turn */
+  }
+}
+
+@keyframes rotateIndicator {
+  from {
+    -webkit-transform: rotate(35deg);
+            transform: rotate(35deg); /* Initial position for Left player's turn */
+  }
+  to {
+    -webkit-transform: rotate(-35deg);
+            transform: rotate(-35deg); /* Final position for Right player's turn */
+  }
+}
+@-webkit-keyframes rotateIndicatorReversed {
+  from {
+    -webkit-transform: rotate(-35deg);
+            transform: rotate(-35deg); /* Initial position for Right player's turn */
+  }
+  to {
+    -webkit-transform: rotate(35deg);
+            transform: rotate(35deg); /* Final position for Left player's turn */
+  }
+}
+@keyframes rotateIndicatorReversed {
+  from {
+    -webkit-transform: rotate(-35deg);
+            transform: rotate(-35deg); /* Initial position for Right player's turn */
+  }
+  to {
+    -webkit-transform: rotate(35deg);
+            transform: rotate(35deg); /* Final position for Left player's turn */
+  }
+}
+.flip {
+  -webkit-transform: scaleX(-1);
+          transform: scaleX(-1);
+}
+
+.switch {
+  width: 60px;
+  height: 30px;
+  background-color: #ccc;
+  border-radius: 15px;
+  border: none;
+  color: #fff;
+  font-weight: bold;
+  text-transform: uppercase;
+  -webkit-transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease;
+}
+
+.switch.on {
+  background-color: #5cb85c;
+}
+
+.switch.off {
+  background-color: #d9534f;
+}
+
+#toggleButton {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  -ms-flex-item-align: center;
+      align-self: center;
 }
 
 @media (max-width: 768px) {
@@ -486,367 +845,4 @@ p {
   .leftSpeechContainer, .rightSpeechContainer {
     width: 100%;
   }
-}
-.popup {
-  background-color: #ffffff;
-  border: 2px solid black;
-  width: 450px;
-  padding: 0px 40px 30px 40px;
-  position: absolute;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
-  left: 50%;
-  top: 50%;
-  border-radius: 8px;
-  display: none;
-  text-align: center;
-}
-.popup h2 {
-  margin-top: 0px;
-}
-
-.popup button {
-  display: block;
-  margin: 0 0 0px auto;
-  background-color: transparent;
-  font-size: 40px;
-  padding-right: 0px;
-  padding-top: 20px;
-  color: #c5c5c5;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  -webkit-transition: 0.35s;
-  transition: 0.35s;
-}
-.popup button:hover,
-.popup button :focus {
-  border: none;
-  border-radius: 0px;
-  color: red;
-}
-
-.popup p {
-  font-size: 2.2rem;
-  text-align: justify;
-  margin: 20px 0;
-  line-height: 25px;
-}
-
-.close-popup {
-  border: 2px solid;
-}
-
-.fa-rotate-by {
-  -webkit-animation-name: rotateIndicator;
-          animation-name: rotateIndicator;
-  -webkit-animation-duration: 1s;
-          animation-duration: 1s;
-  -webkit-animation-fill-mode: forwards;
-          animation-fill-mode: forwards; /* Keep the final state of the animation */
-}
-
-.fa-rotate-by-reversed {
-  -webkit-animation-name: rotateIndicatorReversed;
-          animation-name: rotateIndicatorReversed;
-  -webkit-animation-duration: 1s;
-          animation-duration: 1s;
-  -webkit-animation-fill-mode: forwards;
-          animation-fill-mode: forwards; /* Keep the final state of the animation */
-}
-
-@-webkit-keyframes rotateIndicator {
-  from {
-    -webkit-transform: rotate(35deg);
-            transform: rotate(35deg); /* Initial position for Left player's turn */
-  }
-  to {
-    -webkit-transform: rotate(-35deg);
-            transform: rotate(-35deg); /* Final position for Right player's turn */
-  }
-}
-
-@keyframes rotateIndicator {
-  from {
-    -webkit-transform: rotate(35deg);
-            transform: rotate(35deg); /* Initial position for Left player's turn */
-  }
-  to {
-    -webkit-transform: rotate(-35deg);
-            transform: rotate(-35deg); /* Final position for Right player's turn */
-  }
-}
-@-webkit-keyframes rotateIndicatorReversed {
-  from {
-    -webkit-transform: rotate(-35deg);
-            transform: rotate(-35deg); /* Initial position for Right player's turn */
-  }
-  to {
-    -webkit-transform: rotate(35deg);
-            transform: rotate(35deg); /* Final position for Left player's turn */
-  }
-}
-@keyframes rotateIndicatorReversed {
-  from {
-    -webkit-transform: rotate(-35deg);
-            transform: rotate(-35deg); /* Initial position for Right player's turn */
-  }
-  to {
-    -webkit-transform: rotate(35deg);
-            transform: rotate(35deg); /* Final position for Left player's turn */
-  }
-}
-.flip {
-  -webkit-transform: scaleX(-1);
-          transform: scaleX(-1);
-}
-
-.entirePage {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
-}
-
-.middle {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  min-width: 30%;
-  max-width: 48%;
-}
-
-.welcome {
-  text-align: center;
-  justify-self: flex-start;
-}
-
-.buttonBox {
-  text-align: center;
-}
-
-button {
-  background-color: white;
-  font-size: 3rem;
-  border-right: 3px solid #a59eef;
-  border-bottom: 3px solid #a59eef;
-  border-left: 3px solid #9ee9ef;
-  border-top: 3px solid #9ee9ef;
-  border-radius: 10px;
-  padding: 5px 10px;
-  margin-bottom: 10px;
-}
-
-button:hover,
-button:focus {
-  border-right: 3px solid #e9ef9e;
-  border-bottom: 3px solid #e9ef9e;
-  border-left: 3px solid #efcd9e;
-  border-top: 3px solid #efcd9e;
-  border-radius: 10px;
-}
-
-.turnIndicatorContainer {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  margin-bottom: 10px;
-}
-
-.rightTurnIndicator {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-.switch {
-  width: 60px;
-  height: 30px;
-  background-color: #ccc;
-  border-radius: 15px;
-  border: none;
-  color: #fff;
-  font-weight: bold;
-  text-transform: uppercase;
-  -webkit-transition: background-color 0.3s ease;
-  transition: background-color 0.3s ease;
-}
-
-.switch.on {
-  background-color: #5cb85c;
-}
-
-.switch.off {
-  background-color: #d9534f;
-}
-
-header {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-#toggleButton {
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-  -ms-flex-item-align: center;
-      align-self: center;
-}
-
-/* CSS rules are kept repetitive so that you can get CSS rules for each button easily :) */
-* {
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-  -webkit-tap-highlight-color: transparent;
-}
-
-*:focus {
-  outline: none;
-}
-
-.toggle {
-  position: relative;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  width: auto;
-  height: 34px;
-}
-
-.toggle input {
-  display: none;
-}
-
-.toggle label {
-  position: relative;
-  -webkit-box-flex: 0;
-      -ms-flex: 0 0 auto;
-          flex: 0 0 auto;
-  /* Add flex property */
-  width: 45px;
-  /* Set desired width for the toggle label */
-  height: 20px;
-  /* Set desired height for the toggle label */
-  border-radius: 20px;
-  /* Adjust border-radius to match height */
-  background-color: #ccc;
-  cursor: pointer;
-}
-
-.toggle label:before {
-  content: "";
-  position: absolute;
-  top: 2px;
-  left: 2px;
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  background-color: white;
-  -webkit-transition: -webkit-transform 0.2s;
-  transition: -webkit-transform 0.2s;
-  transition: transform 0.2s;
-  transition: transform 0.2s, -webkit-transform 0.2s;
-}
-
-.toggle input:checked + label {
-  background-color: #2196F3;
-}
-
-.toggle input:checked + label:before {
-  -webkit-transform: translateX(26px);
-          transform: translateX(26px);
-}
-
-.onoff {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.switchText p {
-  margin: 0 10px;
-  font-size: 1.5em;
-}
-
-.onoff p {
-  position: relative;
-}
-
-.onoff p span {
-  display: inline-block;
-  -webkit-transition: -webkit-box-shadow 0.5s;
-  transition: -webkit-box-shadow 0.5s;
-  transition: box-shadow 0.5s;
-  transition: box-shadow 0.5s, -webkit-box-shadow 0.5s;
-}
-
-.SwitchText p.glow span {
-  -webkit-animation: glowing 2s infinite;
-          animation: glowing 2s infinite;
-  color: yellow;
-}
-
-@-webkit-keyframes glowing {
-  0% {
-    opacity: 1;
-    text-shadow: 0 0 5px yellow, 0 0 20px yellow, 0 0 30px yellow, 0 0 40px yellow, 0 0 50px yellow;
-  }
-  50% {
-    opacity: 0.5;
-    text-shadow: none;
-  }
-  100% {
-    opacity: 1;
-    text-shadow: 0 0 5px yellow, 0 0 20px yellow, 0 0 30px yellow, 0 0 40px yellow, 0 0 50px yellow;
-  }
-}
-
-@keyframes glowing {
-  0% {
-    opacity: 1;
-    text-shadow: 0 0 5px yellow, 0 0 20px yellow, 0 0 30px yellow, 0 0 40px yellow, 0 0 50px yellow;
-  }
-  50% {
-    opacity: 0.5;
-    text-shadow: none;
-  }
-  100% {
-    opacity: 1;
-    text-shadow: 0 0 5px yellow, 0 0 20px yellow, 0 0 30px yellow, 0 0 40px yellow, 0 0 50px yellow;
-  }
-}
-.glow {
-  text-shadow: 0 0 10px white, 0 0 20px white, 0 0 30px white, 0 0 40px white, 0 0 70px yellow, 0 0 80px yellow, 0 0 100px yellow, 0 0 150px yellow;
 }

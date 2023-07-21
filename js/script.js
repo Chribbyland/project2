@@ -271,23 +271,14 @@ insultApp.init = () => {
     removeGlowEffect(onText);
   }
 
-  function moveSliderToLeft() {
-    toggleSwitch.checked = false;
-    wrapTextWithSpans(onText);
-    wrapTextWithSpans(offText);
-    applyGlowEffect(onText);
-    removeGlowEffect(offText);
-  }
-  // function moveSliderToRight() {
-  //   const toggleSwitch = document.getElementById("toggleSwitch");
-  //   toggleSwitch.checked = true;
-  // }
-
-  // function moveSliderToLeft() {
-  //   const toggleSwitch = document.getElementById("toggleSwitch");
-  //   toggleSwitch.checked = false;
-  // }
-
+    function moveSliderToLeft() {
+      toggleSwitch.checked = false;
+      wrapTextWithSpans(onText);
+      wrapTextWithSpans(offText);
+      applyGlowEffect(onText);
+      removeGlowEffect(offText);
+    }
+    
   insultApp.gameStartListener();
 };
 insultApp.init();
