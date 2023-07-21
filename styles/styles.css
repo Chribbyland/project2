@@ -347,13 +347,9 @@ header {
   -webkit-box-flex: 0;
       -ms-flex: 0 0 auto;
           flex: 0 0 auto;
-  /* Add flex property */
   width: 45px;
-  /* Set desired width for the toggle label */
   height: 20px;
-  /* Set desired height for the toggle label */
   border-radius: 20px;
-  /* Adjust border-radius to match height */
   background-color: #ccc;
   cursor: pointer;
 }
@@ -487,6 +483,31 @@ p {
   font-size: 2.5rem;
   text-align: center;
   line-height: 3rem;
+}
+
+.buttonBox {
+  text-align: center;
+}
+
+button {
+  background-color: white;
+  font-size: 3rem;
+  border-right: 3px solid #a59eef;
+  border-bottom: 3px solid #a59eef;
+  border-left: 3px solid #9ee9ef;
+  border-top: 3px solid #9ee9ef;
+  border-radius: 10px;
+  padding: 5px 10px;
+  margin-bottom: 10px;
+}
+
+button:hover,
+button:focus {
+  border-right: 3px solid #e9ef9e;
+  border-bottom: 3px solid #e9ef9e;
+  border-left: 3px solid #efcd9e;
+  border-top: 3px solid #efcd9e;
+  border-radius: 10px;
 }
 
 .turnIndicatorContainer {

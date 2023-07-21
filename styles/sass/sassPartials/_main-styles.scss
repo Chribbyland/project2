@@ -75,38 +75,17 @@ header {
 }
 
 .toggle label {
-    // position: absolute;
-    // top: 0;
-    // left: 0;
-    // width: 100%;
-    // height: 100%;
-    // border-radius: 34px;
-    // background-color: #ccc;
-    // cursor: pointer;
     position: relative;
     flex: 0 0 auto;
-    /* Add flex property */
     width: 45px;
-    /* Set desired width for the toggle label */
     height: 20px;
-    /* Set desired height for the toggle label */
     border-radius: 20px;
-    /* Adjust border-radius to match height */
     background-color: #ccc;
     cursor: pointer;
-
 }
 
 .toggle label:before {
-    // content: "";
-    // position: absolute;
-    // top: 4px;
-    // left: 4px;
-    // width: 26px;
-    // height: 26px;
-    // border-radius: 50%;
-    // background-color: white;
-    // transition: transform 0.2s;
+    
     content: "";
     position: absolute;
     top: 2px;
@@ -116,7 +95,6 @@ header {
     border-radius: 50%;
     background-color: white;
     transition: transform 0.2s;
-    // z-index: 2;
 }
 
 .toggle input:checked+label {
