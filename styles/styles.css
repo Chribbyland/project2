@@ -326,6 +326,241 @@ header {
   justify-self: flex-start;
 }
 
+html {
+  font-size: 62.5%; /* makes font 10px */
+}
+
+h1 {
+  font-family: "Abril Fatface", cursive;
+  font-size: 5rem;
+  color: #030B15;
+  text-align: center;
+  padding: 20px;
+  margin-top: 0;
+}
+h1 span {
+  font-size: 2rem;
+}
+
+h2 {
+  font-size: 3.5rem;
+}
+
+h3 {
+  text-align: center;
+  font-size: 2.5rem;
+}
+
+h4 {
+  font-family: "Prompt", sans-serif;
+  font-size: 1rem;
+  text-align: center;
+}
+
+p {
+  font-family: "Handlee", cursive;
+  font-size: 2.5rem;
+  text-align: center;
+  line-height: 3rem;
+}
+
+.buttonBox {
+  text-align: center;
+}
+
+button {
+  background-color: white;
+  font-size: 3rem;
+  border-right: 3px solid #a59eef;
+  border-bottom: 3px solid #a59eef;
+  border-left: 3px solid #9ee9ef;
+  border-top: 3px solid #9ee9ef;
+  border-radius: 10px;
+  padding: 5px 10px;
+  margin-bottom: 10px;
+}
+
+button:hover,
+button:focus {
+  border-right: 3px solid #e9ef9e;
+  border-bottom: 3px solid #e9ef9e;
+  border-left: 3px solid #efcd9e;
+  border-top: 3px solid #efcd9e;
+  border-radius: 10px;
+}
+
+.turnIndicatorContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-bottom: 10px;
+}
+
+.fa-rotate-by {
+  -webkit-animation-name: rotateIndicator;
+          animation-name: rotateIndicator;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+  /* Keep the final state of the animation */
+}
+
+.fa-rotate-by-reversed {
+  -webkit-animation-name: rotateIndicatorReversed;
+          animation-name: rotateIndicatorReversed;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+  /* Keep the final state of the animation */
+}
+
+@-webkit-keyframes rotateIndicator {
+  from {
+    -webkit-transform: rotate(35deg);
+            transform: rotate(35deg);
+    /* Initial position for Left player's turn */
+  }
+  to {
+    -webkit-transform: rotate(-35deg);
+            transform: rotate(-35deg);
+    /* Final position for Right player's turn */
+  }
+}
+
+@keyframes rotateIndicator {
+  from {
+    -webkit-transform: rotate(35deg);
+            transform: rotate(35deg);
+    /* Initial position for Left player's turn */
+  }
+  to {
+    -webkit-transform: rotate(-35deg);
+            transform: rotate(-35deg);
+    /* Final position for Right player's turn */
+  }
+}
+@-webkit-keyframes rotateIndicatorReversed {
+  from {
+    -webkit-transform: rotate(-35deg);
+            transform: rotate(-35deg);
+    /* Initial position for Right player's turn */
+  }
+  to {
+    -webkit-transform: rotate(35deg);
+            transform: rotate(35deg);
+    /* Final position for Left player's turn */
+  }
+}
+@keyframes rotateIndicatorReversed {
+  from {
+    -webkit-transform: rotate(-35deg);
+            transform: rotate(-35deg);
+    /* Initial position for Right player's turn */
+  }
+  to {
+    -webkit-transform: rotate(35deg);
+            transform: rotate(35deg);
+    /* Final position for Left player's turn */
+  }
+}
+.leftSpeechContainer {
+  position: relative;
+  width: 90%;
+  min-height: 70px;
+  background: #fff;
+  border-radius: 40px;
+  padding: 24px;
+  margin: 20px auto;
+  text-align: center;
+  color: #000;
+}
+
+.rightSpeechContainer {
+  position: relative;
+  width: 90%;
+  min-height: 70px;
+  background: #fff;
+  border-radius: 40px;
+  padding: 24px;
+  margin: 20px 0;
+  text-align: center;
+  color: #000;
+}
+
+.dissolve-effect {
+  opacity: 0;
+  -webkit-transition: opacity 300ms;
+  transition: opacity 300ms;
+}
+
+.leftTail:before {
+  content: "";
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  border-left: 20px solid transparent;
+  border-right: 20px solid #fff;
+  border-top: 31px solid transparent;
+  border-bottom: 0px solid transparent;
+  left: -35px;
+  bottom: 30%;
+}
+
+.rightTail:before {
+  content: "";
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  border-left: 20px solid #fff;
+  border-right: 20px solid transparent;
+  border-top: 0px solid transparent;
+  border-bottom: 30px solid transparent;
+  right: -35px;
+}
+
+.rightPersonSpeechText, .leftPersonSpeechText {
+  margin: 0;
+}
+
+.flip {
+  -webkit-transform: scaleX(-1);
+          transform: scaleX(-1);
+}
+
+.switch {
+  width: 60px;
+  height: 30px;
+  background-color: #ccc;
+  border-radius: 15px;
+  border: none;
+  color: #fff;
+  font-weight: bold;
+  text-transform: uppercase;
+  -webkit-transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease;
+}
+
+.switch.on {
+  background-color: #5cb85c;
+}
+
+.switch.off {
+  background-color: #d9534f;
+}
+
+#toggleButton {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  -ms-flex-item-align: center;
+      align-self: center;
+}
+
 .toggle {
   position: relative;
   display: -webkit-box;
@@ -445,287 +680,6 @@ header {
 }
 .glow {
   text-shadow: 0 0 10px white, 0 0 20px white, 0 0 30px white, 0 0 40px white, 0 0 70px yellow, 0 0 80px yellow, 0 0 100px yellow, 0 0 150px yellow;
-}
-
-html {
-  font-size: 62.5%; /* makes font 10px */
-}
-
-h1 {
-  font-family: "Abril Fatface", cursive;
-  font-size: 5rem;
-  color: #030B15;
-  text-align: center;
-  padding: 20px;
-  margin-top: 0;
-}
-h1 span {
-  font-size: 2rem;
-}
-
-h2 {
-  font-size: 3.5rem;
-}
-
-h3 {
-  text-align: center;
-  font-size: 2.5rem;
-}
-
-h4 {
-  font-family: "Prompt", sans-serif;
-  font-size: 1rem;
-  text-align: center;
-}
-
-p {
-  font-family: "Handlee", cursive;
-  font-size: 2.5rem;
-  text-align: center;
-  line-height: 3rem;
-}
-
-.buttonBox {
-  text-align: center;
-}
-
-button {
-  background-color: white;
-  font-size: 3rem;
-  border-right: 3px solid #a59eef;
-  border-bottom: 3px solid #a59eef;
-  border-left: 3px solid #9ee9ef;
-  border-top: 3px solid #9ee9ef;
-  border-radius: 10px;
-  padding: 5px 10px;
-  margin-bottom: 10px;
-}
-
-button:hover,
-button:focus {
-  border-right: 3px solid #e9ef9e;
-  border-bottom: 3px solid #e9ef9e;
-  border-left: 3px solid #efcd9e;
-  border-top: 3px solid #efcd9e;
-  border-radius: 10px;
-}
-
-.turnIndicatorContainer {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  margin-bottom: 10px;
-}
-
-.rightTurnIndicator {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-.leftSpeechContainer {
-  position: relative;
-  width: 90%;
-  min-height: 70px;
-  background: #fff;
-  border-radius: 40px;
-  padding: 24px;
-  margin: 20px auto;
-  text-align: center;
-  color: #000;
-}
-
-.rightSpeechContainer {
-  position: relative;
-  width: 90%;
-  min-height: 70px;
-  background: #fff;
-  border-radius: 40px;
-  padding: 24px;
-  margin: 20px 0;
-  text-align: center;
-  color: #000;
-}
-
-.dissolve-effect {
-  opacity: 0;
-  -webkit-transition: opacity 300ms;
-  transition: opacity 300ms;
-}
-
-.leftTail:before {
-  content: "";
-  width: 0px;
-  height: 0px;
-  position: absolute;
-  border-left: 20px solid transparent;
-  border-right: 20px solid #fff;
-  border-top: 31px solid transparent;
-  border-bottom: 0px solid transparent;
-  left: -35px;
-  bottom: 30%;
-}
-
-.rightTail:before {
-  content: "";
-  width: 0px;
-  height: 0px;
-  position: absolute;
-  border-left: 20px solid #fff;
-  border-right: 20px solid transparent;
-  border-top: 0px solid transparent;
-  border-bottom: 30px solid transparent;
-  right: -35px;
-}
-
-.rightPersonSpeechText, .leftPersonSpeechText {
-  margin: 0;
-}
-
-.popup {
-  background-color: #ffffff;
-  border: 2px solid black;
-  width: 450px;
-  padding: 0px 40px 30px 40px;
-  position: absolute;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
-  left: 50%;
-  top: 50%;
-  border-radius: 8px;
-  display: none;
-  text-align: center;
-}
-.popup h2 {
-  margin-top: 0px;
-}
-
-.popup button {
-  display: block;
-  margin: 0 0 0px auto;
-  background-color: transparent;
-  font-size: 40px;
-  padding-right: 0px;
-  padding-top: 20px;
-  color: #c5c5c5;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  -webkit-transition: 0.35s;
-  transition: 0.35s;
-}
-.popup button:hover,
-.popup button :focus {
-  border: none;
-  border-radius: 0px;
-  color: red;
-}
-
-.popup p {
-  font-size: 2.2rem;
-  text-align: justify;
-  margin: 20px 0;
-  line-height: 25px;
-}
-
-.close-popup {
-  border: 2px solid;
-}
-
-.fa-rotate-by {
-  -webkit-animation-name: rotateIndicator;
-          animation-name: rotateIndicator;
-  -webkit-animation-duration: 1s;
-          animation-duration: 1s;
-  -webkit-animation-fill-mode: forwards;
-          animation-fill-mode: forwards; /* Keep the final state of the animation */
-}
-
-.fa-rotate-by-reversed {
-  -webkit-animation-name: rotateIndicatorReversed;
-          animation-name: rotateIndicatorReversed;
-  -webkit-animation-duration: 1s;
-          animation-duration: 1s;
-  -webkit-animation-fill-mode: forwards;
-          animation-fill-mode: forwards; /* Keep the final state of the animation */
-}
-
-@-webkit-keyframes rotateIndicator {
-  from {
-    -webkit-transform: rotate(35deg);
-            transform: rotate(35deg); /* Initial position for Left player's turn */
-  }
-  to {
-    -webkit-transform: rotate(-35deg);
-            transform: rotate(-35deg); /* Final position for Right player's turn */
-  }
-}
-
-@keyframes rotateIndicator {
-  from {
-    -webkit-transform: rotate(35deg);
-            transform: rotate(35deg); /* Initial position for Left player's turn */
-  }
-  to {
-    -webkit-transform: rotate(-35deg);
-            transform: rotate(-35deg); /* Final position for Right player's turn */
-  }
-}
-@-webkit-keyframes rotateIndicatorReversed {
-  from {
-    -webkit-transform: rotate(-35deg);
-            transform: rotate(-35deg); /* Initial position for Right player's turn */
-  }
-  to {
-    -webkit-transform: rotate(35deg);
-            transform: rotate(35deg); /* Final position for Left player's turn */
-  }
-}
-@keyframes rotateIndicatorReversed {
-  from {
-    -webkit-transform: rotate(-35deg);
-            transform: rotate(-35deg); /* Initial position for Right player's turn */
-  }
-  to {
-    -webkit-transform: rotate(35deg);
-            transform: rotate(35deg); /* Final position for Left player's turn */
-  }
-}
-.flip {
-  -webkit-transform: scaleX(-1);
-          transform: scaleX(-1);
-}
-
-.switch {
-  width: 60px;
-  height: 30px;
-  background-color: #ccc;
-  border-radius: 15px;
-  border: none;
-  color: #fff;
-  font-weight: bold;
-  text-transform: uppercase;
-  -webkit-transition: background-color 0.3s ease;
-  transition: background-color 0.3s ease;
-}
-
-.switch.on {
-  background-color: #5cb85c;
-}
-
-.switch.off {
-  background-color: #d9534f;
-}
-
-#toggleButton {
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-  -ms-flex-item-align: center;
-      align-self: center;
 }
 
 @media (max-width: 768px) {
