@@ -21,31 +21,6 @@ insultApp.rightCounter = Math.floor(rightPictures.length / 2);
 insultApp.getInsult = getInsult;
 insultApp.getAdvice = getAdvice;
 
-
-// Semi-broken right now - combining replaceInsultLeft and replaceInsultRight together..
-// future goal: combine into insultApp.getInsult, much like how insultApp.getAdvice is structured.
-insultApp.replaceInsult = (filteredInsult, isLeft) => {
-  const insultLeftText = document.querySelector('#leftPersonSpeechText');
-  const insultRightText = document.querySelector('#rightPersonSpeechText');
-  if (isLeft) {
-    insultLeftText.innerHTML = filteredInsult;
-    // clear current player's speech bubble content
-    insultRightText.innerHTML = '...';
-    // make speech bubble visible, as it is hidden on game start/reset
-    document.getElementById('leftSpeechContainer').style.visibility = 'visible';
-    // toggle the font awesome turn indicator to the correct player
-    insultApp.turnIndicator('right', 35);
-  } else {
-    insultRightText.innerHTML = filteredInsult;
-    // clear current player's speech bubble content
-    insultLeftText.innerHTML = '...';
-    // make speech bubble visible, as it is hidden on game start/reset
-    document.getElementById('rightSpeechContainer').style.visibility = 'visible';
-    // toggle the font awesome turn indicator to the correct player
-    insultApp.turnIndicator('left', -35);
-  }
-};
-
 // font awesome icon indicating player's turn. Customized to rotate 75 degrees to point up toward active player.
 insultApp.turnIndicator = (direction) => {
   const indicator = document.querySelector('i');
@@ -91,8 +66,7 @@ insultApp.gameReset = (e) => {
   // counters to middle
   insultApp.leftCounter = Math.floor(leftPictures.length / 2);
   insultApp.rightCounter = Math.floor(rightPictures.length / 2);
-
-  // re-enable advice button
+  // re-enable button
   e.target.disabled = false;
   // hiding speech bubbles until user clicks insult/advise
   document.getElementById('leftSpeechContainer').style.visibility = 'hidden';
@@ -271,14 +245,15 @@ insultApp.init = () => {
     removeGlowEffect(onText);
   }
 
-    function moveSliderToLeft() {
-      toggleSwitch.checked = false;
-      wrapTextWithSpans(onText);
-      wrapTextWithSpans(offText);
-      applyGlowEffect(onText);
-      removeGlowEffect(offText);
-    }
-    
+  function moveSliderToLeft() {
+    toggleSwitch.checked = false;
+    wrapTextWithSpans(onText);
+    wrapTextWithSpans(offText);
+    applyGlowEffect(onText);
+    removeGlowEffect(offText);
+  }
+
   insultApp.gameStartListener();
 };
+
 insultApp.init();
